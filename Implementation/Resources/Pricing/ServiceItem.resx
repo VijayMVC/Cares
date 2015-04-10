@@ -126,4 +126,7 @@
   <data name="ServiceItemIsAssociatedWithServiceRTError" xml:space="preserve">
     <value>Service Item is associated with Service RT ! </value>
   </data>
+  <data name="ServiceItemNotFoundInDatabase" xml:space="preserve">
+    <value>Service Item not found in database.</value>
+  </data>
 </root>

@@ -123,4 +123,7 @@
   <data name="OrganizationGroupWithSameCodeAlreadyExists" xml:space="preserve">
     <value>المجموعة المنظمة مع نفس رمز موجود بالفعل</value>
   </data>
+  <data name="OrgGroupNotFoundInDatabase" xml:space="preserve">
+    <value>لم يتم العثور المجموعة المنظمة في قاعدة البيانات.</value>
+  </data>
 </root>

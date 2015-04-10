@@ -123,4 +123,7 @@
   <data name="AreaIsAssociatedWithAddressError" xml:space="preserve">
     <value>Area is associated with address(s)! Can't be deleted.</value>
   </data>
+  <data name="AreaNotFoundInDatabase" xml:space="preserve">
+    <value>Area not found in database.</value>
+  </data>
 </root>

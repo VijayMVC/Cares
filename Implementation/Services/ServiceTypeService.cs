@@ -98,8 +98,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(serviceTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Service Type with Id {0} not found!", serviceTypeId));
+                throw new InvalidOperationException(Resources.Pricing.ServiceType.ServiceTypeNotFoundInDatabase);
             }
             serviceTypeRepository.Delete(dbversion);
             serviceTypeRepository.SaveChanges();

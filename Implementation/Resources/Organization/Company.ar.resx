@@ -123,6 +123,9 @@
   <data name="CompanyIsParentOfOtherCompanyError" xml:space="preserve">
     <value>الشركة الأم ل شركة أخرى. لا يمكن حذف</value>
   </data>
+  <data name="CompanyNotFoundInDatabase" xml:space="preserve">
+    <value>شركة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
   <data name="CompanyWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>الشركة مع نفس رمز موجود بالفعل</value>
   </data>

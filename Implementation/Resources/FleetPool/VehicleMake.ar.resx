@@ -132,4 +132,7 @@
   <data name="VehicleMakeIsAssociatedWithVehicleError" xml:space="preserve">
     <value>ويرتبط مع السيارة جعل السيارة </value>
   </data>
+  <data name="VehicleMakeNotFoundInDatabase" xml:space="preserve">
+    <value>السيارة تأكد لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

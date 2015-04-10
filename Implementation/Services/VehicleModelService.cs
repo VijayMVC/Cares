@@ -106,8 +106,7 @@ namespace Cares.Implementation.Services
             VehicleModel dbversion = vehicleModelRepository.Find(vehicleModelId);
             CheckVehicleModelAssociations(vehicleModelId);
             if (dbversion == null)
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Vehicle Model with Id {0} not found!", vehicleModelId));
+                    throw new InvalidOperationException(Resources.FleetPool.VehicleModel.VehicleModelNotFoundInDatabase);
             vehicleModelRepository.Delete(dbversion);
             vehicleModelRepository.SaveChanges();                
         }

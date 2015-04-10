@@ -123,4 +123,7 @@
   <data name="DiscountTypeIsAssociatedWithDiscountSubTypeError" xml:space="preserve">
     <value>Discount Type is associated with Discount Sub Type ! </value>
   </data>
+  <data name="DiscountTypeNotFoundInDatabase" xml:space="preserve">
+    <value>Discount Type not found in database.</value>
+  </data>
 </root>

@@ -120,6 +120,9 @@
   <data name="DepartmentIsAssociatedWithOperationError" xml:space="preserve">
     <value>Department is associated with operation!</value>
   </data>
+  <data name="DepartmentNotFoundInDatabse" xml:space="preserve">
+    <value>Department not found in databse.</value>
+  </data>
   <data name="DepartmentWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>Department with same code already exists!</value>
   </data>

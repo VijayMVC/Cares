@@ -129,4 +129,7 @@
   <data name="VehicleStatusIsAssociatedWithVehicleSubStatusError" xml:space="preserve">
     <value>Vehicle Status is associated with Vehicle Sub Status</value>
   </data>
+  <data name="VehicleStatusNotFoundInDatabase" xml:space="preserve">
+    <value>Vehicle Status not found in database.</value>
+  </data>
 </root>

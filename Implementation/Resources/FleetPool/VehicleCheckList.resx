@@ -126,4 +126,7 @@
   <data name="VehicleCheckListIsAssociatedWithRAvehicleCheckListError" xml:space="preserve">
     <value>Vehicle Check List is associated with RA vehicle Check List! </value>
   </data>
+  <data name="VehicleCheckListNotFoundInDatabase" xml:space="preserve">
+    <value>Vehicle CheckList not found in database.</value>
+  </data>
 </root>

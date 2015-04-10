@@ -111,8 +111,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(areaId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Area with Id {0} not found!", areaId));
+                throw new InvalidOperationException(Resources.GeographicalHierarchy.Area.AreaNotFoundInDatabase);
             }
             areaRepository.Delete(dbversion);
             areaRepository.SaveChanges();

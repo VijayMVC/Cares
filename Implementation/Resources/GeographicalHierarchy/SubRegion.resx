@@ -123,4 +123,7 @@
   <data name="SubRegionIsAssociatedWithCityError" xml:space="preserve">
     <value>Sub-Region is associated with city(s) !</value>
   </data>
+  <data name="SubRegionNotFoundInDatabase" xml:space="preserve">
+    <value>Sub Region not found in database.</value>
+  </data>
 </root>

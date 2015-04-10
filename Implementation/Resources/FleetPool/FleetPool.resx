@@ -123,6 +123,9 @@
   <data name="FleetPoolIsAssociatedWithOperationWorkPlaceError" xml:space="preserve">
     <value>Fleet Pool is associated with Operation Workplace!</value>
   </data>
+  <data name="FleetPoolNotFoundInDatabase" xml:space="preserve">
+    <value>Fleet Pool not found in database.</value>
+  </data>
   <data name="FleetPoolWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>Fleet Pool with same code already exists!</value>
   </data>

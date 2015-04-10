@@ -589,7 +589,7 @@ namespace Cares.Implementation.Services
             Vehicle vehicle = vehicleRepository.Find(vehicleId);
             if (vehicle == null)
             {
-                throw new ApplicationException(string.Format(CultureInfo.InvariantCulture, "Vehicle with Id {0} not found!", vehicleId));
+                throw new ApplicationException(Resources.FleetPool.Vehicle.VehicleNotFoundInDatabase);
             }
             return vehicleRepository.Find(vehicleId);
         }

@@ -126,4 +126,7 @@
   <data name="VehicleCheckListIsAssociatedWithRAvehicleCheckListError" xml:space="preserve">
     <value>ويرتبط السيارة تحقق مع قائمة مركبة RA التحقق من قائمة !</value>
   </data>
+  <data name="VehicleCheckListNotFoundInDatabase" xml:space="preserve">
+    <value>المرجعية السيارة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

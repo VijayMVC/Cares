@@ -81,8 +81,7 @@ namespace Cares.Implementation.Services
                     operationRepository.Delete(dbVersion);
                     operationRepository.SaveChanges();
                 }
-                else throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                         "Operation with Id {0} not found!", operationoId));
+                else throw new InvalidOperationException(Resources.Organization.Operation.OperationNotFoundInDatabase);
 
                
             }

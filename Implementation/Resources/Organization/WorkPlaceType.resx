@@ -120,4 +120,7 @@
   <data name="WorkPlaceTypeCodeAlreadyExistsError" xml:space="preserve">
     <value>WorkPlace Type  code already exists !</value>
   </data>
+  <data name="WorkplaceTypeNotFoundInDatabase" xml:space="preserve">
+    <value>Workplace Type not found in database.</value>
+  </data>
 </root>

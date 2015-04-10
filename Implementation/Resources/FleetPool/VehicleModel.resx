@@ -132,4 +132,7 @@
   <data name="VehicleModelIsAssociatedWithVehicleError" xml:space="preserve">
     <value>Vehicle Model is associated with Vehicle</value>
   </data>
+  <data name="VehicleModelNotFoundInDatabase" xml:space="preserve">
+    <value>Vehicle Model not found in database.</value>
+  </data>
 </root>

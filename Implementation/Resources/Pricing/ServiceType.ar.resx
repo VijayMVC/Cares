@@ -123,4 +123,7 @@
   <data name="ServiceTypeIsAssociatedWithServiceItemError" xml:space="preserve">
     <value>ويرتبط نوع الخدمة مع خدمة المدينة !</value>
   </data>
+  <data name="ServiceTypeNotFoundInDatabase" xml:space="preserve">
+    <value>نوع الخدمة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

@@ -120,4 +120,7 @@
   <data name="CodeDuplication" xml:space="preserve">
     <value>Vehicle with the plate number already exists. Please choose a different plate number!</value>
   </data>
+  <data name="VehicleNotFoundInDatabase" xml:space="preserve">
+    <value>Vehicle not found in database.</value>
+  </data>
 </root>

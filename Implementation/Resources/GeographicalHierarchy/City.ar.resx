@@ -123,4 +123,7 @@
   <data name="CityIsAssociatedWithAreaError" xml:space="preserve">
     <value>المدينة المرتبطةامنطقة ! لا يمكن حذف !</value>
   </data>
+  <data name="CityNotFoundInDatabase" xml:space="preserve">
+    <value>مدينة غير موجودة في قاعدة البيانات.</value>
+  </data>
 </root>

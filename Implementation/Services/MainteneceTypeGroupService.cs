@@ -86,8 +86,7 @@ namespace Cares.Implementation.Services
             CheckMainteneceTypeGroupAssociations(mainteneceTypeGroupId);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Maintenece Type Group with Id {0} not found!", mainteneceTypeGroupId));
+                    throw new InvalidOperationException(Resources.FleetPool.MaintenanceTypeGroup.MainteneceTypeGroupNotFoundInDatabase);
                 }
             mainteneceTypeGroupRepository.Delete(dbversion);
             mainteneceTypeGroupRepository.SaveChanges();                

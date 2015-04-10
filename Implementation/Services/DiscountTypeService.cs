@@ -98,8 +98,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(discountTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Discount Type with Id {0} not found!", discountTypeId));
+                throw new InvalidOperationException(Resources.Pricing.DiscountType.DiscountTypeNotFoundInDatabase);
             }
             discountTypeRepository.Delete(dbversion);
             discountTypeRepository.SaveChanges();

@@ -123,6 +123,9 @@
   <data name="FleetPoolIsAssociatedWithOperationWorkPlaceError" xml:space="preserve">
     <value>ويرتبط أسطول بركة مع عملية مكان العمل</value>
   </data>
+  <data name="FleetPoolNotFoundInDatabase" xml:space="preserve">
+    <value>أسطول بركة لا توجد في قاعدة البيانات.</value>
+  </data>
   <data name="FleetPoolWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>أسطول بركة مع نفس رمز موجود بالفعل</value>
   </data>

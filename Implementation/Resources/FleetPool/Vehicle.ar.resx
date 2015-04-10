@@ -120,4 +120,7 @@
   <data name="CodeDuplication" xml:space="preserve">
     <value>السيارة مع رقم لوحة موجود بالفعل. يرجى اختيار رقم لوحة مختلفة!!</value>
   </data>
+  <data name="VehicleNotFoundInDatabase" xml:space="preserve">
+    <value>السيارة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

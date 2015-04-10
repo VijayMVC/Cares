@@ -123,4 +123,7 @@
   <data name="MaintenanceTypeIsAssociatedWithVehicleMaintenanceTypeFrequencyError" xml:space="preserve">
     <value>Maintenance Type is associated with Vehicle Maintenance Type Frequency!</value>
   </data>
+  <data name="MaintenanceTypeNotFoundInDatabase" xml:space="preserve">
+    <value>Maintenance Type not found in database.</value>
+  </data>
 </root>

@@ -121,8 +121,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(serviceItemId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Service Item with Id {0} not found!", serviceItemId));
+                throw new InvalidOperationException(Resources.Pricing.ServiceItem.ServiceItemNotFoundInDatabase);
             }
             serviceItemRepository.Delete(dbversion);
             serviceItemRepository.SaveChanges();

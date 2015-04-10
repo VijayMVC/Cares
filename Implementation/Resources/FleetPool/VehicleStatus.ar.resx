@@ -129,4 +129,7 @@
   <data name="VehicleStatusIsAssociatedWithVehicleSubStatusError" xml:space="preserve">
     <value>ويرتبط الحالة السيارة مع سيارة الفرعية الحالة</value>
   </data>
+  <data name="VehicleStatusNotFoundInDatabase" xml:space="preserve">
+    <value>حالة السيارة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

@@ -120,4 +120,7 @@
   <data name="WorkPlaceTypeCodeAlreadyExistsError" xml:space="preserve">
     <value>مكان العمل شفرة نوع موجود بالفعل !</value>
   </data>
+  <data name="WorkplaceTypeNotFoundInDatabase" xml:space="preserve">
+    <value>نوع العمل لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

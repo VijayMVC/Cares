@@ -126,4 +126,7 @@
   <data name="ServiceItemIsAssociatedWithServiceRTError" xml:space="preserve">
     <value>ويرتبط خدمة البند مع خدمة RT !</value>
   </data>
+  <data name="ServiceItemNotFoundInDatabase" xml:space="preserve">
+    <value>خدمة البند لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

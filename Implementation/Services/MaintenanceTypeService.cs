@@ -101,8 +101,7 @@ namespace Cares.Implementation.Services
             CheckMaintenanceTypeAssociations(maintenanceTypeId);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Maintenance Type with Id {0} not found!", maintenanceTypeId));
+                    throw new InvalidOperationException(Resources.FleetPool.MaintenanceType.MaintenanceTypeNotFoundInDatabase);
                 }
             maintenanceTypeRepository.Delete(dbversion);
             maintenanceTypeRepository.SaveChanges();                
