@@ -918,6 +918,7 @@
     <EmbeddedResource Include="Resources\FleetPool\Vehicle.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\VehicleCategory.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

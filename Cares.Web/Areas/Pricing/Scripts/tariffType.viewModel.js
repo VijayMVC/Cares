@@ -204,11 +204,11 @@ define("tariffType/tariffType.viewModel",
                         if (measurementUnitKey === 1) {
                             if (parseInt(addTariffType().durationFrom()) <= 0 || parseInt(addTariffType().durationFrom()) > 59 || parseInt(addTariffType().durationTo()) <= 0
                                 || parseInt(addTariffType().durationTo()) > 59) {
-                                toastr.error("Start From and End To values always between 1 to 59.");
+                                toastr.error(ist.resourceText.StartFromEndToValuesBetween1to59);
                                 flag = false;
                             }
                             else if (parseInt(addTariffType().durationTo()) < parseInt(addTariffType().durationFrom())) {
-                                toastr.error("End To must greater than Start From.");
+                                toastr.error(ist.resourceText.StartDateShouldBeLessThanEndDate);
                                 flag = false;
                             }
 
@@ -217,18 +217,18 @@ define("tariffType/tariffType.viewModel",
                         if (measurementUnitKey === 2) {
                             if (parseInt(addTariffType().durationFrom()) <= 0 || parseInt(addTariffType().durationFrom()) > 23 || parseInt(addTariffType().durationTo()) <= 0
                                 || parseInt(addTariffType().durationTo()) > 23) {
-                                toastr.error("Start From and End To values always between 1 to 23.");
+                                toastr.error(ist.resourceText.StartFromEndToValuesBetween1to23);
                                 flag = false;
                             }
                             else if (parseInt(addTariffType().durationTo()) < parseInt(addTariffType().durationFrom())) {
-                                toastr.error("End To must greater than Start From.");
+                                toastr.error(ist.resourceText.StartDateShouldBeLessThanEndDate);
                                 flag = false;
                             }
                         }
                         //For Hours
                         if (measurementUnitKey === 3) {
                             if (parseInt(addTariffType().durationTo()) < parseInt(addTariffType().durationFrom())) {
-                                toastr.error("End To must greater than Start From.");
+                                toastr.error(ist.resourceText.StartDateShouldBeLessThanEndDate);
                                 flag = false;
                             }
                         }
@@ -245,7 +245,7 @@ define("tariffType/tariffType.viewModel",
                                     // Commits and Selects the Row
                                     saveTariffType(tariffType);
                                 } else {
-                                    toastr.error('Effective Date must be a current or future date.');
+                                    toastr.error(ist.resourceText.EffectiveCurrentOrFutureDate);
                                 }
                             } else {
                                 // Commits and Selects the Row
