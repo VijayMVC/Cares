@@ -1,485 +1,488 @@
 ﻿<div class="well col-md-12" id="businessPartnerEditor" data-bind="visible: isBusinessPartnerEditorVisible, with: selectedBusinessPartner" style="display: none;">
     <div class="float-left detailsContainer">
-        <h3 class="page-header detailsHeaderSection float-left">Business Partner Editor</h3>
-        <button class="btn  btn-info" id="saveBusinessPartnerbtn" data-bind="click: $root.onSaveBusinessPartner, enable: hasChanges,">Save</button>
-        <button class="btn  btn-default" id="cancelBusinessPartnerbtn" data-bind="click: $root.onCloseBusinessPartnerEditor">Cancel</button>
+        <h3 class="page-header detailsHeaderSection float-left">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPEditor</h3>
+        <button class="btn  btn-info" id="saveBusinessPartnerbtn" data-bind="click: $root.onSaveBusinessPartner, enable: hasChanges,">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Save</button>
+        <button class="btn  btn-default" id="cancelBusinessPartnerbtn" data-bind="click: $root.onCloseBusinessPartnerEditor">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Cancel</button>
     </div>
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label for="businessPartnerId" class="control-label h5 col-sm-2">Customer #</label>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="" id="businessPartnerId" data-bind="value: businessPartnerId, enable :false" />
-                </div>
-                <label for="businessPartnerName" class="control-label h5  col-sm-2">Business Partner Name</label>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<Name>" id="businessPartnerName" data-bind="value: businessPartnerName, valueUpdate: 'keyup'" />
-                </div>
-                <label for="companies" class="control-label h5  col-sm-2">Company *</label>
-                <div class="col-md-2">
-                    <select id="companies" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId"></select>
-                </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="businessPartnerId" class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.CustomerNo</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="" id="businessPartnerId" data-bind="value: businessPartnerId, enable :false" />
             </div>
-            <div class="form-group">
-                <label for="paymentTerms" class="control-label h5  col-sm-2">Payment Term *</label>
-                <div class="col-md-2">
-                    <select id="paymentTerms" class="form-control" data-bind="options: $root.paymentTerms, optionsText: 'PaymentTermCodeName', optionsValue: 'PaymentTermId', optionsCaption: '<Payment Term>', value: paymentTermId, validationTooltip: paymentTermId"></select>
-                </div>
-                <label for="businessLegalStatuses" class="control-label h5  col-sm-2">Legal Status</label>
-                <div class="col-md-2">
-                    <select id="businessLegalStatuses" class="form-control" data-bind="options: $root.businessLegalStatuses, optionsText: 'BusinessLegalStatusCodeName', optionsValue: 'BusinessLegalStatusId', optionsCaption: '<Business Legal Status>', value: businessLegalStatusId"></select>
-                </div>
-                <label for="isIndividual" class="control-label h5  col-sm-2">Is Individual *</label>
-                <div class="col-md-2">
-                    <input type="checkbox" class="form-control" id="isIndividual" data-bind="checked: isIndividual">
-                </div>
+            <label for="businessPartnerName" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPName</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Name>" id="businessPartnerName" data-bind="value: businessPartnerName, valueUpdate: 'keyup'" />
             </div>
-            <div class="form-group">
-                <label for="isSystemGuarantor" class="control-label  h5 col-sm-2">Is System Guarantor *</label>
-                <div class="col-md-2">
-                    <input type="checkbox" class="form-control" id="isSystemGuarantor" data-bind="checked: isSystemGuarantor">
-                </div>
-                <label for="systemGurantor" class="control-label  h5 col-sm-2">System Guarantor</label>
-                <div class="col-md-2">
-                    <select id="systemGurantor" class="form-control" data-bind="options: $root.respBusinessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<System Guarantor>', value: systemGuarantorId"></select>
-                </div>
-                <label for="nonSystemGuarantor" class="control-label h5  col-sm-2">External System Guarantor </label>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<External System Guarantor>" id="nonSystemGuarantor" data-bind="value: nonSystemGuarantor, valueUpdate: 'keyup'" />
-                </div>
+            <label for="companies" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Company</label>
+            <div class="col-md-2">
+                <select id="companies" class="form-control" data-bind="options: $root.companies, optionsText: 'CompanyCodeName', optionsValue: 'CompanyId', optionsCaption: '<Company>', value: companyId, validationTooltip: companyId"></select>
             </div>
-            <div class="form-group">
-                <label for="dealingEmployees" class="control-label h5  col-sm-2">Dealing Employee</label>
-                <div class="col-md-2">
-                    <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'EmployeeName', optionsValue: 'EmployeeId', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
-                </div>
-                <label for="bPRatingTypes" class="control-label h5  col-sm-2">Rating Type</label>
-                <div class="col-md-2">
-                    <select id="bPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeCodeName', optionsValue: 'BpRatingTypeCodeId', optionsCaption: '<BP Rating Type>', value: bPRatingTypeId"></select>
-                </div>
-                <label for="businessPartnerEmailAddress" class="control-label h5  col-sm-2">Email</label>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="<Email>" id="businessPartnerEmailAddress" data-bind="value: businessPartnerEmailAddress, valueUpdate: 'keyup',validationTooltip: businessPartnerEmailAddress" />
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="paymentTerms" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.PaymentTerm</label>
+            <div class="col-md-2">
+                <select id="paymentTerms" class="form-control" data-bind="options: $root.paymentTerms, optionsText: 'PaymentTermCodeName', optionsValue: 'PaymentTermId', optionsCaption: '<Payment Term>', value: paymentTermId, validationTooltip: paymentTermId"></select>
             </div>
-            <div class="form-group">
-                <label for="businessPartnerDesciption" class="control-label  h5 col-sm-2">Description</label>
-                <div class="col-md-6">
-                    <textarea class="form-control" rows="4" placeholder="<Description>" id="businessPartnerDesciption" data-bind="value: businessPartnerDesciption, valueUpdate: 'keyup'"></textarea>
-                </div>
+            <label for="businessLegalStatuses" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.LegalStatus</label>
+            <div class="col-md-2">
+                <select id="businessLegalStatuses" class="form-control" data-bind="options: $root.businessLegalStatuses, optionsText: 'BusinessLegalStatusCodeName', optionsValue: 'BusinessLegalStatusId', optionsCaption: '<Business Legal Status>', value: businessLegalStatusId"></select>
             </div>
-            <div class="panel panel-info">
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#individualinfo" role="tab" data-toggle="tab">Individual Info.</a></li>
-                    <li><a href="#companyinfo" role="tab" data-toggle="tab">Company Info.</a></li>
-                    <li><a href="#bptype" role="tab" data-toggle="tab">BP Type.</a></li>
-                    <li><a href="#bpphone" role="tab" data-toggle="tab">BP Phone.</a></li>
-                    <li><a href="#bpaddress" role="tab" data-toggle="tab">BP Address.</a></li>
-                    <li><a href="#marketingchannel" role="tab" data-toggle="tab">Marketing Channel.</a></li>
-                    <li><a href="#bprelationships" role="tab" data-toggle="tab">BP Relationships.</a></li>
-                </ul>
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <!-- first tab - indidvidual-->
-                    <div class="tab-pane active" id="individualinfo" data-bind="with: businessPartnerIndividual">
+            <label for="isIndividual" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IsIndividual</label>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-control" id="isIndividual" data-bind="checked: isIndividual">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="isSystemGuarantor" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IsSystemGuarantor</label>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-control" id="isSystemGuarantor" data-bind="checked: isSystemGuarantor">
+            </div>
+            <label for="systemGurantor" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.SystemGuarantor</label>
+            <div class="col-md-2">
+                <select id="systemGurantor" class="form-control" data-bind="options: $root.respBusinessPartners, optionsText: 'BusinessPartnerCodeName', optionsValue: 'BusinessPartnerId', optionsCaption: '<System Guarantor>', value: systemGuarantorId"></select>
+            </div>
+            <label for="nonSystemGuarantor" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.ExternalSystemGuarantor</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<External System Guarantor>" id="nonSystemGuarantor" data-bind="value: nonSystemGuarantor, valueUpdate: 'keyup'" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dealingEmployees" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.DealingEmployee</label>
+            <div class="col-md-2">
+                <select id="dealingEmployees" class="form-control" data-bind="options: $root.dealingEmployees, optionsText: 'EmployeeName', optionsValue: 'EmployeeId', optionsCaption: '<Dealing Employee>', value: dealingEmployeeId"></select>
+            </div>
+            <label for="bPRatingTypes" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.RatingType</label>
+            <div class="col-md-2">
+                <select id="bPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeCodeName', optionsValue: 'BpRatingTypeCodeId', optionsCaption: '<BP Rating Type>', value: bPRatingTypeId"></select>
+            </div>
+            <label for="businessPartnerEmailAddress" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Email</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" placeholder="<Email>" id="businessPartnerEmailAddress" data-bind="value: businessPartnerEmailAddress, valueUpdate: 'keyup',validationTooltip: businessPartnerEmailAddress" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="businessPartnerDesciption" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Description</label>
+            <div class="col-md-6">
+                <textarea class="form-control" rows="4" placeholder="<Description>" id="businessPartnerDesciption" data-bind="value: businessPartnerDesciption, valueUpdate: 'keyup'"></textarea>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#individualinfo" role="tab" data-toggle="tab">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IndividualInfo</a></li>
+                <li><a href="#companyinfo" role="tab" data-toggle="tab">@Cares.Web.Resources.BusinessPartner.BusinessPartner.CompanyInfo</a></li>
+                <li><a href="#bptype" role="tab" data-toggle="tab">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPType</a></li>
+                <li><a href="#bpphone" role="tab" data-toggle="tab">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPPhone</a></li>
+                <li><a href="#bpaddress" role="tab" data-toggle="tab">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPAddress</a></li>
+                <li><a href="#marketingchannel" role="tab" data-toggle="tab">@Cares.Web.Resources.BusinessPartner.BusinessPartner.MarketingChannel</a></li>
+                <li><a href="#bprelationships" role="tab" data-toggle="tab">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPRelationships</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- first tab - indidvidual-->
+                <div class="tab-pane active" id="individualinfo" data-bind="with: businessPartnerIndividual">
+                    <br />
+                    <div class="form-group">
+                        <label for="individualinfofirstname" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.FirstName</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<First Name>" id="individualinfofirstname" data-bind="value: individualFirstName, valueUpdate: 'keyup',validationTooltip: individualFirstName" />
+                        </div>
+                        <label for="individualinfomiddlename" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.MiddleName</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Middle Name>" id="individualinfomiddlename" data-bind="value: individualMiddleName, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="individualinfolastname" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.LastName</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Last Name>" id="individualinfolastname" data-bind="value: individualLastName, valueUpdate: 'keyup',validationTooltip: individualLastName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="individualinfoinitials" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Initials</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Initials>" id="individualinfoinitials" data-bind="value: individualInitials, valueUpdate: 'keyup',validationTooltip:individualInitials" />
+                        </div>
+                        <label for="individualinfomiddlename" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Gender</label>
+                        <div class="col-md-2">
+                            <select id="dealingEmployees" class="form-control" data-bind="options: $root.optionGenderList, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Gender Status>', value: individualGenderStatus"></select>
+                        </div>
+                        <label for="individualinfolastname" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.MaritalStatus</label>
+                        <div class="col-md-2">
+                            <select id="dealingEmployees" class="form-control" data-bind="options: $root.optionMaritalStatusList, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Marital Status>', value: individualMaritalStatusCode"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="occupationTypes" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.OccupationType</label>
+                        <div class="col-md-2">
+                            <select id="occupationTypes" class="form-control" data-bind="options: $root.occupationTypes, optionsText: 'OccupationTypeCodeName', optionsValue: 'OccupationTypeId', optionsCaption: '<Occupation Type>', value: individualOccupationTypeId"></select>
+                        </div>
+                        <label for="individualDateOfBirth" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.DateOfBirth</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Date of Birth>" id="individualDateOfBirth" data-bind="datepicker: individualDateOfBirth, validationTooltip: individualDateOfBirth" />
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Date of Birth>" id="individualDateOfBirth" data-bind="datepicker: individualDateOfBirth, validationTooltip: individualDateOfBirth" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="individualinfonicnumber" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.NicNumber</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Nic Number>" id="individualinfonicnumber" data-bind="value: individualNicNumber, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="individualNicExpiryDate" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.NicExpiryDate</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Nic Expiry Date>" id="individualNicExpiryDate" data-bind="datepicker: individualNicExpiryDate" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="individualinfoiqamanumber" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IqamaNumber</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Iqama Number>" id="individualinfoiqamanumber" data-bind="value: individualIqamaNo, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="individualIqamaExpiryDate" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IqamaExpiryDate</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Iqama Expiry Date>" id="individualIqamaExpiryDate" data-bind="datepicker: individualIqamaExpiryDate" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="individualinfopassportnumber" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.PassportNumber</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Passport Number>" id="individualinfopassportnumber" data-bind="value: individualPassportNumber, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="individualPassportExpiryDate" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.PassportExpiryDate</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Passport Expiry Date>" id="individualPassportExpiryDate" data-bind="datepicker: individualPassportExpiryDate" />
+                        </div>
+                        <label for="passportCountries" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.PassportCountry</label>
+                        <div class="col-md-2">
+                            <select id="passportCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '<Passport Country>', value: individualPassportCountryId"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="individualinfolicencenumber" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.LicenseNumnber</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Liscense Number>" id="individualinfolicencenumber" data-bind="value: individualLiscenseNumber, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="individualLiscenseExpiryDate" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.LicenseExpiryDate</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Liscense Expiry Date>" id="individualLiscenseExpiryDate" data-bind="datepicker: individualLiscenseExpiryDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="individualinfotaxregistrationcode" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.TaxRegisterationCode</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Tax Registeration Code>" id="individualinfotaxregistrationcode" data-bind="value: individualTaxRegisterationCode, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="individualinfotaxnumber" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.TaxNumber</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Tax Number>" id="individualinfotaxnumber" data-bind="value: individualTaxNumber, valueUpdate: 'keyup'" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="individualinfoisCompanyExternal" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IsCompanyExternal</label>
+                        <div class="col-md-2">
+                            <input type="checkbox" class="form-control" id="individualinfoisCompanyExternal" data-bind="checked: individualIsCompanyExternal">
+                        </div>
+                        <label for="businessPartnerCompanies" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPCompany</label>
+                        <div class="col-md-2">
+                            <select id="businessPartnerCompanies" class="form-control" data-bind="options: $root.businessPartnerCompanies, optionsText: 'BusinessPartnerCompanyCodeName', optionsValue: 'BusinessPartnerCompanyId', optionsCaption: '<BP Company>', value: individualBusinessPartnerCompnayId"></select>
+                        </div>
+                        <label for="individualinfoexternalcompanyname" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.ExternalCompanyName</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<External Company Name>" id="individualinfoexternalcompanyname" data-bind="value: individualCompanyName, valueUpdate: 'keyup'" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="individualinfocompanyphone" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.CompanyPhone</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Company Phone>" id="individualinfocompanyphone" data-bind="value: individualCompanyPhone, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="individualinfocompanyaddress" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.CompanyAddress</label>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="4" placeholder="<Company Address>" id="individualinfocompanyaddress" data-bind="value: individualCompanyAddress, valueUpdate: 'keyup'"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- second tab - Company-->
+                <div class="tab-pane" id="companyinfo" data-bind="with : businessPartnerCompany">
+                    <br />
+                    <div class="form-group">
+                        <label for="businessPartnerCompanyCode" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.CompanyCode</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Compnay Code>" id="businessPartnerCompanyCode" data-bind="value: businessPartnerCompanyCode, valueUpdate: 'keyup',validationTooltip: businessPartnerCompanyCode" />
+                        </div>
+                        <label for="businessPartnerCompanyName" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.CompanyName</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Company Name>" id="businessPartnerCompanyName" data-bind="value: businessPartnerCompanyName, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="businessPartnerCompanySwiftCode" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.SwiftCode</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Swift Code>" id="businessPartnerCompanySwiftCode" data-bind="value: businessPartnerCompanySwiftCode, valueUpdate: 'keyup'" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="businessPartnerCompanyEstablishedSince" class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.EstablisedSince</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Established Since>" id="businessPartnerCompanyEstablishedSince" data-bind="datepicker: businessPartnerCompanyEstablishedSince" />
+                        </div>
+                        <label for="businessPartnerCompanyAccountNumber" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.AccountNumber</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" placeholder="<Account Number>" id="businessPartnerCompanyAccountNumber" data-bind="value: businessPartnerCompanyAccountNumber, valueUpdate: 'keyup'" />
+                        </div>
+                        <label for="individualinfolastname" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BusinessSegment</label>
+                        <div class="col-md-2">
+                            <select id="businessSegments" class="form-control" data-bind="options: $root.businessSegments, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '<Business Segment>',value : businessPartnerCompanyBusinessSegmentId"></select>
+                        </div>
+                    </div>
+                </div>
+                <!-- third tab - Business Partner Type (BP Type)-->
+                <div class="tab-pane" id="bptype">
+                    <div data-bind="with:businessPartnerInTypeNew">
                         <br />
                         <div class="form-group">
-                            <label for="individualinfofirstname" class="control-label h5  col-sm-2">First Name *</label>
+                            <label for="BpTypebusinessPartnerSubTypes" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPSubType *</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<First Name>" id="individualinfofirstname" data-bind="value: individualFirstName, valueUpdate: 'keyup',validationTooltip: individualFirstName" />
+                                <select id="BpTypebusinessPartnerSubTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeCodeName', optionsCaption: '<BP Sub Type>',value : businessPartnerSubTypeId"></select>
                             </div>
-                            <label for="individualinfomiddlename" class="control-label h5  col-sm-2">Middle Name</label>
+                            <label for="businessPartnerTypeFromDate" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.FromDate</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Middle Name>" id="individualinfomiddlename" data-bind="value: individualMiddleName, valueUpdate: 'keyup'" />
+                                <input type="text" class="form-control" placeholder="<From Date>" id="businessPartnerTypeFromDate" data-bind="datepicker: fromDate" />
                             </div>
-                            <label for="individualinfolastname" class="control-label h5  col-sm-2">Last Name *</label>
+                            <label for="businessPartnerTypeToDate" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.ToDate</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Last Name>" id="individualinfolastname" data-bind="value: individualLastName, valueUpdate: 'keyup',validationTooltip: individualLastName" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="individualinfoinitials" class="control-label h5  col-sm-2">Initials</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Initials>" id="individualinfoinitials" data-bind="value: individualInitials, valueUpdate: 'keyup',validationTooltip:individualInitials" />
-                            </div>
-                            <label for="individualinfomiddlename" class="control-label h5  col-sm-2">Gender</label>
-                            <div class="col-md-2">
-                                <select id="dealingEmployees" class="form-control" data-bind="options: $root.optionGenderList, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Gender Status>', value: individualGenderStatus"></select>
-                            </div>
-                            <label for="individualinfolastname" class="control-label h5  col-sm-2">Marital Status</label>
-                            <div class="col-md-2">
-                                <select id="dealingEmployees" class="form-control" data-bind="options: $root.optionMaritalStatusList, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<Marital Status>', value: individualMaritalStatusCode"></select>
+                                <input type="text" class="form-control" placeholder="<To Date>" id="businessPartnerTypeToDate" data-bind="datepicker: toDate,validationTooltip:toDate" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="occupationTypes" class="control-label h5  col-sm-2">Occupation Type</label>
+                            <label for="TypesbPRatingTypes" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.RatingType</label>
                             <div class="col-md-2">
-                                <select id="occupationTypes" class="form-control" data-bind="options: $root.occupationTypes, optionsText: 'OccupationTypeCodeName', optionsValue: 'OccupationTypeId', optionsCaption: '<Occupation Type>', value: individualOccupationTypeId"></select>
+                                <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeCodeName', optionsCaption: '<BP Rating Type>',value : bpRatingTypeId"></select>
                             </div>
-                            <label for="individualDateOfBirth" class="control-label h5  col-sm-2">Date of Birth *</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Date of Birth>" id="individualDateOfBirth" data-bind="datepicker: individualDateOfBirth, validationTooltip: individualDateOfBirth" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="individualinfonicnumber" class="control-label h5  col-sm-2">NIC Number</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Nic Number>" id="individualinfonicnumber" data-bind="value: individualNicNumber, valueUpdate: 'keyup'" />
-                            </div>
-                            <label for="individualNicExpiryDate" class="control-label  h5 col-sm-2">NIC Expiry Date</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Nic Expiry Date>" id="individualNicExpiryDate" data-bind="datepicker: individualNicExpiryDate" />
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="individualinfoiqamanumber" class="control-label h5  col-sm-2">Iqama Number</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Iqama Number>" id="individualinfoiqamanumber" data-bind="value: individualIqamaNo, valueUpdate: 'keyup'" />
-                            </div>
-                            <label for="individualIqamaExpiryDate" class="control-label h5  col-sm-2">Iqama Expiry Date</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Iqama Expiry Date>" id="individualIqamaExpiryDate" data-bind="datepicker: individualIqamaExpiryDate" />
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="individualinfopassportnumber" class="control-label h5  col-sm-2">Passport Number</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Passport Number>" id="individualinfopassportnumber" data-bind="value: individualPassportNumber, valueUpdate: 'keyup'" />
-                            </div>
-                            <label for="individualPassportExpiryDate" class="control-label  h5 col-sm-2">Passport Expiry Date</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Passport Expiry Date>" id="individualPassportExpiryDate" data-bind="datepicker: individualPassportExpiryDate" />
-                            </div>
-                            <label for="passportCountries" class="control-label h5  col-sm-2">Passport Country</label>
-                            <div class="col-md-2">
-                                <select id="passportCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryCodeName', optionsValue: 'CountryId', optionsCaption: '<Passport Country>', value: individualPassportCountryId"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="individualinfolicencenumber" class="control-label  h5 col-sm-2">Licence Number</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Liscense Number>" id="individualinfolicencenumber" data-bind="value: individualLiscenseNumber, valueUpdate: 'keyup'" />
-                            </div>
-                            <label for="individualLiscenseExpiryDate" class="control-label h5  col-sm-2">Licence Expiry Date</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Liscense Expiry Date>" id="individualLiscenseExpiryDate" data-bind="datepicker: individualLiscenseExpiryDate" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="individualinfotaxregistrationcode" class="control-label  h5 col-sm-2">Tax Registeration Code </label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Tax Registeration Code>" id="individualinfotaxregistrationcode" data-bind="value: individualTaxRegisterationCode, valueUpdate: 'keyup'" />
-                            </div>
-                            <label for="individualinfotaxnumber" class="control-label h5  col-sm-2">Tax Number</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Tax Number>" id="individualinfotaxnumber" data-bind="value: individualTaxNumber, valueUpdate: 'keyup'" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="individualinfoisCompanyExternal" class="control-label h5  col-sm-2">Is Company External? </label>
-                            <div class="col-md-2">
-                                <input type="checkbox" class="form-control" id="individualinfoisCompanyExternal" data-bind="checked: individualIsCompanyExternal">
-                            </div>
-                            <label for="businessPartnerCompanies" class="control-label h5  col-sm-2">BP Company</label>
-                            <div class="col-md-2">
-                                <select id="businessPartnerCompanies" class="form-control" data-bind="options: $root.businessPartnerCompanies, optionsText: 'BusinessPartnerCompanyCodeName', optionsValue: 'BusinessPartnerCompanyId', optionsCaption: '<BP Company>', value: individualBusinessPartnerCompnayId"></select>
-                            </div>
-                            <label for="individualinfoexternalcompanyname" class="control-label  h5 col-sm-2">External Company Name</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<External Company Name>" id="individualinfoexternalcompanyname" data-bind="value: individualCompanyName, valueUpdate: 'keyup'" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="individualinfocompanyphone" class="control-label h5  col-sm-2">Company Phone</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Company Phone>" id="individualinfocompanyphone" data-bind="value: individualCompanyPhone, valueUpdate: 'keyup'" />
-                            </div>
-                            <label for="individualinfocompanyaddress" class="control-label  h5 col-sm-2">Company Address</label>
-                            <div class="col-md-6">
-                                <textarea class="form-control" rows="4" placeholder="<Company Address>" id="individualinfocompanyaddress" data-bind="value: individualCompanyAddress, valueUpdate: 'keyup'"></textarea>
+                                <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" data-bind="click: $root.onAddBusinessPartnerInType">@Cares.Web.Resources.BusinessPartner.BusinessPartner.AddToList</button>
                             </div>
                         </div>
                     </div>
-                    <!-- second tab - Company-->
-                    <div class="tab-pane" id="companyinfo" data-bind="with : businessPartnerCompany">
+                    <div class="form-group">
+                        <div class=" col-md-8 well">
+                            <table id="businessPartnerInTypesTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPSubType<span></span></span></th>
+                                        <th> <span id="2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.RatingType<span></span></span></th>
+                                        <th> <span id="3">@Cares.Web.Resources.BusinessPartner.BusinessPartner.FromDate<span></span></span></th>
+                                        <th> <span id="4">@Cares.Web.Resources.BusinessPartner.BusinessPartner.ToDate<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemBusinessPartnerInTypeTemplate' , foreach: businessPartnerInTypes } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- fourth tab - Business Partner Phone -->
+                <div class="tab-pane" id="bpphone">
+                    <div data-bind="with:businessPartnerPhoneNumberNew">
                         <br />
                         <div class="form-group">
-                            <label for="businessPartnerCompanyCode" class="control-label h5  col-sm-2">Company Code *</label>
+                            <label for="phoneTypes" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.PhoneType *</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Compnay Code>" id="businessPartnerCompanyCode" data-bind="value: businessPartnerCompanyCode, valueUpdate: 'keyup',validationTooltip: businessPartnerCompanyCode" />
+                                <select id="phoneTypes" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeCodeName', optionsCaption: '<Phone Type>',value:phoneTypeId"></select>
                             </div>
-                            <label for="businessPartnerCompanyName" class="control-label  h5 col-sm-2">Company Name</label>
+                            <label for="phoneNumber" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.PhoneNumber *</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Company Name>" id="businessPartnerCompanyName" data-bind="value: businessPartnerCompanyName, valueUpdate: 'keyup'" />
+                                <input type="text" class="form-control" placeholder="<Phone Number>" id="phoneNumber" data-bind="value: phoneNumber, valueUpdate: 'keyup'" />
                             </div>
-                            <label for="businessPartnerCompanySwiftCode" class="control-label h5  col-sm-2">Swift Code</label>
+                            <label for="isDefault" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IsDefault</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Swift Code>" id="businessPartnerCompanySwiftCode" data-bind="value: businessPartnerCompanySwiftCode, valueUpdate: 'keyup'" />
+                                <input type="checkbox" class="form-control" id="isDefault" data-bind="checked: isDefault">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="businessPartnerCompanyEstablishedSince" class="control-label h5 col-sm-2">Establised Since</label>
+                        </div><div class="form-group">
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Established Since>" id="businessPartnerCompanyEstablishedSince" data-bind="datepicker: businessPartnerCompanyEstablishedSince" />
-                            </div>
-                            <label for="businessPartnerCompanyAccountNumber" class="control-label h5  col-sm-2">Account Number</label>
-                            <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="<Account Number>" id="businessPartnerCompanyAccountNumber" data-bind="value: businessPartnerCompanyAccountNumber, valueUpdate: 'keyup'" />
-                            </div>
-                            <label for="individualinfolastname" class="control-label  h5 col-sm-2">Business Segment</label>
-                            <div class="col-md-2">
-                                <select id="businessSegments" class="form-control" data-bind="options: $root.businessSegments, optionsText: 'BusinessSegmentCodeName', optionsValue: 'BusinessSegmentId', optionsCaption: '<Business Segment>',value : businessPartnerCompanyBusinessSegmentId"></select>
+                                <button class="btn btn-sm pull-right" id="businessPartnerPhoneItemSave" data-bind="click: $root.onAddBusinessPartnerPhone">@Cares.Web.Resources.BusinessPartner.BusinessPartner.AddToList</button>
                             </div>
                         </div>
                     </div>
-                    <!-- third tab - Business Partner Type (BP Type)-->
-                    <div class="tab-pane" id="bptype">
-                        <div data-bind="with:businessPartnerInTypeNew">
-                            <br />
-                            <div class="form-group">
-                                <label for="BpTypebusinessPartnerSubTypes" class="control-label  h5 col-sm-2">BP Sub Type *</label>
-                                <div class="col-md-2">
-                                    <select id="BpTypebusinessPartnerSubTypes" class="form-control" data-bind="options: $root.businessPartnerSubTypes, optionsText: 'BusinessPartnerSubTypeCodeName', optionsCaption: '<BP Sub Type>',value : businessPartnerSubTypeId"></select>
-                                </div>
-                                <label for="businessPartnerTypeFromDate" class="control-label h5  col-sm-2">From Date</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<From Date>" id="businessPartnerTypeFromDate" data-bind="datepicker: fromDate" />
-                                </div>
-                                <label for="businessPartnerTypeToDate" class="control-label h5  col-sm-2">To Date</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<To Date>" id="businessPartnerTypeToDate" data-bind="datepicker: toDate,validationTooltip:toDate" />
-                                </div>
+                    <div class="form-group">
+                        <div class=" col-md-8 well">
+                            <table id="businessPartnerPhonesTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">@Cares.Web.Resources.BusinessPartner.BusinessPartner.PhoneType<span></span></span></th>
+                                        <th> <span id="2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.PhoneNumber<span></span></span></th>
+                                        <th> <span id="3">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IsDefault<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemBusinessPartnerPhoneTemplate' , foreach: businessPartnerPhoneNumbers } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- fifth tab - Business Partner Address -->
+                <div class="tab-pane" id="bpaddress">
+                    <div data-bind="with:businessPartnerAddressNew">
+                        <br />
+                        <div class="form-group">
+                            <label for="addressListCountries" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Country *</label>
+                            <div class="col-md-2">
+                                <select id="addressListCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryCodeName', optionsCaption: '<Country>',value:countryId,event:{change:$root.onCountrySelectionChange}"></select>
                             </div>
-                            <div class="form-group">
-                                <label for="TypesbPRatingTypes" class="control-label  h5 col-sm-2">Rating Type</label>
-                                <div class="col-md-2">
-                                    <select id="TypesbPRatingTypes" class="form-control" data-bind="options: $root.bpRatingTypes, optionsText: 'BpRatingTypeCodeName', optionsCaption: '<BP Rating Type>',value : bpRatingTypeId"></select>
-                                </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-sm pull-right" id="businessPartnerInTypesSave" data-bind="click: $root.onAddBusinessPartnerInType">Add To List</button>
-                                </div>
+                            <label for="addressListRegion" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Region</label>
+                            <div class="col-md-2">
+                                <select id="addressListRegion" class="form-control" data-bind="options: $root.filteredcountryRegions, optionsText: 'RegionCodeName', optionsCaption: '<Region>',value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
+                            </div>
+                            <label for="addressListSubRegion" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.SubRegion</label>
+                            <div class="col-md-2">
+                                <select id="addressListSubRegion" class="form-control" data-bind="options: $root.filteredSubRegions, optionsText: 'SubRegionCodeName', optionsCaption: '<Sub Region>',value:subRegionId,event:{change:$root.onSubRegionSelectionChange}"></select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class=" col-md-8 well">
-                                <table id="businessPartnerInTypesTable" class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th> <span id="1">BP SubType<span></span></span></th>
-                                            <th> <span id="2">Rating Type<span></span></span></th>
-                                            <th> <span id="3">From Date<span></span></span></th>
-                                            <th> <span id="4">To Date<span></span></span></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- ko template: { name: 'itemBusinessPartnerInTypeTemplate' , foreach: businessPartnerInTypes } -->
-                                        <!-- /ko -->
-                                    </tbody>
-                                </table>
+                            <label for="addressListCity" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.City</label>
+                            <div class="col-md-2">
+                                <select id="addressListCity" class="form-control" data-bind="options: $root.filteredCountryCities, optionsText: 'CityCodeName', optionsCaption: '<City>',value:cityId,event:{change:$root.onCitySelectionChange}"></select>
+                            </div>
+                            <label for="addressListAreas" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Area</label>
+                            <div class="col-md-2">
+                                <select id="addressListAreas" class="form-control" data-bind="options: $root.filteredAreas, optionsText: 'AreaCodeName', optionsCaption: '<Area>',value:areaId"></select>
+                            </div>
+                            <label for="isDefault" class="control-label h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.AddressType *</label>
+                            <div class="col-md-2">
+                                <select id="addressListAddressType" class="form-control" data-bind="options: $root.addressTypes, optionsText: 'AddressTypeCodeName', optionsCaption: '<Address Type>',value:addressTypeId"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressListPhoneNumber" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.POBoxNumber</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="<PO Box Number>" id="addressListPhoneNumber" data-bind="value: poBox, valueUpdate: 'keyup'" />
+                            </div>
+                            <label for="addressListZipCode" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.ZipCode</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="<Zip Code>" id="addressListZipCode" data-bind="value: zipCode, valueUpdate: 'keyup'" />
+                            </div>
+                            <label for="addressListStreetAddress" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.StreetAddress *</label>
+                            <div class="col-md-2">
+                                <textarea class="form-control" rows="2" placeholder="<Street Address>" id="addressListStreetAddress" data-bind="value : streetAddress,valueUpdate: 'keyup'"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addressListWebPage" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.WebPage</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="<Web Page>" id="addressListWebPage" data-bind="value: webPage, valueUpdate: 'keyup'" />
+                            </div>
+                            <label for="addressListEmailAddress" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.EmailAddress</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="<Email Address>" id="addressListEmailAddress" data-bind="value: emailAddress, valueUpdate: 'keyup',validationTooltip :emailAddress" />
+                            </div>
+                            <label for="addressListContactPerson" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.ContactPerson</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" placeholder="<Contact Person>" id="addressListContactPerson" data-bind="value: contactPerson, valueUpdate: 'keyup'" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <button class="btn btn-sm pull-right" id="businessPartnerAddressItemSave" data-bind="click: $root.onAddBusinessPartnerAddress">@Cares.Web.Resources.BusinessPartner.BusinessPartner.AddToList</button>
                             </div>
                         </div>
                     </div>
-                    <!-- fourth tab - Business Partner Phone -->
-                    <div class="tab-pane" id="bpphone">
-                        <div data-bind="with:businessPartnerPhoneNumberNew">
-                            <br />
-                            <div class="form-group">
-                                <label for="phoneTypes" class="control-label h5  col-sm-2">Phone Type *</label>
-                                <div class="col-md-2">
-                                    <select id="phoneTypes" class="form-control" data-bind="options: $root.phoneTypes, optionsText: 'PhoneTypeCodeName', optionsCaption: '<Phone Type>',value:phoneTypeId"></select>
-                                </div>
-                                <label for="phoneNumber" class="control-label h5  col-sm-2">Phone Number *</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<Phone Number>" id="phoneNumber" data-bind="value: phoneNumber, valueUpdate: 'keyup'" />
-                                </div>
-                                <label for="isDefault" class="control-label  h5 col-sm-2">Is Default</label>
-                                <div class="col-md-2">
-                                    <input type="checkbox" class="form-control" id="isDefault" data-bind="checked: isDefault">
-                                </div>
-                            </div><div class="form-group">
-                                <div class="col-md-2">
-                                    <button class="btn btn-sm pull-right" id="businessPartnerPhoneItemSave" data-bind="click: $root.onAddBusinessPartnerPhone">Add To List</button>
-                                </div>
+                    <div class="form-group">
+                        <div class=" col-md-12 well">
+                            <table id="businessPartnerAddressTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">@Cares.Web.Resources.BusinessPartner.BusinessPartner.AddressType<span></span></span></th>
+                                        <th> <span id="2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Country<span></span></span></th>
+                                        <th> <span id="3">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Region<span></span></span></th>
+                                        <th> <span id="4">@Cares.Web.Resources.BusinessPartner.BusinessPartner.SubRegion<span></span></span></th>
+                                        <th> <span id="5">@Cares.Web.Resources.BusinessPartner.BusinessPartner.City<span></span></span></th>
+                                        <th> <span id="6">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Area<span></span></span></th>
+                                        <th> <span id="7">@Cares.Web.Resources.BusinessPartner.BusinessPartner.POBoxNumber<span></span></span></th>
+                                        <th> <span id="8">@Cares.Web.Resources.BusinessPartner.BusinessPartner.ZipCode<span></span></span></th>
+                                        <th> <span id="9">@Cares.Web.Resources.BusinessPartner.BusinessPartner.WebPage<span></span></span></th>
+                                        <th> <span id="10">@Cares.Web.Resources.BusinessPartner.BusinessPartner.EmailAddress<span></span></span></th>
+                                        <th> <span id="11">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Address<span></span></span></th>
+                                        <th> <span id="12">@Cares.Web.Resources.BusinessPartner.BusinessPartner.ContactPerson<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemBusinessPartnerAddressTemplate' , foreach: businessPartnerAddressList } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- sixth tab - Business Partner Marketing Channel-->
+                <div class="tab-pane" id="marketingchannel">
+                    <div data-bind="with:businessPartnerMarketingChannelNew">
+                        <br />
+                        <div class="form-group">
+                            <label for="marketingChannels" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.MarketingChannel *</label>
+                            <div class="col-md-2">
+                                <select id="marketingChannels" class="form-control" data-bind="options: $root.marketingChannels, optionsText: 'MarketingChannelCodeName', optionsCaption: '<Marketing Channel>',value:marketingChannelId"></select>
+                            </div>
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-2">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class=" col-md-8 well">
-                                <table id="businessPartnerPhonesTable" class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th> <span id="1">Phone Type<span></span></span></th>
-                                            <th> <span id="2">Phone #<span></span></span></th>
-                                            <th> <span id="3">Is Default<span></span></span></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- ko template: { name: 'itemBusinessPartnerPhoneTemplate' , foreach: businessPartnerPhoneNumbers } -->
-                                        <!-- /ko -->
-                                    </tbody>
-                                </table>
+                            <div class="col-md-2">
+                                <button class="btn btn-sm pull-right" id="businessPartnerMarketingChannelItemSave" data-bind="click: $root.onAddBusinessPartnerMarketingChannel">@Cares.Web.Resources.BusinessPartner.BusinessPartner.AddToList</button>
                             </div>
                         </div>
                     </div>
-                    <!-- fifth tab - Business Partner Address -->
-                    <div class="tab-pane" id="bpaddress">
-                        <div data-bind="with:businessPartnerAddressNew">
-                            <br />
-                            <div class="form-group">
-                                <label for="addressListCountries" class="control-label h5  col-sm-2">Country *</label>
-                                <div class="col-md-2">
-                                    <select id="addressListCountries" class="form-control" data-bind="options: $root.countries, optionsText: 'CountryCodeName', optionsCaption: '<Country>',value:countryId,event:{change:$root.onCountrySelectionChange}"></select>
-                                </div>
-                                <label for="addressListRegion" class="control-label h5  col-sm-2">Region</label>
-                                <div class="col-md-2">
-                                    <select id="addressListRegion" class="form-control" data-bind="options: $root.filteredcountryRegions, optionsText: 'RegionCodeName', optionsCaption: '<Region>',value:regionId,event:{change:$root.onRegionSelectionChange}"></select>
-                                </div>
-                                <label for="addressListSubRegion" class="control-label h5  col-sm-2">Sub Region</label>
-                                <div class="col-md-2">
-                                    <select id="addressListSubRegion" class="form-control" data-bind="options: $root.filteredSubRegions, optionsText: 'SubRegionCodeName', optionsCaption: '<Sub Region>',value:subRegionId,event:{change:$root.onSubRegionSelectionChange}"></select>
-                                </div>
+                    <div class="form-group">
+                        <div class=" col-md-3 well">
+                            <table id="businessPartnerMarketingChannelTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">@Cares.Web.Resources.BusinessPartner.BusinessPartner.MarketingChannel<span></span></span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ko template: { name: 'itemBusinessPartnerMarketingChannelTemplate' , foreach: businessPartnerMarketingChannels } -->
+                                    <!-- /ko -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- seventh tab - Business Partner Relationship-->
+                <div class="tab-pane" id="bprelationships">
+                    <div data-bind="with:businessPartnerRelationshipItemNew">
+                        <br />
+                        <div class="form-group">
+                            <label for="bprelationshipbusinessPartners" class="control-label h5  col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BusinessPartnerTitle *</label>
+                            <div class="col-md-2">
+                                <select id="bprelationshipbusinessPartners" class="form-control" data-bind="options: $root.respBusinessPartners, optionsText: 'BusinessPartnerCodeName', optionsCaption: '<Business Partner>',value:secondaryBusinessPartnerId"></select>
                             </div>
-                            <div class="form-group">
-                                <label for="addressListCity" class="control-label h5  col-sm-2">City</label>
-                                <div class="col-md-2">
-                                    <select id="addressListCity" class="form-control" data-bind="options: $root.filteredCountryCities, optionsText: 'CityCodeName', optionsCaption: '<City>',value:cityId,event:{change:$root.onCitySelectionChange}"></select>
-                                </div>
-                                <label for="addressListAreas" class="control-label  h5 col-sm-2">Area</label>
-                                <div class="col-md-2">
-                                    <select id="addressListAreas" class="form-control" data-bind="options: $root.filteredAreas, optionsText: 'AreaCodeName', optionsCaption: '<Area>',value:areaId"></select>
-                                </div>
-                                <label for="isDefault" class="control-label h5 col-sm-2">Address Type *</label>
-                                <div class="col-md-2">
-                                    <select id="addressListAddressType" class="form-control" data-bind="options: $root.addressTypes, optionsText: 'AddressTypeCodeName', optionsCaption: '<Address Type>',value:addressTypeId"></select>
-                                </div>
+                            <label for="relationshiftype" class="control-label  h5 col-sm-2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.RelationshipType *</label>
+                            <div class="col-md-2">
+                                <select id="relationshiftype" class="form-control" data-bind="options: $root.businessPartnerRelationshipTypes, optionsText: 'BusinessPartnerRelationshipTypeCodeName', optionsCaption: '<Relationship Type>',value:businessPartnerRelationshipTypeId"></select>
                             </div>
-                            <div class="form-group">
-                                <label for="addressListPhoneNumber" class="control-label h5  col-sm-2">PO Box Number</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<PO Box Number>" id="addressListPhoneNumber" data-bind="value: poBox, valueUpdate: 'keyup'" />
-                                </div>
-                                <label for="addressListZipCode" class="control-label h5  col-sm-2">Zip Code</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<Zip Code>" id="addressListZipCode" data-bind="value: zipCode, valueUpdate: 'keyup'" />
-                                </div>
-                                <label for="addressListStreetAddress" class="control-label  h5 col-sm-2">Street Address *</label>
-                                <div class="col-md-2">
-                                    <textarea class="form-control" rows="2" placeholder="<Street Address>" id="addressListStreetAddress" data-bind="value : streetAddress,valueUpdate: 'keyup'"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="addressListWebPage" class="control-label h5  col-sm-2">Web Page</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<Web Page>" id="addressListWebPage" data-bind="value: webPage, valueUpdate: 'keyup'" />
-                                </div>
-                                <label for="addressListEmailAddress" class="control-label h5  col-sm-2">Email Address</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<Email Address>" id="addressListEmailAddress" data-bind="value: emailAddress, valueUpdate: 'keyup',validationTooltip :emailAddress" />
-                                </div>
-                                <label for="addressListContactPerson" class="control-label h5  col-sm-2">Contact Person</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<Contact Person>" id="addressListContactPerson" data-bind="value: contactPerson, valueUpdate: 'keyup'" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    <button class="btn btn-sm pull-right" id="businessPartnerAddressItemSave" data-bind="click: $root.onAddBusinessPartnerAddress">Add To List</button>
-                                </div>
+                            <div class="col-md-2">
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class=" col-md-12 well">
-                                <table id="businessPartnerAddressTable" class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th> <span id="1">Address Type<span></span></span></th>
-                                            <th> <span id="2">Country<span></span></span></th>
-                                            <th> <span id="3">Region<span></span></span></th>
-                                            <th> <span id="4">Sub Region<span></span></span></th>
-                                            <th> <span id="5">City<span></span></span></th>
-                                            <th> <span id="6">Area<span></span></span></th>
-                                            <th> <span id="7">PO Box#<span></span></span></th>
-                                            <th> <span id="8">Zip Code<span></span></span></th>
-                                            <th> <span id="9">Web Address<span></span></span></th>
-                                            <th> <span id="10">Email Address<span></span></span></th>
-                                            <th> <span id="11">Address<span></span></span></th>
-                                            <th> <span id="12">Contact Person<span></span></span></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- ko template: { name: 'itemBusinessPartnerAddressTemplate' , foreach: businessPartnerAddressList } -->
-                                        <!-- /ko -->
-                                    </tbody>
-                                </table>
+                            <div class="col-md-2">
+                                <button class="btn btn-sm pull-right" id="businessPartnerRelationshipItemSave" data-bind="click: $root.onAddBusinessPartnerRelationshipItem">@Cares.Web.Resources.BusinessPartner.BusinessPartner.AddToList</button>
                             </div>
                         </div>
                     </div>
-                    <!-- sixth tab - Business Partner Marketing Channel-->
-                    <div class="tab-pane" id="marketingchannel">
-                        <div data-bind="with:businessPartnerMarketingChannelNew">
-                            <br />
-                            <div class="form-group">
-                                <label for="marketingChannels" class="control-label  h5 col-sm-2">Marketing Channel *</label>
-                                <div class="col-md-2">
-                                    <select id="marketingChannels" class="form-control" data-bind="options: $root.marketingChannels, optionsText: 'MarketingChannelCodeName', optionsCaption: '<Marketing Channel>',value:marketingChannelId"></select>
-                                </div>
-                                <div class="col-md-2">
-                                </div>
-                                <div class="col-md-2">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    <button class="btn btn-sm pull-right" id="businessPartnerMarketingChannelItemSave" data-bind="click: $root.onAddBusinessPartnerMarketingChannel">Add To List</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class=" col-md-3 well">
-                                <table id="businessPartnerMarketingChannelTable" class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th> <span id="1">Marketing Channel<span></span></span></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- ko template: { name: 'itemBusinessPartnerMarketingChannelTemplate' , foreach: businessPartnerMarketingChannels } -->
-                                        <!-- /ko -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- seventh tab - Business Partner Relationship-->
-                    <div class="tab-pane" id="bprelationships">
-                        <div data-bind="with:businessPartnerRelationshipItemNew">
-                            <br />
-                            <div class="form-group">
-                                <label for="bprelationshipbusinessPartners" class="control-label h5  col-sm-2">Business Partner *</label>
-                                <div class="col-md-2">
-                                    <select id="bprelationshipbusinessPartners" class="form-control" data-bind="options: $root.respBusinessPartners, optionsText: 'BusinessPartnerCodeName', optionsCaption: '<Business Partner>',value:secondaryBusinessPartnerId"></select>
-                                </div>
-                                <label for="relationshiftype" class="control-label  h5 col-sm-2">Relationship Type *</label>
-                                <div class="col-md-2">
-                                    <select id="relationshiftype" class="form-control" data-bind="options: $root.businessPartnerRelationshipTypes, optionsText: 'BusinessPartnerRelationshipTypeCodeName', optionsCaption: '<Relationship Type>',value:businessPartnerRelationshipTypeId"></select>
-                                </div>
-                                <div class="col-md-2">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-2">
-                                    <button class="btn btn-sm pull-right" id="businessPartnerRelationshipItemSave" data-bind="click: $root.onAddBusinessPartnerRelationshipItem">Add To List</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class=" col-md-4 well">
-                                <table id="businessPartnerRelationshipTable" class="table table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th> <span id="1">Relationship Type<span></span></span></th>
-                                            <th> <span id="2">Business Partner<span></span></span></th>
+                    <div class="form-group">
+                        <div class=" col-md-4 well">
+                            <table id="businessPartnerRelationshipTable" class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th> <span id="1">@Cares.Web.Resources.BusinessPartner.BusinessPartner.RelationshipType<span></span></span></th>
+                                        <th> <span id="2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BusinessPartnerTitle<span></span></span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -494,80 +497,80 @@
             </div>
         </form>
     </div>
-<script id="itemBusinessPartnerInTypeTemplate" type="text/html">
-    <tr>
-        <td data-bind="text: businessPartnerSubTypeName"></td>
-        <td data-bind="text: bpRatingTypeName"></td>
-        <td data-bind="dateString: fromDate, datePattern: 'MM/DD/YYYY'"></td>
-        <td data-bind="dateString: toDate, datePattern: 'MM/DD/YYYY'"></td>
-        <td>
-            <!-- ko template: { name: 'deleteActionBusinessPartnerInTypeTemplate' } -->
-            <!-- /ko -->
-        </td>
-    </tr>
-</script>
-<script id="deleteActionBusinessPartnerInTypeTemplate" type="text/html">
-    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerInType" title="Delete Business Partner InType"><span class="glyphicon glyphicon-remove"></span></a>
-</script>
-<script id="itemBusinessPartnerPhoneTemplate" type="text/html">
-    <tr>
-        <td data-bind="text: phoneTypeName"></td>
-        <td data-bind="text: phoneNumber"></td>
-        <td data-bind="text: isDefault"></td>
-        <td>
-            <!-- ko template: { name: 'deleteActionBusinessPartnerPhoneTemplate' } -->
-            <!-- /ko -->
-        </td>
-    </tr>
-</script>
-<script id="deleteActionBusinessPartnerPhoneTemplate" type="text/html">
-    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerPhone" title="Delete Business Partner Phone"><span class="glyphicon glyphicon-remove"></span></a>
-</script>
-<script id="itemBusinessPartnerAddressTemplate" type="text/html">
-    <tr>
-        <td data-bind="text: addressTypeName"></td>
-        <td data-bind="text: countryName"></td>
-        <td data-bind="text: regionName"></td>
-        <td data-bind="text: subRegionName"></td>
-        <td data-bind="text: cityName"></td>
-        <td data-bind="text: areaName"></td>
-        <td data-bind="text: poBox"></td>
-        <td data-bind="text: zipCode"></td>
-        <td data-bind="text: webPage"></td>
-        <td data-bind="text: emailAddress"></td>
-        <td data-bind="text: streetAddress"></td>
-        <td data-bind="text: contactPerson"></td>
-        <td>
-            <!-- ko template: { name: 'deleteActionBusinessPartnerAddressTemplate' } -->
-            <!-- /ko -->
-        </td>
-    </tr>
-</script>
-<script id="deleteActionBusinessPartnerAddressTemplate" type="text/html">
-    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerAddress" title="Delete Business Partner Address"><span class="glyphicon glyphicon-remove"></span></a>
-</script>
-<script id="itemBusinessPartnerMarketingChannelTemplate" type="text/html">
-    <tr>
-        <td data-bind="text: marketingChannelName"></td>
-        <td>
-            <!-- ko template: { name: 'deleteActionBusinessPartnerMarketingChannelTemplate' } -->
-            <!-- /ko -->
-        </td>
-    </tr>
-</script>
-<script id="deleteActionBusinessPartnerMarketingChannelTemplate" type="text/html">
-    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerMarketingChannel" title="Delete Business Partner Marketing Channel"><span class="glyphicon glyphicon-remove"></span></a>
-</script>
-<script id="itemBusinessPartnerRelationshipTemplate" type="text/html">
-    <tr>
-        <td data-bind="text: businessPartnerRelationshipTypeName"></td>
-        <td data-bind="text: secondaryBusinessPartnerName"></td>
-        <td>
-            <!-- ko template: { name: 'deleteActionBusinessPartnerRelationshipTemplate' } -->
-            <!-- /ko -->
-        </td>
-    </tr>
-</script>
-<script id="deleteActionBusinessPartnerRelationshipTemplate" type="text/html">
-    <a href="#" data-bind="click: $root.onDeleteBusinessPartnerRelationshipItem" title="Delete Business Partner Relationship"><span class="glyphicon glyphicon-remove"></span></a>
-</script>
+    <script id="itemBusinessPartnerInTypeTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: businessPartnerSubTypeName"></td>
+            <td data-bind="text: bpRatingTypeName"></td>
+            <td data-bind="dateString: fromDate, datePattern: 'MM/DD/YYYY'"></td>
+            <td data-bind="dateString: toDate, datePattern: 'MM/DD/YYYY'"></td>
+            <td>
+                <!-- ko template: { name: 'deleteActionBusinessPartnerInTypeTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    <script id="deleteActionBusinessPartnerInTypeTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteBusinessPartnerInType" title="Delete Business Partner InType"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemBusinessPartnerPhoneTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: phoneTypeName"></td>
+            <td data-bind="text: phoneNumber"></td>
+            <td data-bind="text: isDefault"></td>
+            <td>
+                <!-- ko template: { name: 'deleteActionBusinessPartnerPhoneTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    <script id="deleteActionBusinessPartnerPhoneTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteBusinessPartnerPhone" title="Delete Business Partner Phone"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemBusinessPartnerAddressTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: addressTypeName"></td>
+            <td data-bind="text: countryName"></td>
+            <td data-bind="text: regionName"></td>
+            <td data-bind="text: subRegionName"></td>
+            <td data-bind="text: cityName"></td>
+            <td data-bind="text: areaName"></td>
+            <td data-bind="text: poBox"></td>
+            <td data-bind="text: zipCode"></td>
+            <td data-bind="text: webPage"></td>
+            <td data-bind="text: emailAddress"></td>
+            <td data-bind="text: streetAddress"></td>
+            <td data-bind="text: contactPerson"></td>
+            <td>
+                <!-- ko template: { name: 'deleteActionBusinessPartnerAddressTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    <script id="deleteActionBusinessPartnerAddressTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteBusinessPartnerAddress" title="Delete Business Partner Address"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemBusinessPartnerMarketingChannelTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: marketingChannelName"></td>
+            <td>
+                <!-- ko template: { name: 'deleteActionBusinessPartnerMarketingChannelTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    <script id="deleteActionBusinessPartnerMarketingChannelTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteBusinessPartnerMarketingChannel" title="Delete Business Partner Marketing Channel"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
+    <script id="itemBusinessPartnerRelationshipTemplate" type="text/html">
+        <tr>
+            <td data-bind="text: businessPartnerRelationshipTypeName"></td>
+            <td data-bind="text: secondaryBusinessPartnerName"></td>
+            <td>
+                <!-- ko template: { name: 'deleteActionBusinessPartnerRelationshipTemplate' } -->
+                <!-- /ko -->
+            </td>
+        </tr>
+    </script>
+    <script id="deleteActionBusinessPartnerRelationshipTemplate" type="text/html">
+        <a href="#" data-bind="click: $root.onDeleteBusinessPartnerRelationshipItem" title="Delete Business Partner Relationship"><span class="glyphicon glyphicon-remove"></span></a>
+    </script>
