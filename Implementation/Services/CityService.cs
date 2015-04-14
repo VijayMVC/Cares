@@ -122,7 +122,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(cityId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(Resources.GeographicalHierarchy.City.CityNotFoundInDatabase);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.GeographicalHierarchy.City.CityNotFoundInDatabase));
             }
             cityRepository.Delete(dbversion);
             cityRepository.SaveChanges();  

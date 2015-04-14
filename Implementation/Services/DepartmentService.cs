@@ -60,7 +60,7 @@ namespace Cares.Implementation.Services
                     departmentRepository.SaveChanges();
                     return;
                 }
-                throw new InvalidOperationException(Resources.Organization.Department.DepartmentNotFoundInDatabse);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.Department.DepartmentNotFoundInDatabse));
             }
             throw new CaresException(Resources.Organization.Department.DepartmentIsAssociatedWithOperationError);
         }

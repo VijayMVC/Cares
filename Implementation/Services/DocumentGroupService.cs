@@ -42,6 +42,7 @@ namespace Cares.Implementation.Services
             dbVersion.DocumentGroupCode = documentGroup.DocumentGroupCode;
             dbVersion.DocumentGroupName = documentGroup.DocumentGroupName;
             dbVersion.DocumentGroupDescription = documentGroup.DocumentGroupDescription;
+            dbVersion.UserDomainKey = documentGroupRepository.UserDomainKey;
         }
 
         //Validation check for deletion
@@ -94,8 +95,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(documentGroupId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Document Group with Id {0} not found!", documentGroupId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.DocumentGroup.DocumentGroupNotFound));
             }
             documentGroupRepository.Delete(dbversion);
             documentGroupRepository.SaveChanges();  

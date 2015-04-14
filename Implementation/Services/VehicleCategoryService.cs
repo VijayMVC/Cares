@@ -119,7 +119,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(vehicleCategoryId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(Resources.FleetPool.VehicleCategory.VehicleCategoryNotFoundInDatabase);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.FleetPool.VehicleCategory.VehicleCategoryNotFoundInDatabase));
             }
             vehicleCategoryRepository.Delete(dbversion);
             vehicleCategoryRepository.SaveChanges();  

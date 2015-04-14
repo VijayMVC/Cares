@@ -126,4 +126,7 @@
   <data name="BusinessPartnerSubTypeIsAssociatedWithCreditLimit" xml:space="preserve">
     <value>شريك تجاري الفرعية نوع يترافق مع الحد الائتماني</value>
   </data>
+  <data name="BusinessPartnerSubTypeNotFound" xml:space="preserve">
+    <value>الشريك التجاري الفرعية نوع لم يتم العثور على في قاعدة البيانات!</value>
+  </data>
 </root>

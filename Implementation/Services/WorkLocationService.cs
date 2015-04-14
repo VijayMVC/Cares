@@ -243,7 +243,7 @@ namespace Cares.Implementation.Services
             }
             else
             {
-                throw new InvalidOperationException(Resources.Organization.WorkLocation.WorklocationNotFoundInDatabase);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.WorkLocation.WorklocationNotFoundInDatabase));
             }
         }
         /// <summary>

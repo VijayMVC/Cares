@@ -123,4 +123,7 @@
   <data name="OccupationTypeIsAssociatedWithBusinessPartnerIndividual" xml:space="preserve">
     <value>ويرتبط النوع الاحتلال مع الشركاء التجاريين الفردية !</value>
   </data>
+  <data name="OccupationTypeNotFound" xml:space="preserve">
+    <value>الاحتلال النوع غير موجودة في قاعدة البيانات!</value>
+  </data>
 </root>

@@ -123,4 +123,7 @@
   <data name="BusinessLegalStatusIsAssociatedWithBusinessPartner" xml:space="preserve">
     <value>Business Legal Status is associated with Business Partner!</value>
   </data>
+  <data name="BusinessLegalStatusNotFound" xml:space="preserve">
+    <value>Business Legal Status not found in database!</value>
+  </data>
 </root>

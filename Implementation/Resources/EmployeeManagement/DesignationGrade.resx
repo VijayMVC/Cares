@@ -123,4 +123,7 @@
   <data name="DesignationGradeIsAssociatedWithEmpJobInfo" xml:space="preserve">
     <value>Designation Grade is associated with Employee Job Info!</value>
   </data>
+  <data name="DesignGradeNotFound" xml:space="preserve">
+    <value>Design Grade not found in database!</value>
+  </data>
 </root>

@@ -98,8 +98,7 @@ namespace Cares.Implementation.Services
             CheckOccupationTypeAssociations(occupationTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Occupation Type with Id {0} not found!", occupationTypeId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.OccupationType.OccupationTypeNotFound));
             }
             occupationTypeRepository.Delete(dbversion);
             occupationTypeRepository.SaveChanges(); 

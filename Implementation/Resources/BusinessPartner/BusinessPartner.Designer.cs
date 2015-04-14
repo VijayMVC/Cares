@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Cares.Implementation.Resources.EmployeeManagement {
+namespace Cares.Implementation.Resources.BusinessPartner {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Cares.Implementation.Resources.EmployeeManagement {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class JobType {
+    public class BusinessPartner {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal JobType() {
+        internal BusinessPartner() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Cares.Implementation.Resources.EmployeeManagement {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.EmployeeManagement.JobType", typeof(JobType).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Cares.Implementation.Resources.BusinessPartner.BusinessPartner", typeof(BusinessPartner).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,11 @@ namespace Cares.Implementation.Resources.EmployeeManagement {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Job Type with same code already exists! Try different code!.
+        ///   Looks up a localized string similar to Business Partner not found in database!.
         /// </summary>
-        public static string JobTypeCodeDuplicationError {
+        public static string BPNotFound {
             get {
-                return ResourceManager.GetString("JobTypeCodeDuplicationError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Job Type is associated with Employee Job Info!.
-        /// </summary>
-        public static string JobTypeIsAssociatedWithEmployeeJobInfoError {
-            get {
-                return ResourceManager.GetString("JobTypeIsAssociatedWithEmployeeJobInfoError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Job Type not found in database!.
-        /// </summary>
-        public static string JobTypeNotFound {
-            get {
-                return ResourceManager.GetString("JobTypeNotFound", resourceCulture);
+                return ResourceManager.GetString("BPNotFound", resourceCulture);
             }
         }
     }

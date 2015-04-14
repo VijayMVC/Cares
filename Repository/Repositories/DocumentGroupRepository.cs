@@ -63,7 +63,7 @@ namespace Cares.Repository.Repositories
         /// </summary>
         public DocumentGroup Find(int id)
         {
-            return DbSet.FirstOrDefault(dg=> dg.UserDomainKey== UserDomainKey);
+            return DbSet.FirstOrDefault(dg=> dg.UserDomainKey== UserDomainKey && dg.DocumentGroupId == id);
         }
 
         /// <summary>

@@ -98,8 +98,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(businessPartnerRelationTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Business Partner Relation Type with Id {0} not found!", businessPartnerRelationTypeId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.BusinessPartner.BPNotFound));
             }
             businessPartnerRelationshipTypeRepository.Delete(dbversion);
             businessPartnerRelationshipTypeRepository.SaveChanges();  

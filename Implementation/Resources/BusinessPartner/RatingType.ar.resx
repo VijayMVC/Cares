@@ -126,4 +126,7 @@
   <data name="RatingTypeIsAssociatedWithCreditLimit" xml:space="preserve">
     <value>ويرتبط تصنيف نوع مع الحد الائتماني </value>
   </data>
+  <data name="RatingTypeNotFound" xml:space="preserve">
+    <value>تصنيف نوع لم يتم العثور على في قاعدة البيانات!</value>
+  </data>
 </root>

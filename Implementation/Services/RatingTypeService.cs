@@ -44,6 +44,7 @@ namespace Cares.Implementation.Services
             dbVersion.BpRatingTypeCode = ratingType.BpRatingTypeCode;
             dbVersion.BpRatingTypeName = ratingType.BpRatingTypeName;
             dbVersion.BpRatingTypeDescription = ratingType.BpRatingTypeDescription;
+            dbVersion.UserDomainKey = bpRatingTypeRepository.UserDomainKey;
         }
 
        
@@ -103,8 +104,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(ratingTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Rating Type with Id {0} not found!", ratingTypeId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.RatingType.RatingTypeNotFound));
             }
             bpRatingTypeRepository.Delete(dbversion);
             bpRatingTypeRepository.SaveChanges();

@@ -126,4 +126,7 @@
   <data name="DesignationIsAssociatedWithEmpJobProgError" xml:space="preserve">
     <value>يترافق مع تعيين الموظف التقدم الوظيفي !</value>
   </data>
+  <data name="DesignationNotFound" xml:space="preserve">
+    <value>تسمية مع لم يتم العثور على في قاعدة البيانات!</value>
+  </data>
 </root>

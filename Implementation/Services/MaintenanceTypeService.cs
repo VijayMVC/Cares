@@ -101,7 +101,7 @@ namespace Cares.Implementation.Services
             CheckMaintenanceTypeAssociations(maintenanceTypeId);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(Resources.FleetPool.MaintenanceType.MaintenanceTypeNotFoundInDatabase);
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.FleetPool.MaintenanceType.MaintenanceTypeNotFoundInDatabase));
                 }
             maintenanceTypeRepository.Delete(dbversion);
             maintenanceTypeRepository.SaveChanges();                

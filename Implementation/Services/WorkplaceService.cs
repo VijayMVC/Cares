@@ -276,7 +276,7 @@ namespace Cares.Implementation.Services
                         workplaceRepository.SaveChanges();
                     }
                     else
-                        throw new InvalidOperationException(Resources.Organization.Workplace.WorkPlaceNotFoundInDatabase);
+                        throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.Workplace.WorkPlaceNotFoundInDatabase));
                 }
             }
             else

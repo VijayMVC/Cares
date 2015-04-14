@@ -105,8 +105,7 @@ namespace Cares.Implementation.Services
             CheckNrtTypeAssociations(ntrTypeId);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Nrt Type with Id {0} not found!", ntrTypeId));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.NonRevenueTicket.NrtType.NrtTypeNotFound));
                 }
             nrtTypeRepository.Delete(dbversion);
             nrtTypeRepository.SaveChanges();                

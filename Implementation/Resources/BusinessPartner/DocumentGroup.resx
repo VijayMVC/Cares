@@ -123,4 +123,7 @@
   <data name="DocumentGroupIsAssociatedWithDocument" xml:space="preserve">
     <value>Document Group is associated with document !</value>
   </data>
+  <data name="DocumentGroupNotFound" xml:space="preserve">
+    <value>Document Group not found in database!</value>
+  </data>
 </root>

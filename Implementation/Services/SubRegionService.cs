@@ -107,7 +107,7 @@ namespace Cares.Implementation.Services
 
             if (dbversion == null)
             {
-                throw new InvalidOperationException(Resources.GeographicalHierarchy.SubRegion.SubRegionNotFoundInDatabase);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.GeographicalHierarchy.SubRegion.SubRegionNotFoundInDatabase));
             }
             subRegionRepository.Delete(dbversion);
             subRegionRepository.SaveChanges();  

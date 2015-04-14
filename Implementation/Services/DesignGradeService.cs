@@ -95,8 +95,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(designGradeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Design Grade with Id {0} not found!", designGradeId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.EmployeeManagement.DesignationGrade.DesignGradeNotFound));
             }
             desigGradeRepository.Delete(dbversion);
             desigGradeRepository.SaveChanges();  

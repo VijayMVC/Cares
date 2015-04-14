@@ -104,7 +104,7 @@ namespace Cares.Implementation.Services
             VehicleStatus dbVersion = vehicleStatusRepository.Find(vehicleStatusId);
             CheckAssociationBeforeDeletion(vehicleStatusId);
             if (dbVersion == null)
-                throw new InvalidOperationException(Resources.FleetPool.VehicleStatus.VehicleStatusNotFoundInDatabase);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.FleetPool.VehicleStatus.VehicleStatusNotFoundInDatabase));
             vehicleStatusRepository.Delete(dbVersion);
             vehicleStatusRepository.SaveChanges();
         }

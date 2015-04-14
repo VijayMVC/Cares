@@ -88,7 +88,7 @@ namespace Cares.Implementation.Services
                     organizationGroupRepository.SaveChanges();
                 }
                 else
-                    throw new InvalidOperationException(Resources.Organization.OrganizationGroup.OrgGroupNotFoundInDatabase);
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.OrganizationGroup.OrgGroupNotFoundInDatabase));
             }
             else
                 throw new CaresException(

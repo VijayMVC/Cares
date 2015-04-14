@@ -98,8 +98,7 @@ namespace Cares.Implementation.Services
             CheckBusinessLegalStatusAssociations(businessLegalStatusId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Business Legal Status with Id {0} not found!", businessLegalStatusId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.BusinessLegalStatus.BusinessLegalStatusNotFound));
             }
             businessLegalStatusRepository.Delete(dbversion);
             businessLegalStatusRepository.SaveChanges();    

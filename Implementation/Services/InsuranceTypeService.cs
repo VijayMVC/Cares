@@ -142,7 +142,7 @@ namespace Cares.Implementation.Services
             CheckInsuranceTypeAssociations(insuranceTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(Resources.FleetPool.InsuranceType.InsuranceTypeNotFoundInDatabase);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.FleetPool.InsuranceType.InsuranceTypeNotFoundInDatabase));
             }
             insuranceTypeRepository.Delete(dbversion);
             insuranceTypeRepository.SaveChanges();  

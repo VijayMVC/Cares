@@ -123,4 +123,7 @@
   <data name="JobTypeIsAssociatedWithEmployeeJobInfoError" xml:space="preserve">
     <value>Job Type is associated with Employee Job Info!</value>
   </data>
+  <data name="JobTypeNotFound" xml:space="preserve">
+    <value>Job Type not found in database!</value>
+  </data>
 </root>

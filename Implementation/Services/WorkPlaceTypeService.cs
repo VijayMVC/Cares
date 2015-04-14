@@ -59,7 +59,7 @@ namespace Cares.Implementation.Services
             WorkPlaceType dbversion = workplaceTypeRepository.Find(workPlaceTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(Resources.Organization.WorkPlaceType.WorkplaceTypeNotFoundInDatabase);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.WorkPlaceType.WorkplaceTypeNotFoundInDatabase));
             }
             workplaceTypeRepository.Delete(dbversion);
             workplaceTypeRepository.SaveChanges();

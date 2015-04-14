@@ -98,8 +98,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(jobTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Job Type with Id {0} not found!", jobTypeId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.EmployeeManagement.JobType.JobTypeNotFound));
             }
             jobTypeRepository.Delete(dbversion);
             jobTypeRepository.SaveChanges();  

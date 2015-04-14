@@ -123,4 +123,7 @@
   <data name="JobTypeIsAssociatedWithEmployeeJobInfoError" xml:space="preserve">
     <value>ويرتبط نوع العمل مع الموظف معلومات الوظيفة !</value>
   </data>
+  <data name="JobTypeNotFound" xml:space="preserve">
+    <value>نوع الوظيفة لم يتم العثور على في قاعدة البيانات!</value>
+  </data>
 </root>

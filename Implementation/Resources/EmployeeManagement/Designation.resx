@@ -126,4 +126,7 @@
   <data name="DesignationIsAssociatedWithEmpJobProgError" xml:space="preserve">
     <value>Designation is associated with Employee Job Progress !</value>
   </data>
+  <data name="DesignationNotFound" xml:space="preserve">
+    <value>Designation with not found in database!</value>
+  </data>
 </root>

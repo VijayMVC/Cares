@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NrtTypeCodeDuplicationError" xml:space="preserve">
-    <value>نوع العلاج ببدائل النيكوتين مع نفس رمز موجود بالفعل ! محاولة رمز مختلف !</value>
-  </data>
-  <data name="NrtTypeIsAssociatedWithNrtMainError" xml:space="preserve">
-    <value>ويرتبط العلاج ببدائل النيكوتين NRT نوع مع نوع !</value>
-  </data>
-  <data name="NrtTypeNotFound" xml:space="preserve">
-    <value>غير الإيرادات نوع تذكرة لم يتم العثور على في قاعدة البيانات!</value>
+  <data name="BPNotFound" xml:space="preserve">
+    <value>شريك تجاري لا توجد في قاعدة البيانات!</value>
   </data>
 </root>

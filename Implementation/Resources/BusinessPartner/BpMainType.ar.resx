@@ -118,9 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BpMainTypeCodeDuplicationError" xml:space="preserve">
-    <value>BP نوع الأصل مع نفس رمز موجود بالفعل ! محاولة رمز مختلف !</value>
+    <value>الشريك التجاري نوع الأصل مع نفس رمز موجود بالفعل ! محاولة رمز مختلف !</value>
   </data>
   <data name="BpMainTypeIsAssociatedWithBpSubType" xml:space="preserve">
     <value>ويرتبط بي بي النوع الرئيسي مع شركة بريتيش بتروليوم الفرعية نوع !</value>
+  </data>
+  <data name="BPMainTypeNotFound" xml:space="preserve">
+    <value>الشريك التجاري نوع الرئيسية غير موجودة في قاعدة البيانات!</value>
   </data>
 </root>

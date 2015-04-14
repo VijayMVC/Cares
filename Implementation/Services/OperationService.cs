@@ -81,7 +81,7 @@ namespace Cares.Implementation.Services
                     operationRepository.Delete(dbVersion);
                     operationRepository.SaveChanges();
                 }
-                else throw new InvalidOperationException(Resources.Organization.Operation.OperationNotFoundInDatabase);
+                else throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.Operation.OperationNotFoundInDatabase));
 
                
             }

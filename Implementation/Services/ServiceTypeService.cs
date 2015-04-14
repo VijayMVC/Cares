@@ -98,7 +98,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(serviceTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(Resources.Pricing.ServiceType.ServiceTypeNotFoundInDatabase);
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Pricing.ServiceType.ServiceTypeNotFoundInDatabase));
             }
             serviceTypeRepository.Delete(dbversion);
             serviceTypeRepository.SaveChanges();
