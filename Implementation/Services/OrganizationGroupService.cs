@@ -88,8 +88,7 @@ namespace Cares.Implementation.Services
                     organizationGroupRepository.SaveChanges();
                 }
                 else
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "OrgGroup with Id {0} not found!", orgGroupId));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.OrganizationGroup.OrgGroupNotFoundInDatabase));
             }
             else
                 throw new CaresException(

@@ -119,8 +119,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(vehicleCategoryId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Vehicle Category with Id {0} not found!", vehicleCategoryId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.FleetPool.VehicleCategory.VehicleCategoryNotFoundInDatabase));
             }
             vehicleCategoryRepository.Delete(dbversion);
             vehicleCategoryRepository.SaveChanges();  

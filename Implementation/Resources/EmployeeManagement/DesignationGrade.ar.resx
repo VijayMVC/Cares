@@ -123,4 +123,7 @@
   <data name="DesignationGradeIsAssociatedWithEmpJobInfo" xml:space="preserve">
     <value>ويرتبط تعيين درجة مع الموظف معلومات الوظيفة !</value>
   </data>
+  <data name="DesignGradeNotFound" xml:space="preserve">
+    <value>تصميم الدرجة التي لا توجد في قاعدة البيانات!</value>
+  </data>
 </root>

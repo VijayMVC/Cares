@@ -123,4 +123,7 @@
   <data name="NrtTypeIsAssociatedWithNrtMainError" xml:space="preserve">
     <value>Nrt Type is associated with NRT Type!</value>
   </data>
+  <data name="NrtTypeNotFound" xml:space="preserve">
+    <value>Non revenue ticket Type not found in database!</value>
+  </data>
 </root>

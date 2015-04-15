@@ -123,4 +123,7 @@
   <data name="ServiceTypeIsAssociatedWithServiceItemError" xml:space="preserve">
     <value>Service Type is associated with service item !</value>
   </data>
+  <data name="ServiceTypeNotFoundInDatabase" xml:space="preserve">
+    <value>Service Type not found in database.</value>
+  </data>
 </root>

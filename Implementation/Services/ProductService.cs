@@ -35,7 +35,7 @@ namespace Cares.Implementation.Services
             Product productDbVersion = FindProduct(product.Id);
             if (productDbVersion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Product with Id {0} not found!", product.Id));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Products.Products.ProductNotFound));
             }
 
             productRepository.Delete(productDbVersion);

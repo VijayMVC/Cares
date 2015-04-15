@@ -126,4 +126,7 @@
   <data name="InsuranceTypeIsAssociatedWithVehicleInsuranceInfoError" xml:space="preserve">
     <value>ويرتبط نوع التأمين مع التأمين ومعلومات المركبة</value>
   </data>
+  <data name="InsuranceTypeNotFoundInDatabase" xml:space="preserve">
+    <value>نوع التأمين لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

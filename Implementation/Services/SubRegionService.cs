@@ -107,8 +107,7 @@ namespace Cares.Implementation.Services
 
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Sub Region with Id {0} not found!", subRegionId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.GeographicalHierarchy.SubRegion.SubRegionNotFoundInDatabase));
             }
             subRegionRepository.Delete(dbversion);
             subRegionRepository.SaveChanges();  

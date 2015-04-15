@@ -126,4 +126,7 @@
   <data name="InsuranceTypeIsAssociatedWithVehicleInsuranceInfoError" xml:space="preserve">
     <value>Insurance Type is associated with Vehicle Insurance Info</value>
   </data>
+  <data name="InsuranceTypeNotFoundInDatabase" xml:space="preserve">
+    <value>Insurance Type not found in database.</value>
+  </data>
 </root>

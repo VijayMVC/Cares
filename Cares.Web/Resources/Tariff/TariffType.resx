@@ -240,4 +240,16 @@
   <data name="TariffTypeSaveFailedMsg" xml:space="preserve">
     <value>Failed to save tariff type.</value>
   </data>
+  <data name="StartDateShouldBeLessThanEndDate" xml:space="preserve">
+    <value>End To must greater than Start From.</value>
+  </data>
+  <data name="StartFromEndToValuesBetween1to23" xml:space="preserve">
+    <value>Start From and End To values always between 1 to 23.</value>
+  </data>
+  <data name="EffectiveCurrentOrFutureDate" xml:space="preserve">
+    <value>Effective Date must be a current or future date.</value>
+  </data>
+  <data name="StartFromEndToValuesBetween1to59" xml:space="preserve">
+    <value>Start From and End To values always between 1 to 59.</value>
+  </data>
 </root>

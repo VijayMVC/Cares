@@ -123,4 +123,7 @@
   <data name="SubRegionIsAssociatedWithCityError" xml:space="preserve">
     <value>ويرتبط المنطقة الفرعية مع المدينة (ق) !</value>
   </data>
+  <data name="SubRegionNotFoundInDatabase" xml:space="preserve">
+    <value>جنوب منطقة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

@@ -120,6 +120,9 @@
   <data name="OperationIsAssociatedWithFleetPool" xml:space="preserve">
     <value>Operation is associated with Fleet Pool!</value>
   </data>
+  <data name="OperationNotFoundInDatabase" xml:space="preserve">
+    <value>Operation not found in database.</value>
+  </data>
   <data name="OperationWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>Operation with same code already exists!</value>
   </data>

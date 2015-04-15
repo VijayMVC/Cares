@@ -52,7 +52,7 @@ namespace Cares.Implementation.Services
             BusinessPartnerIndividual businessPartnerIndividualDbVersion = FindBusinessPartnerIndividual((int)businessPartnerIndividual.BusinessPartnerId);
             if (businessPartnerIndividualDbVersion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Business Partner with Id {0} not found!", businessPartnerIndividual.BusinessPartnerId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.BusinessPartner.BPNotFound));
             }
             businessPartnerIndividualRepository.Delete(businessPartnerIndividualDbVersion);
             businessPartnerIndividualRepository.SaveChanges();

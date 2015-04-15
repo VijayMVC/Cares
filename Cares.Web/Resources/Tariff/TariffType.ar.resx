@@ -240,4 +240,16 @@
   <data name="TariffTypeSaveFailedMsg" xml:space="preserve">
     <value>فشل حفظ التعرفة نوع.</value>
   </data>
+  <data name="StartDateShouldBeLessThanEndDate" xml:space="preserve">
+    <value>نهاية لبد منه أكبر من ابدأ.</value>
+  </data>
+  <data name="StartFromEndToValuesBetween1to23" xml:space="preserve">
+    <value>بدء من وانهاء القيم دائما بين من 1 إلى 23.</value>
+  </data>
+  <data name="EffectiveCurrentOrFutureDate" xml:space="preserve">
+    <value>يجب أن يكون تاريخ السريان تاريخ الحالي أو في المستقبل.</value>
+  </data>
+  <data name="StartFromEndToValuesBetween1to59" xml:space="preserve">
+    <value>بدء من وانهاء القيم دائما بين 1-59.</value>
+  </data>
 </root>

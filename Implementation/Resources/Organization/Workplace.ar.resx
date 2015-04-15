@@ -129,4 +129,7 @@
   <data name="NoDomainLicenseDetailClaim" xml:space="preserve">
     <value>الترخيص التفاصيل مطالبة المستخدم المجال لم يتم العثور على</value>
   </data>
+  <data name="WorkPlaceNotFoundInDatabase" xml:space="preserve">
+    <value>مكان العمل لم يتم العثور على في قاعدة بيانات.</value>
+  </data>
 </root>

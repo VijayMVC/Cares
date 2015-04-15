@@ -97,6 +97,15 @@ namespace Cares.Implementation.Resources.Organization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WorkPlace not found in database..
+        /// </summary>
+        public static string WorkPlaceNotFoundInDatabase {
+            get {
+                return ResourceManager.GetString("WorkPlaceNotFoundInDatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Workplace with same code already exists!.
         /// </summary>
         public static string WorkPlaceWithSameCodeExistsAlready {

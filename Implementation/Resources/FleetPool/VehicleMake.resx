@@ -132,4 +132,7 @@
   <data name="VehicleMakeIsAssociatedWithVehicleError" xml:space="preserve">
     <value>Vehicle Make is associated with Vehicle!</value>
   </data>
+  <data name="VehicleMakeNotFoundInDatabase" xml:space="preserve">
+    <value>Vehicle Make not found in database.</value>
+  </data>
 </root>

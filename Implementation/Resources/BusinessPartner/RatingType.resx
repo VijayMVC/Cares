@@ -126,4 +126,7 @@
   <data name="RatingTypeIsAssociatedWithCreditLimit" xml:space="preserve">
     <value>Rating Type is associated with credit limit!</value>
   </data>
+  <data name="RatingTypeNotFound" xml:space="preserve">
+    <value>Rating Type not found in database!</value>
+  </data>
 </root>

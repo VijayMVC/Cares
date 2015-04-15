@@ -123,4 +123,7 @@
   <data name="OccupationTypeIsAssociatedWithBusinessPartnerIndividual" xml:space="preserve">
     <value>Occupation Type is associated with Business Partner Individual !</value>
   </data>
+  <data name="OccupationTypeNotFound" xml:space="preserve">
+    <value>Occupation Type not found in database!</value>
+  </data>
 </root>

@@ -120,4 +120,7 @@
   <data name="DiscountSubTypeCodeDuplicationError" xml:space="preserve">
     <value>تجميلية الفرعي نوع مع نفس الرمز هو موجود بالفعل ! محاولة رمز مختلف !</value>
   </data>
+  <data name="DiscountSubTypeNotFoundInDatabase" xml:space="preserve">
+    <value>الخصم الفرعي نوع لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

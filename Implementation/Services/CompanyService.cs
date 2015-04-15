@@ -119,8 +119,7 @@ namespace Cares.Implementation.Services
             CheckCompanyAssociations(companyId);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Company with Id {0} not found!", companyId));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.Company.CompanyNotFoundInDatabase));
                 }
                 companyRepository.Delete(dbversion);
                 companyRepository.SaveChanges();                

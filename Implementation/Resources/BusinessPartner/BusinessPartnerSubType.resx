@@ -126,4 +126,7 @@
   <data name="BusinessPartnerSubTypeIsAssociatedWithCreditLimit" xml:space="preserve">
     <value>Business Partner Sub Type Is Associated with credit Limit</value>
   </data>
+  <data name="BusinessPartnerSubTypeNotFound" xml:space="preserve">
+    <value>Business Partner Sub Type not found in database!</value>
+  </data>
 </root>

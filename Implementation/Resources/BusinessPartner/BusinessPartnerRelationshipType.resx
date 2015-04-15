@@ -123,4 +123,7 @@
   <data name="BusinessPartnerRelationshipTypeIsAssociatedWithBusinessPartnerRelationshipError" xml:space="preserve">
     <value>Business Partner Relationship Type is associated with business partner relationship</value>
   </data>
+  <data name="BusinessPartnerRelationTypeNotFound" xml:space="preserve">
+    <value>Business Partner Relation Type not found in database!</value>
+  </data>
 </root>

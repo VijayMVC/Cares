@@ -176,7 +176,6 @@
     <Compile Include="Repositories\AdditionalChargeTypeRepository.cs" />
     <Compile Include="Repositories\BookingBookingAdditionalDriverRepository.cs" />
     <Compile Include="Repositories\BookingInsuranceRepository.cs" />
-    <Compile Include="Repositories\BpSubTypeRepository.cs" />
     <Compile Include="Repositories\BusinessPartnerDocumentRepository.cs" />
     <Compile Include="Repositories\CaresLicenseTypeRepository.cs" />
     <Compile Include="Repositories\DomainLicenseDetailsRepository.cs" />

@@ -6,7 +6,7 @@
         var            
             id = ko.observable(specifiedId),
             isIndividual = ko.observable(specifiedIsIndividual).extend({ required: true }),
-            standardCreditLimit = ko.observable(specifiedStandardCreditLimit).extend({ required: true }),
+            standardCreditLimit = ko.observable(specifiedStandardCreditLimit).extend({ required: true, number: true }),
             description = ko.observable(specifieddescription),
             bpSubTypeId = ko.observable(specifiedbpSubTypeId).extend({ required: true }),
             bpSubName = ko.observable(specifiedbpSubName),

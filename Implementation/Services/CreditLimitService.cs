@@ -93,8 +93,7 @@ namespace Cares.Implementation.Services
             CreditLimit dbversion = creditLimitRepository.Find(creditLimitid);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Credit Limit with Id {0} not found!", creditLimitid));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.CreditLimit.CreditLimitNotFound));
                 }
             creditLimitRepository.Delete(dbversion);
             creditLimitRepository.SaveChanges();                

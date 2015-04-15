@@ -165,6 +165,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessLegalStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartner.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartner.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,6 +189,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessPartnerSubType.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\BusinessPartner\CreditLimit.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditLimit.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\BusinessPartner\Document.ar.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -525,6 +535,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TariffType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Products\Products.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Products.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\RentalAgreement\RentalAgreement.ar.Designer.cs">
       <DependentUpon>RentalAgreement.ar.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -767,6 +782,7 @@
     <EmbeddedResource Include="Resources\BusinessPartner\BpMainType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BpMainType.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -775,6 +791,11 @@
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessLegalStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartner.ar.resx" />
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartner.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartner.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerRelationshipType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -792,6 +813,11 @@
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerSubType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessPartnerSubType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\CreditLimit.ar.resx" />
+    <EmbeddedResource Include="Resources\BusinessPartner\CreditLimit.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreditLimit.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\Document.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -918,6 +944,7 @@
     <EmbeddedResource Include="Resources\FleetPool\Vehicle.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FleetPool\VehicleCategory.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -1079,6 +1106,11 @@
     <EmbeddedResource Include="Resources\Pricing\TariffType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TariffType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Products\Products.ar.resx" />
+    <EmbeddedResource Include="Resources\Products\Products.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Products.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

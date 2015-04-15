@@ -123,4 +123,7 @@
   <data name="MaintenanceTypeGroupIsAssociatedWithMaintenanceTypeError" xml:space="preserve">
     <value>ويرتبط صيانة نوع المجموعة مع نوع الصيانة</value>
   </data>
+  <data name="MainteneceTypeGroupNotFoundInDatabase" xml:space="preserve">
+    <value>لم يتم العثور صيانة نوع المجموعة في قاعدة البيانات.</value>
+  </data>
 </root>

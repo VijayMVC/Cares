@@ -132,4 +132,7 @@
   <data name="VehicleModelIsAssociatedWithVehicleError" xml:space="preserve">
     <value>ويرتبط نموذج السيارة مع سيارة</value>
   </data>
+  <data name="VehicleModelNotFoundInDatabase" xml:space="preserve">
+    <value>المركبة الموديل لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

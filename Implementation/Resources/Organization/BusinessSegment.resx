@@ -123,4 +123,7 @@
   <data name="BusinessSegmentIsAssociatedWithCompanyError" xml:space="preserve">
     <value>Business Segment is associated with company!</value>
   </data>
+  <data name="BusinessSegmentNotFoundInDatabase" xml:space="preserve">
+    <value>Business Segment not found in database.</value>
+  </data>
 </root>

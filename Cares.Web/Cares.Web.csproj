@@ -933,6 +933,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BusinessLegalStatus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\BusinessPartner\BusinessPartner.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BusinessPartner.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\BusinessPartner\BusinessPartnerMainType.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3076,6 +3081,12 @@
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessLegalStatus.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BusinessLegalStatus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartner.ar.resx" />
+    <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartner.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BusinessPartner.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\BusinessPartner\BusinessPartnerMainType.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

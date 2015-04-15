@@ -106,8 +106,7 @@ namespace Cares.Implementation.Services
             CheckVehicleMakeAssociations(vehicleMakeId);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Vehicle Make with Id {0} not found!", vehicleMakeId));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.FleetPool.VehicleMake.VehicleMakeNotFoundInDatabase));
                 }
             vehicleMakeRepository.Delete(dbversion);
             vehicleMakeRepository.SaveChanges();                

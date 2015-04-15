@@ -81,7 +81,7 @@ namespace Cares.Implementation.Services
             BusinessPartner businessPartnerDbVersion = FindBusinessPartner((int)businessPartner.BusinessPartnerId);
             if (businessPartnerDbVersion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Business Partner with Id {0} not found!", businessPartner.BusinessPartnerId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.BusinessPartner.BPNotFound));
             }
 
             // delete business partner individual

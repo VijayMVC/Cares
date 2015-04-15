@@ -123,6 +123,9 @@
   <data name="CompanyIsParentOfOtherCompanyError" xml:space="preserve">
     <value>Company is parent of other company. Can't Delete!</value>
   </data>
+  <data name="CompanyNotFoundInDatabase" xml:space="preserve">
+    <value>Company not found in database.</value>
+  </data>
   <data name="CompanyWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>Company with same code already exists!</value>
   </data>

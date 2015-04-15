@@ -52,6 +52,7 @@ namespace Cares.Implementation.Services
             dbVersion.BusinessPartnerSubTypeName = businessPartnerSubType.BusinessPartnerSubTypeName;
             dbVersion.BusinessPartnerSubTypeDescription = businessPartnerSubType.BusinessPartnerSubTypeDescription;
             dbVersion.BusinessPartnerMainTypeId = businessPartnerSubType.BusinessPartnerMainTypeId;
+            dbVersion.UserDomainKey = businessPartnerSubTypeRepository.UserDomainKey;
         }
 
         /// <summary>
@@ -108,8 +109,7 @@ namespace Cares.Implementation.Services
             CheckBusinessPartnerSubTypeAssociations(businessPartnerSubTypeId);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Business Partner Sub Type with Id {0} not found!", businessPartnerSubTypeId));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.BusinessPartnerSubType.BusinessPartnerSubTypeNotFound));
                 }
             businessPartnerSubTypeRepository.Delete(dbversion);
             businessPartnerSubTypeRepository.SaveChanges();                
@@ -135,23 +135,26 @@ namespace Cares.Implementation.Services
         public BusinessPartnerSubType AddUpdateBusinessPartnerSubType(BusinessPartnerSubType businessPartnerSubType)
         {
             BusinessPartnerSubType dbVersion = businessPartnerSubTypeRepository.Find(businessPartnerSubType.BusinessPartnerSubTypeId);
-            if (businessPartnerSubTypeRepository.BusinessPartnerSubTypeCodeDuplicationCheck(businessPartnerSubType))            
-            throw new CaresException(Resources.BusinessPartner.BusinessPartnerSubType.BusinessPartnerSubTypeCodeDuplicationError);
+            if (businessPartnerSubTypeRepository.BusinessPartnerSubTypeCodeDuplicationCheck(businessPartnerSubType))
+            {
+                throw new CaresException(
+                    Resources.BusinessPartner.BusinessPartnerSubType.BusinessPartnerSubTypeCodeDuplicationError);}
 
-                if (dbVersion != null)
-                {
-                    UpdateBusinessPartnerSubTypeProperties(businessPartnerSubType, dbVersion);
-                    businessPartnerSubTypeRepository.Update(dbVersion);
-                }
-                else
-                {
-                    dbVersion = new BusinessPartnerSubType();
-                    SetBusinessPartnerSubTypeProperties(businessPartnerSubType, dbVersion);
-                    businessPartnerSubTypeRepository.Add(dbVersion);
-                }
-                businessPartnerSubTypeRepository.SaveChanges();
-                // To Load the proprties
-                return businessPartnerSubTypeRepository.LoadBusinessPartnerSubTypeWithDetail(dbVersion.BusinessPartnerSubTypeId);
+            if (dbVersion != null)
+            {
+                UpdateBusinessPartnerSubTypeProperties(businessPartnerSubType, dbVersion);
+                businessPartnerSubTypeRepository.Update(dbVersion);
+            }
+            else
+            {
+                dbVersion = new BusinessPartnerSubType();
+                SetBusinessPartnerSubTypeProperties(businessPartnerSubType, dbVersion);
+                businessPartnerSubTypeRepository.Add(dbVersion);
+            }
+            businessPartnerSubTypeRepository.SaveChanges();
+            // To Load the proprties
+            return
+                businessPartnerSubTypeRepository.LoadBusinessPartnerSubTypeWithDetail(dbVersion.BusinessPartnerSubTypeId);
         }
 
         /// <summary>

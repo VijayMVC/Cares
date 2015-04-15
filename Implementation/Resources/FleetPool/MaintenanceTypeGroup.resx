@@ -123,4 +123,7 @@
   <data name="MaintenanceTypeGroupIsAssociatedWithMaintenanceTypeError" xml:space="preserve">
     <value>Maintenance Type Group is associated with Maintenance Type</value>
   </data>
+  <data name="MainteneceTypeGroupNotFoundInDatabase" xml:space="preserve">
+    <value>Maintenance Type Group not found in database.</value>
+  </data>
 </root>

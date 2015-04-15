@@ -117,8 +117,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(regionId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Region with Id {0} not found!", regionId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.GeographicalHierarchy.Region.RegionNotFoundInDatabase));
             }
             regionRepository.Delete(dbversion);
             regionRepository.SaveChanges();  

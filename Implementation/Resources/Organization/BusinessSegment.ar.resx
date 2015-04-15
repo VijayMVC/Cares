@@ -123,4 +123,7 @@
   <data name="BusinessSegmentIsAssociatedWithCompanyError" xml:space="preserve">
     <value>ويرتبط الجزء تجارية مع الشركة !</value>
   </data>
+  <data name="BusinessSegmentNotFoundInDatabase" xml:space="preserve">
+    <value>قطاع الأعمال لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

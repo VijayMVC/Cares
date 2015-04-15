@@ -123,4 +123,7 @@
   <data name="MarketingChannelIsAssociatedWithPBMarketingChannel" xml:space="preserve">
     <value>Marketing Channel is associated with Business Partner Marketing Channel</value>
   </data>
+  <data name="MarketingChannelNotFound" xml:space="preserve">
+    <value>Marketing Channel not found in database!</value>
+  </data>
 </root>

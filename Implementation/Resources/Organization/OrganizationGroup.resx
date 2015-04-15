@@ -123,4 +123,7 @@
   <data name="OrganizationGroupWithSameCodeAlreadyExists" xml:space="preserve">
     <value>Organization Group with same code already exists</value>
   </data>
+  <data name="OrgGroupNotFoundInDatabase" xml:space="preserve">
+    <value>Organization Group not found in database.</value>
+  </data>
 </root>

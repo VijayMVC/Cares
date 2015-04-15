@@ -96,8 +96,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(empStatusId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Employee Status with Id {0} not found!", empStatusId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.EmployeeManagement.EmpStatus.EmployeeStatusNotFound));
             }
             employeeStatusRepository.Delete(dbversion);
             employeeStatusRepository.SaveChanges();  

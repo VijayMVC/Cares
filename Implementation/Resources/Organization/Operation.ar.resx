@@ -120,6 +120,9 @@
   <data name="OperationIsAssociatedWithFleetPool" xml:space="preserve">
     <value>ويرتبط بالتعاون مع الأسطول بركة</value>
   </data>
+  <data name="OperationNotFoundInDatabase" xml:space="preserve">
+    <value>العملية لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
   <data name="OperationWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>العملية مع نفس رمز موجود بالفعل</value>
   </data>

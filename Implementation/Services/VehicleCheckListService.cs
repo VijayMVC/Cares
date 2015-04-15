@@ -93,8 +93,7 @@ namespace Cares.Implementation.Services
             CheckVehicleCheckListAssociations(vehicleCheckListId);
             if (dbversion == null)
                 {
-                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                        "Vehicle CheckList with Id {0} not found!", vehicleCheckListId));
+                    throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.FleetPool.VehicleCheckList.VehicleCheckListNotFoundInDatabase));
                 }
             vehicleCheckListRepository.Delete(dbversion);
             vehicleCheckListRepository.SaveChanges();                

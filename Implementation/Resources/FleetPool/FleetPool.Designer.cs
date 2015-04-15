@@ -79,6 +79,15 @@ namespace Cares.Implementation.Resources.FleetPool {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fleet Pool not found in database..
+        /// </summary>
+        public static string FleetPoolNotFoundInDatabase {
+            get {
+                return ResourceManager.GetString("FleetPoolNotFoundInDatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fleet Pool with same code already exists!.
         /// </summary>
         public static string FleetPoolWithSameCodeAlreadyExistsError {

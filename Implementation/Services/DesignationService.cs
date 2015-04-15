@@ -99,8 +99,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(designationId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Designation with Id {0} not found!", designationId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.EmployeeManagement.Designation.DesignationNotFound));
             }
             designationRepository.Delete(dbversion);
             designationRepository.SaveChanges();  

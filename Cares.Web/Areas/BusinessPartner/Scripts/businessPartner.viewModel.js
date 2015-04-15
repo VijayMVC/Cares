@@ -224,7 +224,7 @@ define("businessPartner/businessPartner.viewModel",
                             },
                             error: function () {
                                 isLoadingBusinessPartners(false);
-                                toastr.error("Error!");
+                                toastr.error(ist.resourceText.loadBusinessPartnerFailedMsg);
                             }
                         });
                     },
@@ -235,7 +235,7 @@ define("businessPartner/businessPartner.viewModel",
                     // close BusinessPartner Editor
                     onCloseBusinessPartnerEditor = function () {
                         if (selectedBusinessPartner().hasChanges()) {
-                            confirmation.messageText("Do you want to save changes?");
+                            confirmation.messageText(ist.resourceText.saveChanges);
                             confirmation.afterProceed(onSaveBusinessPartner);
                             confirmation.afterCancel(function () {
                                 selectedBusinessPartner().reset();
@@ -267,11 +267,11 @@ define("businessPartner/businessPartner.viewModel",
                         dataservice.deleteBusinessPartner(businessPartner, {
                             success: function () {
                                 businessPartners.remove(businessPartner);
-                                toastr.success("Business Partner removed successfully");
+                                toastr.success(ist.resourceText.businessPartnerDeleteSuccess);
                                 getBusinessPartners();
                             },
                             error: function () {
-                                toastr.error("Failed to remove Business Partner!");
+                                toastr.error(ist.resourceText.businessPartnerDeleteFailedMsg);
                             }
                         });
                     },
@@ -345,7 +345,7 @@ define("businessPartner/businessPartner.viewModel",
                                     isDefaultAlreadyThere = true;
                             });
                             if (isDefaultAlreadyThere && selectedBusinessPartner().businessPartnerPhoneNumberNew().isDefault()) {
-                                toastr.info("Default record already there!");
+                                toastr.info(ist.resourceText.defaultRecordAlreadyThere);
                                 return false;
                             }
                         }
@@ -604,7 +604,7 @@ define("businessPartner/businessPartner.viewModel",
                                 areas.valueHasMutated();
                             },
                             error: function () {
-                                toastr.error("Failed to load base data");
+                                toastr.error(ist.resourceText.loadBaseDataFailedMsg);
                             }
                         });
                     },
@@ -635,7 +635,7 @@ define("businessPartner/businessPartner.viewModel",
                             },
                             error: function () {
                                 isLoadingBusinessPartners(false);
-                                toastr.error("Failed to load businessPartners!");
+                                toastr.error(ist.resourceText.loadBusinessPartnerFailedMsg);
                             }
                         });
                     },
@@ -657,10 +657,10 @@ define("businessPartner/businessPartner.viewModel",
                                     closeBusinessPartnerEditor();
                                 }
                                 getBusinessPartners();
-                                toastr.success("Business Partner saved successfully");
+                                toastr.success(ist.resourceText.businessPartnerAddSuccess);
                             },
                             error: function () {
-                                toastr.error('Failed to save business Partner!');
+                                toastr.error(ist.resourceText.businessPartnerSaveFailedMsg);
                             }
                         });
                     };

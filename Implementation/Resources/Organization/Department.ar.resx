@@ -120,6 +120,9 @@
   <data name="DepartmentIsAssociatedWithOperationError" xml:space="preserve">
     <value>ويرتبط القسم مع العملية</value>
   </data>
+  <data name="DepartmentNotFoundInDatabse" xml:space="preserve">
+    <value>قسم غير موجودة في قاعدة البيانات.</value>
+  </data>
   <data name="DepartmentWithSameCodeAlreadyExistsError" xml:space="preserve">
     <value>قسم مع نفس رمز موجود بالفعل</value>
   </data>

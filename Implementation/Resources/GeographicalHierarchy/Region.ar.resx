@@ -126,4 +126,7 @@
   <data name="RegionIsAssociatedWithSubRegionError" xml:space="preserve">
     <value>ويرتبط المنطقة مع المنطقة الفرعية</value>
   </data>
+  <data name="RegionNotFoundInDatabase" xml:space="preserve">
+    <value>المنطقة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

@@ -120,4 +120,7 @@
   <data name="DiscountSubTypeCodeDuplicationError" xml:space="preserve">
     <value>Discount Sub Type with the same code is already exists! Try different code!</value>
   </data>
+  <data name="DiscountSubTypeNotFoundInDatabase" xml:space="preserve">
+    <value>Discount Sub Type not found in database.</value>
+  </data>
 </root>

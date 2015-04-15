@@ -97,8 +97,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(marketingChannelId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Marketing Channel with Id {0} not found!", marketingChannelId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.MarketingChannel.MarketingChannelNotFound));
             }
             marketingChannelRepository.Delete(dbversion);
             marketingChannelRepository.SaveChanges();  

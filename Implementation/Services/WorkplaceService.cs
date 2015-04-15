@@ -276,8 +276,7 @@ namespace Cares.Implementation.Services
                         workplaceRepository.SaveChanges();
                     }
                     else
-                        throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                             "WorkPlace with Id {0} not found!", workPlaceid));
+                        throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.Workplace.WorkPlaceNotFoundInDatabase));
                 }
             }
             else

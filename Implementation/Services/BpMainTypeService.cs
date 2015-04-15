@@ -97,8 +97,7 @@ namespace Cares.Implementation.Services
             ValidateBeforeDeletion(bpMainTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Business Partner Main Type with Id {0} not found!", bpMainTypeId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.BusinessPartner.BpMainType.BPMainTypeNotFound));
             }
             bpMainTypeRepository.Delete(dbversion);
             bpMainTypeRepository.SaveChanges();  

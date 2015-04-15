@@ -86,8 +86,7 @@ namespace Cares.Implementation.Services
             BusinessSegment dbversion = businessSegmentRepository.Find(businessSegmentId);
             ValidateAssociation(businessSegmentId);
             if (dbversion == null)
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Business Segment with Id {0} not found!", businessSegmentId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Organization.BusinessSegment.BusinessSegmentNotFoundInDatabase));
             businessSegmentRepository.Delete(dbversion);
             businessSegmentRepository.SaveChanges();  
         }

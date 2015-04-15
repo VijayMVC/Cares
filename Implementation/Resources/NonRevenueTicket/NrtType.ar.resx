@@ -123,4 +123,7 @@
   <data name="NrtTypeIsAssociatedWithNrtMainError" xml:space="preserve">
     <value>ويرتبط العلاج ببدائل النيكوتين NRT نوع مع نوع !</value>
   </data>
+  <data name="NrtTypeNotFound" xml:space="preserve">
+    <value>غير الإيرادات نوع تذكرة لم يتم العثور على في قاعدة البيانات!</value>
+  </data>
 </root>

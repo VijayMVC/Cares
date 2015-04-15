@@ -123,4 +123,7 @@
   <data name="AreaIsAssociatedWithAddressError" xml:space="preserve">
     <value>ويرتبط المنطقة تحت عنوان (ق) ! لا يمكن حذف .</value>
   </data>
+  <data name="AreaNotFoundInDatabase" xml:space="preserve">
+    <value>منطقة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

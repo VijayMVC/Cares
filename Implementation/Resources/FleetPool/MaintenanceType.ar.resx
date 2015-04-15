@@ -123,4 +123,7 @@
   <data name="MaintenanceTypeIsAssociatedWithVehicleMaintenanceTypeFrequencyError" xml:space="preserve">
     <value>ويرتبط نوع الصيانة مع نوع السيارة الصيانة التردد </value>
   </data>
+  <data name="MaintenanceTypeNotFoundInDatabase" xml:space="preserve">
+    <value>نوع الصيانة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

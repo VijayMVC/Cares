@@ -126,4 +126,7 @@
   <data name="RegionIsAssociatedWithSubRegionError" xml:space="preserve">
     <value>Region is associated with sub-region(s) !</value>
   </data>
+  <data name="RegionNotFoundInDatabase" xml:space="preserve">
+    <value>Region not found in database.</value>
+  </data>
 </root>

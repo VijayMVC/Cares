@@ -123,4 +123,7 @@
   <data name="CityIsAssociatedWithAreaError" xml:space="preserve">
     <value>City is associated with area! Can't be deleted!</value>
   </data>
+  <data name="CityNotFoundInDatabase" xml:space="preserve">
+    <value>City not found in database.</value>
+  </data>
 </root>

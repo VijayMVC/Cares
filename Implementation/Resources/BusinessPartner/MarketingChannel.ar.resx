@@ -123,4 +123,7 @@
   <data name="MarketingChannelIsAssociatedWithPBMarketingChannel" xml:space="preserve">
     <value>ويرتبط قناة التسويق مع الشركاء التجاريين قناة التسويق</value>
   </data>
+  <data name="MarketingChannelNotFound" xml:space="preserve">
+    <value>قناة التسويق غير موجودة في قاعدة البيانات!</value>
+  </data>
 </root>

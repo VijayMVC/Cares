@@ -3,13 +3,13 @@
 }
 <div class="row" id="businessPartnerBinding">
     <div class="row " data-bind="visible: !isBusinessPartnerEditorVisible()">
-        <h3 class="page-header float-left pageHeaderSection">Business Partner</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BusinessPartnerTitle</h3>
         <div class="header-toolsSection">
-            <a href="#" class="label label-default create-new-icon" data-bind="click: createBusinessPartnerInForm" title="Create New Business Partner">NEW</a>
+            <a href="#" class="label label-default create-new-icon" data-bind="click: createBusinessPartnerInForm" title="Create New Business Partner">@Cares.Web.Resources.BusinessPartner.BusinessPartner.New</a>
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title="Show Filters" style="display: none"></a>
         </div>
     </div>
-    <div class="row searchFilterSection" data-bind="visible: !isBusinessPartnerEditorVisible() && filterSectionVisilble()" style="display: none" >
+    <div class="row searchFilterSection" data-bind="visible: !isBusinessPartnerEditorVisible() && filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-3">
@@ -18,8 +18,8 @@
                 <div class="col-xs-3">
                     <select class="form-control" data-bind="options: $root.optionIndividualOrCompany, optionsText: 'Name', optionsValue: 'Id', optionsCaption: '<All>', value: selectFilter"></select>
                 </div>
-                <button type="submit" class="btn btn-success" data-bind="click: search">Search</button>
-                <button type="submit" class="btn btn-default" data-bind="click: reset">Reset</button>
+                <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Search</button>
+                <button type="submit" class="btn btn-default" data-bind="click: reset">@Cares.Web.Resources.BusinessPartner.BusinessPartner.Reset</button>
                 <a href="#" class="glyphicon glyphicon-resize-small float-right collapse-filter" data-bind="click: collapseFilterSection" title="Hide Section"></a>
             </form>
         </div>
@@ -29,11 +29,11 @@
             <table id="businessPartnerTable" class="table table-condensed">
                 <thead>
                     <tr>
-                        <th> <span id="1">Customer #<span class="icon-up"></span></span></th>
-                        <th> <span id="2">BP Name<span></span></span></th>
-                        <th> <span id="3">Individual/Company<span></span></span></th>
-                        <th> <span id="4">Company<span></span></span></th>
-                        <th> <span id="5">Rating Type<span></span></span></th>
+                        <th> <span id="1">@Cares.Web.Resources.BusinessPartner.BusinessPartner.CustomerNo<span class="icon-up"></span></span></th>
+                        <th> <span id="2">@Cares.Web.Resources.BusinessPartner.BusinessPartner.BPName<span></span></span></th>
+                        <th> <span id="3">@Cares.Web.Resources.BusinessPartner.BusinessPartner.IndividualOrCompany<span></span></span></th>
+                        <th> <span id="4">@Cares.Web.Resources.BusinessPartner.BusinessPartner.CompanyLV<span></span></span></th>
+                        <th> <span id="5">@Cares.Web.Resources.BusinessPartner.BusinessPartner.RatingType<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,15 +47,12 @@
         </div>
     </div>
 
-
     <script id="deleteActionBusinessPartnerTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onDeleteBusinessPartner" title="Delete Business Partner"><span class="glyphicon glyphicon-remove"></span></a>
     </script>
-
     <script id="editActionBusinessPartnerTemplate" type="text/html">
         <a href="#" data-bind="click: $root.onEditBusinessPartner" title="Edit in Form"><span class="glyphicon glyphicon-edit"></span></a>
     </script>
-
     <script id="itemBusinessPartnerTemplate" type="text/html">
         <tr data-bind="click: $root.selectBusinessPartner, css: { selectedRow: $data === $root.listSelectedBusinessPartner() }">
             <td data-bind="text: businessPartnerListId"></td>
@@ -73,9 +70,7 @@
             </td>
         </tr>
     </script>
-
     @Html.Partial("_BusinessPartnerEditor")
-
 </div>
 <!-- ko stopBinding: true -->
 @Html.Partial("~/Areas/Common/Views/Shared/_ConfirmationDialog.cshtml")
@@ -84,9 +79,18 @@
 {
     <script type="text/javascript">
         require(["businessPartner/businessPartner.view", "common/confirmation.view"]);
+        var ist = window.ist;
+        @{
+            <text>
+        ist.resourceText.businessPartnerAddSuccess = '@Cares.Web.Resources.BusinessPartner.BusinessPartner.BusinessPartnerAddSuccess';
+        ist.resourceText.businessPartnerDeleteSuccess = '@Cares.Web.Resources.BusinessPartner.BusinessPartner.BusinessPartnerDeleteSuccess';
+        ist.resourceText.loadBaseDataFailedMsg = '@Cares.Web.Resources.BusinessPartner.BusinessPartner.LoadBaseDataFailedMsg';
+        ist.resourceText.loadBusinessPartnerFailedMsg = '@Cares.Web.Resources.BusinessPartner.BusinessPartner.LoadBusinessPartnerFailedMsg';
+        ist.resourceText.businessPartnerSaveFailedMsg = '@Cares.Web.Resources.BusinessPartner.BusinessPartner.BusinessPartnerSaveFailedMsg';
+        ist.resourceText.businessPartnerDeleteFailedMsg = '@Cares.Web.Resources.BusinessPartner.BusinessPartner.BusinessPartnerDeleteFailedMsg';
+        ist.resourceText.defaultRecordAlreadyThere = '@Cares.Web.Resources.BusinessPartner.BusinessPartner.DefaultRecordAlreadyThere';
+        ist.resourceText.saveChanges = '@Cares.Web.Resources.BusinessPartner.BusinessPartner.SaveChanges';
+        </text>
+        }
     </script>
 }
-
-
-
-

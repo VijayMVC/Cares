@@ -98,8 +98,7 @@ namespace Cares.Implementation.Services
             DiscountSubType dbversion = discountSubTypeRepository.Find((int)discountSubTypeId);
             if (dbversion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
-                    "Discount Sub Type with Id {0} not found!", discountSubTypeId));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.Pricing.DiscountSubType.DiscountSubTypeNotFoundInDatabase));
             }
             discountSubTypeRepository.Delete(dbversion);
             discountSubTypeRepository.SaveChanges();  

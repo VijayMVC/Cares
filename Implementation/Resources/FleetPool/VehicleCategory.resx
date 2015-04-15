@@ -132,4 +132,7 @@
   <data name="VehicleCategoryIsAssociatedWithVehicleError" xml:space="preserve">
     <value>Vehicle Category is associated with Vehicle</value>
   </data>
+  <data name="VehicleCategoryNotFoundInDatabase" xml:space="preserve">
+    <value>Vehicle Category not found in database.</value>
+  </data>
 </root>

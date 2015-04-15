@@ -126,7 +126,7 @@ namespace Cares.Implementation.Services
             FleetPool dbVersion = fleetPoolRepository.Find(fleetPoolId);
             if (dbVersion == null)
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, "Fleet Pool not found!"));
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.FleetPool.FleetPool.FleetPoolNotFoundInDatabase));
             }
             //Association check
             if (operationsWorkPlaceRepository.IsOperationWorkPlaceAssociatedWithFleetPool(fleetPoolId))

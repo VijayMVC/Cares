@@ -132,4 +132,7 @@
   <data name="VehicleCategoryIsAssociatedWithVehicleError" xml:space="preserve">
     <value>ويرتبط سيارة الفئة مع سيارة</value>
   </data>
+  <data name="VehicleCategoryNotFoundInDatabase" xml:space="preserve">
+    <value>سيارة الفئة لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>

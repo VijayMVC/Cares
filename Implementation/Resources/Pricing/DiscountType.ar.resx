@@ -123,4 +123,7 @@
   <data name="DiscountTypeIsAssociatedWithDiscountSubTypeError" xml:space="preserve">
     <value>ويرتبط نوع الخصم مع الخصم الفرعي نوع !</value>
   </data>
+  <data name="DiscountTypeNotFoundInDatabase" xml:space="preserve">
+    <value>نوع الخصم لم يتم العثور على في قاعدة البيانات.</value>
+  </data>
 </root>
