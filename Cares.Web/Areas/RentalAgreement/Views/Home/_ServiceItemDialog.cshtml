@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="myModalLabel">Select Insurances</h2>
+                <h2 class="modal-title" id="myModalLabel">@Cares.Web.Resources.RentalAgreement.RentalAgreement.SelectInsurances</h2>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -11,9 +11,9 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>Service Item Code</th>
-                                    <th>Service Item</th>
-                                    <th>Service Type</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.ServiceItemCode</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.ServiceItem</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.ServiceType</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,7 +30,7 @@
                                 <!-- ko if: serviceItems().length === 0 -->
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td colspan="3"> No Record(s) to display yet.</td>
+                                    <td colspan="3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoRecordToDisplayYet </td>
                                 </tr>
                                 <!-- /ko -->
                             </tbody>
@@ -41,7 +41,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-bind="click: addExtrasToRentalAgreement.bind($data, $data, 'collapseOne')">
-                    Add
+                    @Cares.Web.Resources.RentalAgreement.RentalAgreement.Add
                 </button>
                 <button type="button" class="btn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Close</button>
             </div>

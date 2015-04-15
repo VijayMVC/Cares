@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Additional Charges</h4>
+                <h4 class="modal-title" id="myModalLabel">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AdditionalCharges</h4>
             </div>
             <div class="modal-body">
                 <div>
@@ -13,9 +13,9 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Charge Type</th>
-                                        <th>Hire Group</th>
-                                        <th>Rate</th>
+                                        <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.ChargeType</th>
+                                        <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.HireGroup</th>
+                                        <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.Rate</th>
                                     </tr>
                                 </thead>
                                 <tbody data-bind="foreach: additionalCharges">
@@ -37,7 +37,7 @@
             <div class="modal-footer">
                 <button class="btn btn-primary"
                         data-bind="click: addAdditionalChargesToRentalAgreement.bind($data, $data, 'collapseFive')">
-                    Add
+                    @Cares.Web.Resources.RentalAgreement.RentalAgreement.Add
                 </button>
             </div>
         </div>

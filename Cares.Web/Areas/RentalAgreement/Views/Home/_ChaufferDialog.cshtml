@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="myModalLabel">Select Chauffer</h2>
+                <h2 class="modal-title" id="myModalLabel">@Cares.Web.Resources.RentalAgreement.RentalAgreement.SelectChauffer</h2>
             </div>
             <div class="modal-body">
                 <div class="header-toolsSection">
@@ -12,18 +12,18 @@
                     <div class="well">
                         <form class="form-horizontal">
                             <div class="form-group" data-bind="with: chaufferFilter">
-                                <label class="control-label col-sm-2 margin-top-10">Chauffer Out Dt</label>
+                                <label class="control-label col-sm-2 margin-top-10">@Cares.Web.Resources.RentalAgreement.RentalAgreement.ChaufferOutDate</label>
                                 <div class="col-md-2">
                                     <input type="text" class="form-control margin-top-10" data-bind="datetimepicker: start" />
                                 </div>
-                                <label class="control-label col-sm-2 margin-top-10">Chauffer In Dt</label>
+                                <label class="control-label col-sm-2 margin-top-10">@Cares.Web.Resources.RentalAgreement.RentalAgreement.ChaufferInDate</label>
                                 <div class="col-md-2">
                                     <input type="text" class="form-control margin-top-10" data-bind="datetimepicker: end" />
                                 </div>
                                 <div class="col-sm-2">
                                     <button class="btn btn-success btn-search margin-top-10"
                                             data-bind="click: $root.searchChauffers, enable: $root.canSearchChauffers">
-                                        Search
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.Search
                                     </button>
                                 </div>
                                 <div>
@@ -41,10 +41,10 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Chauffer</th>
-                                        <th>Category</th>
-                                        <th>License Number</th>
-                                        <th>License Expiry</th>
+                                        <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.Chauffer</th>
+                                        <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.Category</th>
+                                        <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.LicenseNo</th>
+                                        <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.LicenseExpiry</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,7 +62,7 @@
                                     <!-- /ko -->
                                     <!-- /ko -->
                                     <!-- ko if: chauffers().length === 0 -->
-                                    <tr><td colspan="5">No record(s) to display yet. </td></tr>
+                                    <tr><td colspan="5">@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoRecordToDisplayYet </td></tr>
                                     <!-- /ko -->
                                 </tbody>
                             </table>
@@ -74,7 +74,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-bind="click: addChauffersToRentalAgreement.bind($data, $data, 'collapseThree')">
-                    Add
+                    @Cares.Web.Resources.RentalAgreement.RentalAgreement.Add
                 </button>
                 <button type="button" class="btn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Close</button>
             </div>

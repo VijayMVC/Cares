@@ -1318,6 +1318,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkplaceType.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\RentalAgreement\RentalAgreement.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RentalAgreement.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Tariff\ChaufferCharge.ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3394,6 +3399,12 @@
     <EmbeddedResource Include="Resources\Organization\WorkplaceType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkplaceType.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.ar.resx" />
+    <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RentalAgreement.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\ChaufferCharge.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

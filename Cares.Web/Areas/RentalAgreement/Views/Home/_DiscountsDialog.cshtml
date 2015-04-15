@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">@Cares.Web.Resources.Shared.Common.Close</span></button>
-                <h2 class="modal-title" id="myModalLabel">Discounts</h2>
+                <h2 class="modal-title" id="myModalLabel">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Discounts</h2>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -11,15 +11,15 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
-                                    <th>Plate Number</th>
-                                    <th>Hire Group</th>
-                                    <th>Vehicle Make</th>
-                                    <th>Vehicle Model</th>
-                                    <th>Vehicle Category</th>
-                                    <th>Model Year</th>
-                                    <th>Discount Code</th>
-                                    <th>Tariff Type</th>
-                                    <th>Disount Percentage</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.PlateNo</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.HireGroup</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.VehicleMake</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.VehicleModel</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.VehicleCategory</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.ModelYear</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.DiscountCode</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.TariffType</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.DisountPercentage</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -30,7 +30,7 @@
                                 <!-- /ko -->
                                 
                                 <!-- ko if: raDiscounts().length === 0 -->
-                                <tr><td colspan="9">No record(s) to display yet. </td></tr>
+                                <tr><td colspan="9">@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoRecordToDisplayYet </td></tr>
                                 <!-- /ko -->
                             </tbody>
                         </table>
@@ -40,7 +40,7 @@
             <div class="modal-footer">
                 <button class="btn btn-primary"
                         data-bind="click: addDiscountsToRentalAgreement.bind($data, $data, 'collapseFour')">
-                    Add
+                    @Cares.Web.Resources.RentalAgreement.RentalAgreement.Add
                 </button>
                 <button type="button" class="btn" data-dismiss="modal">@Cares.Web.Resources.Shared.Common.Close</button>
             </div>

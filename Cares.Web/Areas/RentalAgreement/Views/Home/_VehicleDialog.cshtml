@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="myModalLabel">Select Vehicle</h2>
+                <h2 class="modal-title" id="myModalLabel">@Cares.Web.Resources.RentalAgreement.RentalAgreement.SelectVehicle</h2>
             </div>
             <div class="modal-body">
                 <div class="header-toolsSection">
@@ -12,11 +12,11 @@
                     <div class="well">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="control-label col-sm-2 margin-top-10">Start Dt/Time</label>
+                                <label class="control-label col-sm-2 margin-top-10">@Cares.Web.Resources.RentalAgreement.RentalAgreement.StartDateTime</label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control vehicleTemplate_popoverContent_outDtTime margin-top-10" data-bind="datetimepicker: vehicleStartDtFilter, css:{ 'errorFill': !isValidVehicleDuration() }" />
                                 </div>
-                                <label class="control-label col-sm-2 margin-top-10">End Dt/Time</label>
+                                <label class="control-label col-sm-2 margin-top-10">@Cares.Web.Resources.RentalAgreement.RentalAgreement.EndDateTime</label>
                                 <div class="col-md-3">
                                     <input type="text" class="form-control vehicleTemplate_popoverContent_inDtTime margin-top-10" data-bind="datetimepicker: vehicleEndDtFilter, css:{ 'errorFill': !isValidVehicleDuration() }" />
                                 </div>
@@ -32,11 +32,11 @@
 
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">Allocation Status</label>
+                                <label class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AllocationStatus</label>
                                 <div class="col-md-3">
                                     <select class="form-control vehicleTemplate_popoverContent_allocationStatus" data-bind="options: $root.allocationStatuses, optionsCaption: '<Status>', optionsText: 'codeName', optionsValue: 'id', value: vehicleAllocationStatusFilter"></select>
                                 </div>
-                                <label class="control-label col-sm-2">Out Location</label>
+                                <label class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.OutLocation</label>
                                 <div class="col-md-3">
                                     <select class="form-control vehicleTemplate_popoverContent_outLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Location>', optionsText: 'code', optionsValue: 'id', value: vehicleOperationsWorkPlaceFilter"></select>
                                 </div>
@@ -51,11 +51,11 @@
                             <thead>
                                 <tr>
                                     <th>&nbsp;</th>
-                                    <th>Plate Number</th>
-                                    <th>Category</th>
-                                    <th>Make</th>
-                                    <th>Model</th>
-                                    <th>Model Year</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.PlateNo</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.Category</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.Make</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.Model</th>
+                                    <th>@Cares.Web.Resources.RentalAgreement.RentalAgreement.ModelYear</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,7 +74,7 @@
                                 <!-- ko if: vehicles().length === 0 -->
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td colspan="4">No record(s) to display yet. </td>
+                                    <td colspan="4">@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoRecordToDisplayYet </td>
                                 </tr>
                                 <!-- /ko -->
 

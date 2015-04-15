@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Rental Agreement";
+    ViewBag.Title = Cares.Web.Resources.RentalAgreement.RentalAgreement.RentalAgreementTitle;
     ViewBag.FluidLayout = true;
     ViewBag.HideMenu = true;
     ViewBag.HideFooter = true;
@@ -7,18 +7,18 @@
 
 <div id="rentalAgreementBinding">
     <div class="row">
-        <button class="btn btn-primary float-left" data-bind="click: openRentalAgreement, visible: canOpen">Open Agreement</button>
-        <button class="btn btn-primary float-left" data-bind="click: updateRentalAgreement, visible: canUpdate" style="display: none">Update Agreement</button>
-        <button class="btn float-left" data-bind="click: closeRentalAgreement, visible: canClose" style="display: none">Close Agreement</button>
+        <button class="btn btn-primary float-left" data-bind="click: openRentalAgreement, visible: canOpen">@Cares.Web.Resources.RentalAgreement.RentalAgreement.OpenAgreement</button>
+        <button class="btn btn-primary float-left" data-bind="click: updateRentalAgreement, visible: canUpdate" style="display: none">@Cares.Web.Resources.RentalAgreement.RentalAgreement.UpdateAgreement</button>
+        <button class="btn float-left" data-bind="click: closeRentalAgreement, visible: canClose" style="display: none">@Cares.Web.Resources.RentalAgreement.RentalAgreement.CloseAgreement</button>
 
         <div class="float-left margin-left">
-            <button class="btn float-left margin-button" id="extraPopoverButton" data-bind="bootstrapPopover:{elementNode: 'extraPopover', html: true, popoverId: 'extraPopoverContents'} ">Extras <span class="badge" data-bind="text: $root.rentalAgreement().rentalAgreementServiceItems().length,visible: $root.rentalAgreement().rentalAgreementServiceItems().length > 0"></span></button>
-            <button class="btn btn-info float-left margin-button" id="driverPopoverButton" data-bind="bootstrapPopover:{elementNode: 'driverPopover', html: true, popoverId: 'driverPopoverContents'} ">Drivers <span class="badge" data-bind="visible: $root.rentalAgreement().raDrivers().length > 0, text:$root.rentalAgreement().raDrivers().length"></span></button>
-            <button type="button" class="btn btn-warning float-left margin-button" id="chaufferPopoverButton" data-bind="bootstrapPopover:{elementNode: 'chaufferPopover', html: true, popoverId: 'chaufferPopoverContents'} ">Chauffers <span class="badge" data-bind="visible: $root.rentalAgreement().raChauffers().length > 0 ,text: $root.rentalAgreement().raChauffers().length"></span></button>
-            <button type="button" class="btn btn-success float-left margin-button" id="discountPopoverButton" data-bind="bootstrapPopover:{elementNode: 'discountPopover', html: true, popoverId: 'discountPopoverContents'} ">Discounts <span class="badge" data-bind="visible: false"></span></button>
-            <button type="button" class="btn btn-danger float-left margin-button" id="damagePopoverButton" data-bind="bootstrapPopover:{elementNode: 'damagePopover', html: true, popoverId: 'damagePopoverContents'} ">Damages <span class="badge" data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges().length > 0, text: $root.rentalAgreement().rentalAgreementAdditionalCharges().length"></span></button>
-            <button type="button" class="btn btn-custom float-left margin-button" id="paymentPopoverButton" data-bind="bootstrapPopover:{elementNode: 'paymentPopover', html: true, popoverId: 'paymentPopoverContents'} ">Payments <span class="badge" data-bind="visible: $root.rentalAgreement().raPayments().length > 0, text: $root.rentalAgreement().raPayments().length"></span></button>
-            <button type="button" class="btn btn-billing float-left margin-button" id="billingPopoverButton" data-bind="bootstrapPopover:{elementNode: 'billingPopover', html: true, popoverId: 'billingPopoverContents'} ">Billing <span class="badge" data-bind="visible: $root.rentalAgreement().billing().balance > 0 ,text: $root.rentalAgreement().billing().balance"></span></button>
+            <button class="btn float-left margin-button" id="extraPopoverButton" data-bind="bootstrapPopover:{elementNode: 'extraPopover', html: true, popoverId: 'extraPopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Extras <span class="badge" data-bind="text: $root.rentalAgreement().rentalAgreementServiceItems().length,visible: $root.rentalAgreement().rentalAgreementServiceItems().length > 0"></span></button>
+            <button class="btn btn-info float-left margin-button" id="driverPopoverButton" data-bind="bootstrapPopover:{elementNode: 'driverPopover', html: true, popoverId: 'driverPopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Drivers <span class="badge" data-bind="visible: $root.rentalAgreement().raDrivers().length > 0, text:$root.rentalAgreement().raDrivers().length"></span></button>
+            <button type="button" class="btn btn-warning float-left margin-button" id="chaufferPopoverButton" data-bind="bootstrapPopover:{elementNode: 'chaufferPopover', html: true, popoverId: 'chaufferPopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Chauffers <span class="badge" data-bind="visible: $root.rentalAgreement().raChauffers().length > 0 ,text: $root.rentalAgreement().raChauffers().length"></span></button>
+            <button type="button" class="btn btn-success float-left margin-button" id="discountPopoverButton" data-bind="bootstrapPopover:{elementNode: 'discountPopover', html: true, popoverId: 'discountPopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Discounts <span class="badge" data-bind="visible: false"></span></button>
+            <button type="button" class="btn btn-danger float-left margin-button" id="damagePopoverButton" data-bind="bootstrapPopover:{elementNode: 'damagePopover', html: true, popoverId: 'damagePopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Damages <span class="badge" data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges().length > 0, text: $root.rentalAgreement().rentalAgreementAdditionalCharges().length"></span></button>
+            <button type="button" class="btn btn-custom float-left margin-button" id="paymentPopoverButton" data-bind="bootstrapPopover:{elementNode: 'paymentPopover', html: true, popoverId: 'paymentPopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Payments <span class="badge" data-bind="visible: $root.rentalAgreement().raPayments().length > 0, text: $root.rentalAgreement().raPayments().length"></span></button>
+            <button type="button" class="btn btn-billing float-left margin-button" id="billingPopoverButton" data-bind="bootstrapPopover:{elementNode: 'billingPopover', html: true, popoverId: 'billingPopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Billing <span class="badge" data-bind="visible: $root.rentalAgreement().billing().balance > 0 ,text: $root.rentalAgreement().billing().balance"></span></button>
 
         </div>
 
@@ -31,7 +31,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion4" href="#collapseEight">
-                            Rental Agreement
+                            @ViewBag.Title
                         </a>
                     </h4>
                 </div>
@@ -39,48 +39,48 @@
                     <div class="panel-body customPanel">
                         <form id="ra" class="form-horizontal" data-bind="with: rentalAgreement">
                             <div class="form-group">
-                                <label for="rentalAgreementNumber" class="control-label col-sm-2">RA #</label>
+                                <label for="rentalAgreementNumber" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.RANo </label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<RA #>" id="rentalAgreementNumber" data-bind="enable: false, value: id" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHRANo" id="rentalAgreementNumber" data-bind="enable: false, value: id" />
                                 </div>
-                                <label for="rentalAgreementBookingNumber" class="control-label col-sm-2 notFirstColumn">Booking #</label>
+                                <label for="rentalAgreementBookingNumber" class="control-label col-sm-2 notFirstColumn">@Cares.Web.Resources.RentalAgreement.RentalAgreement.BookingNo </label>
                                 <div class="col-md-3" id="bookingNumberControl">
-                                    <input type="text" class="form-control" placeholder="<Booking No>" id="rentalAgreementBookingNumber" data-bind="enable: $root.canEditBooking, value: raBookingId" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHBookingNo" id="rentalAgreementBookingNumber" data-bind="enable: $root.canEditBooking, value: raBookingId" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="rentalAgreementDuration" class="control-label col-sm-2">Duration</label>
+                                <label for="rentalAgreementDuration" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Duration</label>
                                 <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Days>" id="rentalAgreementDuration" data-bind="value: days, enable: !id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHDays" id="rentalAgreementDuration" data-bind="value: days, enable: !id()" />
                                 </div>
                                 <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Hours>" id="rentalAgreementHours" data-bind="value: hours, enable: !id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHHours" id="rentalAgreementHours" data-bind="value: hours, enable: !id()" />
                                 </div>
                                 <div class="col-md-2 input-small">
-                                    <input type="text" class="form-control" placeholder="<Mins>" id="rentalAgreementMins" data-bind="value: minutes, enable: !id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHMins" id="rentalAgreementMins" data-bind="value: minutes, enable: !id()" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="rentalAgreementStartDate" class="control-label col-sm-2"></label>
                                 <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<Start Date>" id="rentalAgreementStartDate" data-bind="datetimepicker: start, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
+                                    <input type="text" class="form-control dateControl" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHStartDate" id="rentalAgreementStartDate" data-bind="datetimepicker: start, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
                                 </div>
                                 <div class="col-md-4 dateTimeControl">
-                                    <input type="text" class="form-control dateControl" placeholder="<End Date>" id="rentalAgreementEndDate" data-bind="datetimepicker: end, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
+                                    <input type="text" class="form-control dateControl" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHEndDate" id="rentalAgreementEndDate" data-bind="datetimepicker: end, enable: !id(), css:{ 'errorFill': isInvalidPeriod() }" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="rentalAgreementOperation" class="control-label col-sm-2">Operation</label>
+                                <label for="rentalAgreementOperation" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Operation</label>
                                 <div class="col-md-4">
                                     <select class="form-control" id="rentalAgreementOperation" data-bind="options: $root.operations, optionsCaption: '<Operation>', optionsText: 'codeName', optionsValue: 'id', value: operationId, enable: !id(), validationTooltip: operationId"></select>
                                 </div>
-                                <label for="rentalAgreementOperation" id="rentalPaymentTermLabel" class="control-label col-sm-2 notFirstColumn">Payment</label>
+                                <label for="rentalAgreementOperation" id="rentalPaymentTermLabel" class="control-label col-sm-2 notFirstColumn">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Payment</label>
                                 <div class="col-md-4" id="rentalPaymentTermControl">
                                     <select class="form-control" id="rentalAgreementPaymentTerm" data-bind="options: $root.paymentTerms, optionsCaption: '<Payment Term>', optionsText: 'codeName', optionsValue: 'id', value: paymentTermId, enable: !id(), validationTooltip: paymentTermId"></select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="rentalAgreementOutLocation" class="control-label col-sm-2">Location</label>
+                                <label for="rentalAgreementOutLocation" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Location</label>
                                 <div class="col-md-5">
                                     <select class="form-control" id="rentalAgreementOutLocation" data-bind="options: $root.availableLocations, optionsCaption: '<Out Location>', optionsText: 'code', optionsValue: 'id', value: openLocation, enable: !id(), validationDependsOn: internalOpenLocation"></select>
                                 </div>
@@ -89,9 +89,9 @@
                                 </div>
                             </div>
                             <div class="form-group" data-bind="with: $parent">
-                                <label for="rentalAgreementHireGroup" class="control-label col-sm-2">Hire Group</label>
+                                <label for="rentalAgreementHireGroup" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.HireGroup</label>
                                 <div class="col-md-9 rentalHireGroupControl">
-                                    <input type="text" class="form-control" placeholder="<Hire Group>" id="rentalAgreementHireGroup" data-bind="enable: canLookForHireGroups, value: hireGroupText" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHHireGroup" id="rentalAgreementHireGroup" data-bind="enable: canLookForHireGroups, value: hireGroupText" />
                                 </div>
                             </div>
                         </form>
@@ -104,7 +104,7 @@
                 <div class="panel-heading">
                     <h4 class="panel-title display-block">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion2" href="#collapseSix">
-                            Customer
+                            @Cares.Web.Resources.RentalAgreement.RentalAgreement.Customer
                         </a>
                     </h4>
                     <div class="float-right display-block margin-right">
@@ -120,9 +120,9 @@
                     <div class="panel-body customPanel">
                         <form id="customer" class="form-horizontal" data-bind="with: rentalAgreement().businessPartner">
                             <div class="form-group">
-                                <label for="customerNumber" class="control-label col-sm-2">Customer #</label>
+                                <label for="customerNumber" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.CustomerNo</label>
                                 <div class="col-md-2">
-                                    <input type="text" class="form-control" placeholder="<Customer #>" id="customerNumber" data-bind="value: customerNo, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHCustomerNo" id="customerNumber" data-bind="value: customerNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
 
                                 <div class="col-md-7">
@@ -132,103 +132,103 @@
                             <!-- ko if: isIndividual -->
                             <!-- ko with: businessPartnerIndividual -->
                             <div class="form-group">
-                                <label for="customerFirstName" class="control-label col-sm-2">Name</label>
+                                <label for="customerFirstName" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Name</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<First Name>" id="customerFirstName" data-bind="value: firstName, enable: !$root.rentalAgreement().id(), validationTooltip: firstName" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHFirstName" id="customerFirstName" data-bind="value: firstName, enable: !$root.rentalAgreement().id(), validationTooltip: firstName" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<Last Name>" id="customerLastName" data-bind="value: lastName, enable: !$root.rentalAgreement().id(), validationTooltip: lastName" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHLastName" id="customerLastName" data-bind="value: lastName, enable: !$root.rentalAgreement().id(), validationTooltip: lastName" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="customerNic" class="control-label col-sm-2">NIC</label>
+                                <label for="customerNic" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.NIC</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<NIC No.>" id="customerNic" data-bind="value: nicNo, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHNIC" id="customerNic" data-bind="value: nicNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<NIC Expiry>" id="customerNicExpiry" data-bind="datepicker: nicExpiry, datepickerOptions: { changeMonth: true, changeYear: true }, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHNICExpiry" id="customerNicExpiry" data-bind="datepicker: nicExpiry, datepickerOptions: { changeMonth: true, changeYear: true }, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<NIC Expiry HG>" id="customerNicExpiryHijri" data-bind="calendarspicker: nicExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="customerPassport" class="control-label col-sm-2">Passport</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Passport No.>" id="customerPassport" data-bind="value: passportNo, enable: !$root.rentalAgreement().id()" />
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Passport Expiry>" id="customerPassportExpiry" data-bind="datepicker: passportExpiry, datepickerOptions: { changeMonth: true, changeYear: true }, enable: !$root.rentalAgreement().id()" />
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Passport Expiry HG>" id="customerPassportExpiryHijri" data-bind="calendarspicker: passportExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHNICExpiryHG" id="customerNicExpiryHijri" data-bind="calendarspicker: nicExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="customerLicense" class="control-label col-sm-2">License</label>
+                                <label for="customerPassport" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Passport</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHPassportNo" id="customerPassport" data-bind="value: passportNo, enable: !$root.rentalAgreement().id()" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHPassportExpiry" id="customerPassportExpiry" data-bind="datepicker: passportExpiry, datepickerOptions: { changeMonth: true, changeYear: true }, enable: !$root.rentalAgreement().id()" />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHPassportExpiryHG" id="customerPassportExpiryHijri" data-bind="calendarspicker: passportExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerLicense" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.License</label>
 
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License No.>" id="customerLicense" data-bind="value: licenseNo, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHLicenseNo" id="customerLicense" data-bind="value: licenseNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry, datepickerOptions: { changeMonth: true, changeYear: true }, enable: !$root.rentalAgreement().id(), css: { 'errorFill': isLicenseExpired() }" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHLicenseExpiry" id="customerLicenseExpiry" data-bind="datepicker: licenseExpiry, datepickerOptions: { changeMonth: true, changeYear: true }, enable: !$root.rentalAgreement().id(), css: { 'errorFill': isLicenseExpired() }" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License Expiry HG>" id="customerLicenseExpiryHijri" data-bind="calendarspicker: licenseExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHLicenseExpiryHG" id="customerLicenseExpiryHijri" data-bind="calendarspicker: licenseExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="customerDOB" class="control-label col-sm-2">DOB/Sponsor</label>
+                                <label for="customerDOB" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.DOBSponsor</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<DOB>" id="customerDOB" data-bind="datepicker: dateOfBirth, enable: !$root.rentalAgreement().id(), validationTooltip: dateOfBirth, css: { 'errorFillWithValidation': !isAgeValid() }" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHDOB" id="customerDOB" data-bind="datepicker: dateOfBirth, enable: !$root.rentalAgreement().id(), validationTooltip: dateOfBirth, css: { 'errorFillWithValidation': !isAgeValid() }" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<Sponsor/Kafeel>" id="customerSponsor" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHSponsorKafeel" id="customerSponsor" />
                                 </div>
                             </div>
                             <!-- /ko -->
                             <!-- /ko -->
                             <div class="form-group" data-bind="with: businessPartnerCompany, visible: !isIndividual()" style="display: none">
-                                <label for="customerCompanyCode" class="control-label col-sm-2">Company</label>
+                                <label for="customerCompanyCode" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Company</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Company Code>" id="customerCompanyCode" data-bind="value: code, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHCompanyCode" id="customerCompanyCode" data-bind="value: code, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Company Name>" id="customerCompanyName" data-bind="value: name, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHCompanyName" id="customerCompanyName" data-bind="value: name, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group" data-bind="with: $root.rentalAgreement, visible: !isIndividual()" style="display: none">
-                                <label for="renterName" class="control-label col-sm-2">Renter</label>
+                                <label for="renterName" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Renter</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<Name>" id="renterName" data-bind="value: rentersName, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHName" id="renterName" data-bind="value: rentersName, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License No>" id="renterLicenseNo" data-bind="value: rentersLicenseNo, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHLicenseNo" id="renterLicenseNo" data-bind="value: rentersLicenseNo, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 
                             </div>
                             <div class="form-group" data-bind="with: $root.rentalAgreement, visible: !isIndividual()" style="display: none">
                                 <label for="renterName" class="control-label col-sm-2"></label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License Expiry>" id="renterLicenseExpiry" data-bind="datepicker: rentersLicenseExpiry, datepickerOptions: { changeMonth: true, changeYear: true }, enable: !$root.rentalAgreement().id(), css: { 'errorFill': isLicenseExpired() }" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHLicenseExpiry" id="renterLicenseExpiry" data-bind="datepicker: rentersLicenseExpiry, datepickerOptions: { changeMonth: true, changeYear: true }, enable: !$root.rentalAgreement().id(), css: { 'errorFill': isLicenseExpired() }" />
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="<License Expiry HG>" id="renterLicenseExpiryHijri" data-bind="calendarspicker: rentersLicenseExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHLicenseExpiryHG" id="renterLicenseExpiryHijri" data-bind="calendarspicker: rentersLicenseExpiryHijri, calendarspickerOptions: { instance: 'islamic' }" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="customerPhone" class="control-label col-sm-2">Phone/Mobile</label>
+                                <label for="customerPhone" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.PhoneMobile</label>
                                 <div class="col-md-5">
-                                    <input type="text" class="form-control" placeholder="<Phone>" id="customerPhone" data-bind="value: homePhone, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHPhone" id="customerPhone" data-bind="value: homePhone, enable: !$root.rentalAgreement().id()" />
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="<Mobile>" id="customerMobile" data-bind="value: mobile, enable: !$root.rentalAgreement().id()" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHMobile" id="customerMobile" data-bind="value: mobile, enable: !$root.rentalAgreement().id()" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="customerPhone" class="control-label col-sm-2">Email</label>
+                                <label for="customerPhone" class="control-label col-sm-2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Email</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="<Email>" id="customerEmail" data-bind="value: email, enable: !$root.rentalAgreement().id(), validationTooltip: email" />
+                                    <input type="text" class="form-control" placeholder="@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHEmail" id="customerEmail" data-bind="value: email, enable: !$root.rentalAgreement().id(), validationTooltip: email" />
                                 </div>
                             </div>
 </form>
@@ -244,7 +244,7 @@
                 <div id="addVehiclesHeading" class="panel-heading">
                     <h4 class="panel-title">
                         <a class="headingLink" data-toggle="collapse" data-parent="#accordion3" href="#collapseSeven">
-                            Vehicles
+                            @Cares.Web.Resources.RentalAgreement.RentalAgreement.Vehicles
                         </a>
                         <a id="addVehiclesPopoverLink" class="glyphicon glyphicon-chevron-right float-right" data-bind="click: openVehicleDialog, attr:{ title: 'Add Vehicles' }"></a>
                     </h4>
@@ -299,18 +299,18 @@
                                                     <hr />
                                                 </div>
                                                 <div class="float-left bold col-md-3">
-                                                    Hire Group:
+                                                    @Cares.Web.Resources.RentalAgreement.RentalAgreement.HireGroupVehicle
                                                 </div>
                                                 <div class="float-left  col-md-4" data-bind="text: $parent.hireGroup"></div>
                                                 <div class="float-left clearBoth bold  col-md-3">
-                                                    Transmission:
+                                                    @Cares.Web.Resources.RentalAgreement.RentalAgreement.Transmission
                                                 </div>
                                                 <div class="float-left  col-md-4" data-bind="text: transmissionType"></div>
-                                                <div class="float-left clearBoth bold  col-md-3">Fuel: </div>
+                                                <div class="float-left clearBoth bold  col-md-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Fuel </div>
                                                 <div class="float-left  col-md-4" data-bind="text: fuelType"></div>
-                                                <div class="float-left clearBoth bold  col-md-3">Model: </div>
+                                                <div class="float-left clearBoth bold  col-md-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Model </div>
                                                 <div class="float-left  col-md-4" data-bind="text: vehicleModelName"></div>
-                                                <div class="float-left clearBoth bold  col-md-3">Year:</div>
+                                                <div class="float-left clearBoth bold  col-md-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Year</div>
                                                 <div class="float-left  col-md-4" data-bind="text: modelYear"></div>
                                             </div>
 
@@ -331,8 +331,8 @@
     <div class="popover" id="extraPopover">
         <div id="extraPopoverContents" class="popoverContents">
             <div id="extrasHeading">
-                <button id="closeExtrasPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('extraPopoverButton')}">Close</button>
-                <button id="addExtrasPopoverLink" type="button" class="btn btn-link float-right" data-bind="click: openExtrasDialog">Add Extras</button>
+                <button id="closeExtrasPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('extraPopoverButton')}">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Close</button>
+                <button id="addExtrasPopoverLink" type="button" class="btn btn-link float-right" data-bind="click: openExtrasDialog">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AddExtras</button>
             </div>
             <div data-bind="visible: $root.rentalAgreement().rentalAgreementServiceItems().length > 0" class="clearBoth">
                 <!-- ko foreach: $root.rentalAgreement().rentalAgreementServiceItems -->
@@ -346,13 +346,13 @@
                             <div class="form-group formGroupCustom">
                                 <div>
                                     <label class="control-label col-md-4">
-                                        Start Date
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.StartDate
                                     </label>
                                     <label class="control-label col-md-4">
-                                        End Date
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.EndDate
                                     </label>
                                     <label class="control-label col-md-2">
-                                        Qty
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.Qty
                                     </label>
                                 </div>
                                 <br />
@@ -369,7 +369,7 @@
                 <!-- /ko -->
             </div>
             <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().rentalAgreementServiceItems().length === 0">
-                <h1>No Service Added Yet.</h1>
+                <h1>@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoServiceAddedYet</h1>
             </div>
         </div>
     </div>
@@ -377,8 +377,8 @@
     <div id="driverPopover" class="popover">
         <div id="driverPopoverContents" class="popoverContents">
             <div id="driverHeading">
-                <button id="closeDriverPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('driverPopoverButton')}">Close</button>
-                <button id="addDriverLink" type="button" class="btn btn-link float-right" data-bind="click: $root.addDriverToRentalAgreement">Add New</button>
+                <button id="closeDriverPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('driverPopoverButton')}">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Close</button>
+                <button id="addDriverLink" type="button" class="btn btn-link float-right" data-bind="click: $root.addDriverToRentalAgreement">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AddNew</button>
             </div>
             <div data-bind="visible: $root.rentalAgreement().raDrivers().length > 0" class="clearBoth">
                 <!-- ko foreach: $root.rentalAgreement().raDrivers -->
@@ -398,7 +398,7 @@
                             <div class="form-group formGroupCustom">
                                 <div>
                                     <label class="control-label col-md-4">
-                                        Name
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.Name
                                     </label>
                                 </div>
                                 <br />
@@ -411,10 +411,10 @@
                                 <br />
                                 <div class="clearBoth">
                                     <label class="control-label col-md-4">
-                                        License No
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.LicenseNo
                                     </label>
                                     <label class="control-label col-md-4">
-                                        License Expiry
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.LicenseExpiry
                                     </label>
                                 </div>
                                 <br />
@@ -426,10 +426,10 @@
                                 <br />
                                 <div class="clearBoth">
                                     <label class="control-label col-md-4">
-                                        Start Date
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.StartDate
                                     </label>
                                     <label class="control-label col-md-4">
-                                        End Date
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.EndDate
                                     </label>
                                 </div>
                                 <br />
@@ -445,7 +445,7 @@
                 <!-- /ko -->
             </div>
             <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().raDrivers().length === 0">
-                <h1>No Driver Added Yet.</h1>
+                <h1>@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoDriverAddedYet</h1>
             </div>
         </div>
     </div>
@@ -453,9 +453,9 @@
     <div class="popover" id="chaufferPopover">
         <div id="chaufferPopoverContents" class="popoverContents">
             <div id="chaufferHeading">
-                <button id="closeChaufferPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('chaufferPopoverButton')}">Close</button>
+                <button id="closeChaufferPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('chaufferPopoverButton')}">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Close</button>
 
-                <button id="addChaufferPopoverLink" type="button" class="btn btn-link float-right" data-bind="click: openChaufferDialog">Add Chauffer</button>
+                <button id="addChaufferPopoverLink" type="button" class="btn btn-link float-right" data-bind="click: openChaufferDialog">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AddChauffer</button>
             </div>
             <div data-bind="visible: $root.rentalAgreement().raChauffers().length > 0" class="clearBoth">
                 <!-- ko foreach: $root.rentalAgreement().raChauffers -->
@@ -469,10 +469,10 @@
                             <div class="form-group formGroupCustom">
                                 <div>
                                     <label class="control-label col-md-4">
-                                        License No
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.LicenseNo
                                     </label>
                                     <label class="control-label col-md-4">
-                                        License Expiry
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.LicenseExpiry
                                     </label>
                                 </div>
                                 <br />
@@ -484,10 +484,10 @@
                                 <br />
                                 <div class="clearBoth">
                                     <label class="control-label col-md-4">
-                                        Start Date
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.StartDate
                                     </label>
                                     <label class="control-label col-md-4">
-                                        End Date
+                                        @Cares.Web.Resources.RentalAgreement.RentalAgreement.EndDate
                                     </label>
                                 </div>
                                 <br />
@@ -503,7 +503,7 @@
                 <!-- /ko -->
             </div>
             <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().raChauffers().length === 0">
-                <h1>No Chauffer Added Yet.</h1>
+                <h1>@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoChaufferAddedYet</h1>
             </div>
         </div>
     </div>
@@ -511,14 +511,14 @@
     <div id="discountPopover" class="popover">
         <div id="discountPopoverContents" class="popoverContents">
             <div id="discountHeading">
-                <button id="closeDiscountPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('discountPopoverButton')}">Close</button>
-                <button id="addDiscountPopoverLink" type="button" class="btn btn-link float-right" data-bind="click: openDiscountsDialog">Add Discounts</button>
+                <button id="closeDiscountPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('discountPopoverButton')}">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Close</button>
+                <button id="addDiscountPopoverLink" type="button" class="btn btn-link float-right" data-bind="click: openDiscountsDialog">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AddDiscounts</button>
             </div>
             <div class="clearBoth">
             </div>
 
             <div class="clearBoth no-record-found">
-                <h1>No Discount Added Yet.</h1>
+                <h1>@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoDiscountAddedYet</h1>
             </div>
         </div>
     </div>
@@ -526,8 +526,8 @@
     <div id="damagePopover" class="popover">
         <div id="damagePopoverContents" class="popoverContents">
             <div id="damageHeading">
-                <button id="closeDamagePopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('damagePopoverButton')}">Close</button>
-                <button id="addDamagePopoverLink" type="button" class="btn btn-link float-right" data-bind="click: openAddChargesDialog, visible: rentalAgreement().id()">Add Damages</button>
+                <button id="closeDamagePopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('damagePopoverButton')}">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Close</button>
+                <button id="addDamagePopoverLink" type="button" class="btn btn-link float-right" data-bind="click: openAddChargesDialog, visible: rentalAgreement().id()">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AddDamages</button>
             </div>
             <div data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges().length > 0" class="clearBoth">
                 <!-- ko foreach: $root.rentalAgreement().rentalAgreementAdditionalCharges -->
@@ -540,9 +540,9 @@
                         <form class="form-horizontal">
                             <div class="form-group formGroupCustom">
                                 <div>
-                                    <label class="control-label col-sm-4">Plate No.</label>
-                                    <label class="control-label col-sm-4">Rate</label>
-                                    <label class="control-label col-sm-4">Qty</label>
+                                    <label class="control-label col-sm-4">@Cares.Web.Resources.RentalAgreement.RentalAgreement.PlateNo</label>
+                                    <label class="control-label col-sm-4">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Rate</label>
+                                    <label class="control-label col-sm-4">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Qty</label>
                                 </div>
                                 <br />
                                 <hr />
@@ -562,7 +562,7 @@
 
             </div>
             <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges=== null || $root.rentalAgreement().rentalAgreementAdditionalCharges().length === 0">
-                <h1>No Damage Added Yet.</h1>
+                <h1>@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoDamageAddedYet</h1>
             </div>
         </div>
     </div>
@@ -570,9 +570,9 @@
     <div id="paymentPopover" class="popover">
         <div id="paymentPopoverContents" class="popoverContents">
             <div id="paymentHeading">
-                <button id="closePaymentPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('paymentPopoverButton')}">Close</button>
+                <button id="closePaymentPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('paymentPopoverButton')}">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Close</button>
                 
-                <button id="addPaymentPopoverLink" type="button" class="btn btn-link float-right" data-bind="click: $root.addPaymentToRentalAgreement">Add Payment</button>
+                <button id="addPaymentPopoverLink" type="button" class="btn btn-link float-right" data-bind="click: $root.addPaymentToRentalAgreement">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AddPayment</button>
             </div>
             <div data-bind="visible: $root.rentalAgreement().raPayments().length > 0" class="clearBoth">
                 <!-- ko foreach: $root.rentalAgreement().raPayments -->
@@ -585,9 +585,9 @@
                         <form class="form-horizontal">
                             <div class="form-group formGroupCustom">
                                 <div>
-                                    <label class="control-label col-sm-3">Mode</label>
-                                    <label class="control-label col-sm-3">Date</label>
-                                    <label class="control-label col-sm-3">Amount</label>
+                                    <label class="control-label col-sm-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Mode</label>
+                                    <label class="control-label col-sm-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Date</label>
+                                    <label class="control-label col-sm-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Amount</label>
                                 </div>
                                 <br />
                                 <hr />
@@ -602,9 +602,9 @@
                                 </div>
                                 <br />
                                 <div class="clearBoth">
-                                    <label class="control-label col-sm-3">By</label>
-                                    <label class="control-label col-sm-3">Chk No</label>
-                                    <label class="control-label col-sm-3">Bank</label>
+                                    <label class="control-label col-sm-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.By</label>
+                                    <label class="control-label col-sm-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.ChkNo</label>
+                                    <label class="control-label col-sm-3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Bank</label>
                                 </div>
                                 <br />
                                 <hr />
@@ -624,7 +624,7 @@
                 <!-- /ko -->
             </div>
             <div class="clearBoth no-record-found" data-bind="visible: $root.rentalAgreement().raPayments().length === 0">
-                <h1>No Payment Added Yet.</h1>
+                <h1>@Cares.Web.Resources.RentalAgreement.RentalAgreement.NoPaymentAddedYet</h1>
             </div>
         </div>
     </div>
@@ -632,50 +632,50 @@
     <div id="billingPopover" class="popover">
         <div id="billingPopoverContents" class="popoverContents">
             <div id="billingHeading">
-                <button id="closePaymentPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('billingPopoverButton')}">Close</button>
+                <button id="closePaymentPopoverLink" type="button" class="btn btn-link float-right " data-bind="click: function(){ hidePopover('billingPopoverButton')}">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Close</button>
             </div>
             <div class="clearBoth">
                 <div class="panel-body">
                     <form id="billing" class="form-horizontal" data-bind="with: rentalAgreement().billing">
                         <div class="form-group">
                             <div>
-                                <span>Vehicle Charge</span>
+                                <span>@Cares.Web.Resources.RentalAgreement.RentalAgreement.VehicleCharge</span>
                                 <span class="float-right" data-bind="text: vehicleCharge"></span>
                             </div>
                             <div>
-                                <span class="Bold">Net Billing</span>
+                                <span class="Bold">@Cares.Web.Resources.RentalAgreement.RentalAgreement.NetBilling</span>
                                 <span class="float-right" data-bind="text: netBilling"></span>
                             </div>
                             <div>
-                                <span>Excess Mileage</span>
+                                <span>@Cares.Web.Resources.RentalAgreement.RentalAgreement.ExcessMileage</span>
                                 <span class="float-right" data-bind="text: excessMileage"></span>
                             </div>
                             <div>
-                                <span>Service Charge</span>
+                                <span>@Cares.Web.Resources.RentalAgreement.RentalAgreement.ServiceCharge</span>
                                 <span class="float-right" data-bind="text: serviceCharge"></span>
                             </div>
                             <div>
-                                <span>Insurance Charge</span>
+                                <span>@Cares.Web.Resources.RentalAgreement.RentalAgreement.InsuranceCharge</span>
                                 <span class="float-right" data-bind="text: insuranceCharge"></span>
                             </div>
                             <div>
-                                <span>Driver Charge</span>
+                                <span>@Cares.Web.Resources.RentalAgreement.RentalAgreement.DriverCharge</span>
                                 <span class="float-right" data-bind="text: driverCharge"></span>
                             </div>
                             <div>
-                                <span>Additional Charge</span>
+                                <span>@Cares.Web.Resources.RentalAgreement.RentalAgreement.AdditionalCharge</span>
                                 <span class="float-right" data-bind="text: additionalCharge"></span>
                             </div>
                             <div>
-                                <span class="Bold">Total Charges</span>
+                                <span class="Bold">@Cares.Web.Resources.RentalAgreement.RentalAgreement.TotalCharges</span>
                                 <span class="float-right" data-bind="text: totalCharges"></span>
                             </div>
                             <div>
-                                <span class="Bold">Amount Paid</span>
+                                <span class="Bold">@Cares.Web.Resources.RentalAgreement.RentalAgreement.AmountPaid</span>
                                 <span class="float-right" data-bind="text: amountPaid"></span>
                             </div>
                             <div>
-                                <span class="Bold">Balance</span>
+                                <span class="Bold">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Balance</span>
                                 <span class="float-right" data-bind="text: balance"></span>
                             </div>
                         </div>
