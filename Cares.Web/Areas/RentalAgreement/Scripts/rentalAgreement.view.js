@@ -137,6 +137,7 @@ define("rentalAgreement/rentalAgreement.view",
                         $('#customerLicenseExpiry').val(ConvertDates(value, 'islamic', 'gregorian'));
                     }
                 },
+
                 // On Passport Expiry Changed
                 onPassportExpiryChanged = function (value) {
                     if (!value) {
@@ -153,6 +154,24 @@ define("rentalAgreement/rentalAgreement.view",
                     }
                     else {
                         $('#customerPassportExpiry').val(ConvertDates(value, 'islamic', 'gregorian'));
+                    }
+                },
+                // On Passport Expiry Changed
+                onRentersLicenseExpiryChanged = function (value) {
+                    if (!value) {
+                        $('#renterLicenseExpiryHijri').val("");
+                    }
+                    else {
+                        $('#renterLicenseExpiryHijri').val(ConvertDates(moment(value).format(ist.customLongDateWithFullYearPattern), 'gregorian', 'islamic'));
+                    }
+                },
+                // On Passport Expiry Hijri Changed
+                onRentersLicensetExpiryHijriChanged = function (value) {
+                    if (!value) {
+                        $('#renterLicenseExpiry').val("");
+                    }
+                    else {
+                        $('#renterLicenseExpiry').val(ConvertDates(value, 'islamic', 'gregorian'));
                     }
                 },
                 // Initialize
@@ -230,6 +249,8 @@ define("rentalAgreement/rentalAgreement.view",
                 onLicenseExpiryHijriChanged: onLicenseExpiryHijriChanged,
                 onPassportExpiryChanged: onPassportExpiryChanged,
                 onPassportExpiryHijriChanged: onPassportExpiryHijriChanged,
+                onRentersLicenseExpiryChanged: onRentersLicenseExpiryChanged,
+                onRentersLicensetExpiryHijriChanged: onRentersLicensetExpiryHijriChanged
             };
         })(rentalAgreementViewModel);
 
