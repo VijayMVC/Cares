@@ -135,7 +135,7 @@ namespace Cares.Web.ModelMappers
             {
                 rentalAgreement.CreateRentalAgreementDetail()
             };
-            //retVal.RaCustomerInfo = new List<RaCustomerInfo> {rentalAgreement.CreateCustomerInfo()};
+            retVal.RaCustomerInfo = rentalAgreement.BusinessPartner.BusinessPartnerAddressList.Any() ? new List<RaCustomerInfo> {rentalAgreement.CreateCustomerInfo()} : new List<RaCustomerInfo>{ new RaCustomerInfo()};
             retVal.RaVehicleInfos = rentalAgreement.RaHireGroups.Select(hireGroup => hireGroup.CreateVehicelDetail());
             retVal.RaAdditionaItemInfos =
                 rentalAgreement.RaServiceItems.Select(serviceItem => serviceItem.CreateServiceItemDetail());
