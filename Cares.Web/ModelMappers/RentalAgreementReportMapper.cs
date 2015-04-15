@@ -130,16 +130,23 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         public static RentalAgreementDetailResponse CreteFrom(this  RaMain rentalAgreement)
         {
-            return new RentalAgreementDetailResponse
+            RentalAgreementDetailResponse retVal = new RentalAgreementDetailResponse();
+            retVal.RentalAgreementDetail = new List<RentalAgreementDetail>
             {
-                RentalAgreementDetail = new List<RentalAgreementDetail> { rentalAgreement.CreateRentalAgreementDetail() },
-                RaCustomerInfo = new List<RaCustomerInfo> { rentalAgreement.CreateCustomerInfo() },
-                RaVehicleInfos = rentalAgreement.RaHireGroups.Select(hireGroup => hireGroup.CreateVehicelDetail()),
-                RaAdditionaItemInfos = rentalAgreement.RaServiceItems.Select(serviceItem => serviceItem.CreateServiceItemDetail()),
-                RaDriverInfo = rentalAgreement.RaDrivers.Select(radriver => radriver.CreateFrom()),
-                RaAdditionalChargeInfos = rentalAgreement.RaAdditionalCharges.Select(additionalCharge => additionalCharge.CreateAdditionalChargeDetail()),
-                RaHireGroupInsuranceInfos = (from raHireGroup in rentalAgreement.RaHireGroups from hireGroupInsurance in raHireGroup.RaHireGroupInsurances select hireGroupInsurance.CreateFrom()).ToList()
+                rentalAgreement.CreateRentalAgreementDetail()
             };
+            //retVal.RaCustomerInfo = new List<RaCustomerInfo> {rentalAgreement.CreateCustomerInfo()};
+            retVal.RaVehicleInfos = rentalAgreement.RaHireGroups.Select(hireGroup => hireGroup.CreateVehicelDetail());
+            retVal.RaAdditionaItemInfos =
+                rentalAgreement.RaServiceItems.Select(serviceItem => serviceItem.CreateServiceItemDetail());
+            retVal.RaDriverInfo = rentalAgreement.RaDrivers.Select(radriver => radriver.CreateFrom());
+            retVal.RaAdditionalChargeInfos =
+                rentalAgreement.RaAdditionalCharges.Select(
+                    additionalCharge => additionalCharge.CreateAdditionalChargeDetail());
+            retVal.RaHireGroupInsuranceInfos = (from raHireGroup in rentalAgreement.RaHireGroups
+                from hireGroupInsurance in raHireGroup.RaHireGroupInsurances
+                select hireGroupInsurance.CreateFrom()).ToList();
+            return retVal;
         }
 
         /// <summary>

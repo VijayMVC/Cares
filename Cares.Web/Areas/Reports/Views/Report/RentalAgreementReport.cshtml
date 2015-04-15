@@ -1,5 +1,10 @@
 ﻿@{
     ViewBag.Title = "Rental Agreement Report";
+    int id = 0;
+    if (ViewBag.RentalAgreementId != null)
+    {
+        id = ViewBag.RentalAgreementId;   
+    }
 }
 <div class="row" id="AreaBinding">
     <div class="row ">
@@ -9,10 +14,23 @@
         <div class="well" style="background-color: white ; padding-top: 0px">
             <table id="AreaTable" class="table table-condensed">
                 <thead>
-                    <tr><td><iframe id="myReport" width="1240px" height="950px" src="~/Reports/RentalAgreementReport.aspx"></iframe></td></tr>
+                    <tr><td><iframe id="myReport" width="1240px" height="950px" src="~/Reports/RentalAgreementReport.aspx?id=3"></iframe></td></tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var raId = parseInt('@id');
+        var url;
+        if (raId == 0) {
+            url = "/Cares.Web/Reports/RentalAgreementReport.aspx?id=0";
+            $('#myReport').attr("src", url);
+        } else {
+            url = "/Cares.Web/Reports/RentalAgreementReport.aspx?id=" + raId;
+            $('#myReport').attr("src", url);
+        }
+    })
+</script>
