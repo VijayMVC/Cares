@@ -42,6 +42,12 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         OnLicenseExpiryHijriChanged: function (value) {
                             view.onLicenseExpiryHijriChanged(value);
                         },
+                        OnRentersLicenseExpiryChanged : function(value) {
+                            view.onRentersLicenseExpiryChanged(value);
+                        },
+                        OnRentersLicenseExpiryHijriChanged : function(value) {
+                            view.onRentersLicensetExpiryHijriChanged(value);
+                        },
                         OnPhoneChanged: function (value, type) {
                             getCustomerByPhoneNo(value, type);
                         },

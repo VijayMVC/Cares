@@ -368,8 +368,44 @@
             rentersName = ko.observable(specifiedRentersName),
             // Renters License No
             rentersLicenseNo = ko.observable(specifiedRentersLicenseNo),
+            // Internal Renters License Expiry
+            internalRentersLicenseExpiry = ko.observable(specifiedRentersLicenseExpiry),
+
             // Renters License Expiry
-            rentersLicenseExpiry = ko.observable(specifiedRentersLicenseExpiry),
+            rentersLicenseExpiry = ko.computed({
+                
+                read: function () {
+                    return internalRentersLicenseExpiry();
+                },
+                write: function (value) {
+                    if (!value || internalRentersLicenseExpiry() === value) {
+                        return;
+                    }
+                    internalRentersLicenseExpiry(value);
+                    if (callbacks && callbacks.OnRentersLicenseExpiryChanged && typeof callbacks.OnRentersLicenseExpiryChanged === "function" && !businessPartner().isIndividual()) {
+                        callbacks.OnRentersLicenseExpiryChanged(value);
+                    }
+                }
+            }),
+            // Internal Renters License Expiry Hijri
+            internalRentersLicenseExpiryHijri = ko.observable(specifiedRentersLicenseExpiry ? ConvertDates(moment(specifiedRentersLicenseExpiry).format(ist.customLongDateWithFullYearPattern),
+            'gregorian', 'islamic') : undefined),
+            // Renters License Expiry Hijri
+            rentersLicenseExpiryHijri = ko.computed({
+                read: function () {
+                    return internalRentersLicenseExpiryHijri();
+                },
+                write: function (value) {
+                    if (!value || internalRentersLicenseExpiryHijri() === value) {
+                        return;
+                    }
+
+                    internalRentersLicenseExpiryHijri(value);
+                    if (callbacks && callbacks.OnRentersLicenseExpiryHijriChanged && typeof callbacks.OnRentersLicenseExpiryHijriChanged === "function" && !businessPartner().isIndividual()) {
+                        callbacks.OnRentersLicenseExpiryHijriChanged(value);
+                    }
+                }
+            }),
             // RecCreated Dt
             recCreatedDt = ko.observable(specifiedRecCreatedDt || moment().toDate()),
             // RaStatus Id
@@ -518,7 +554,8 @@
             isInvalidPeriod: isInvalidPeriod,
             isLicenseExpired: isLicenseExpired,
             isHeaderValid: isHeaderValid,
-            convertToServerData: convertToServerData
+            convertToServerData: convertToServerData,
+            rentersLicenseExpiryHijri: rentersLicenseExpiryHijri
         };
     },
 
@@ -706,7 +743,7 @@
                     BusinessPartnerId: businessPartnerId(),
                     PhoneNumber: phoneNo(),
                     PhoneTypeId: type() ? type().key : 0
-                }
+                };
             };
 
         return {
@@ -817,7 +854,21 @@
                 }
             }),
             // Passport Expiry
-            passportExpiry = ko.observable(specifiedPassportExpiry ? moment(specifiedPassportExpiry).toDate() : undefined),
+            internalPassportExpiry = ko.observable(specifiedPassportExpiry ? moment(specifiedPassportExpiry).toDate() : undefined),
+            passportExpiry = ko.computed({
+                read: function() {
+                    return internalPassportExpiry();
+                },
+                write: function(value) {
+                    if (!value || internalPassportExpiry() === value) {
+                        return;
+                    }
+                    internalPassportExpiry(value);
+                    if (callbacks && callbacks.OnPassportExpiryChanged && typeof callbacks.OnPassportExpiryChanged === "function" && businessPartner.isIndividual()) {
+                        callbacks.OnPassportExpiryChanged(value);
+                    }
+                }
+            }),
             // Internal Passport Expiry Hijri
             internalPassportExpiryHijri = ko.observable(specifiedPassportExpiry ? ConvertDates(moment(specifiedPassportExpiry).format(ist.customLongDateWithFullYearPattern),
             'gregorian', 'islamic') : undefined),
@@ -1213,7 +1264,7 @@
                     DesigGradeId: specifiedDesigGradeId,
                     LicenseNo: specifiedLicenseNo,
                     LicenseExpDt: moment(specifiedLicenseExpDt).toDate()
-                }
+                };
             };
 
         return {
@@ -1246,7 +1297,7 @@
                     ServiceItemName: specifiedName,
                     ServiceTypeCode: specifiedServiceTypeCode,
                     ServiceTypeName: specifiedServiceTypeName
-                }
+                };
             };
 
         return {
@@ -1735,7 +1786,7 @@
                     AdditionalChargeRate: specifiedRate,
                     HireGroupDetailId: specifiedHireGroupDetailId,
                     HireGroupDetailCodeName: specifiedHireGroupDetailCodeName
-                }
+                };
             };
 
         return {
