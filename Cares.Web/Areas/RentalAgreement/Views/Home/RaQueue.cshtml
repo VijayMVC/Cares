@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "";
+    ViewBag.Title = Cares.Web.Resources.RentalAgreement.RentalAgreement.RAQueue;
 }
 <div class="row" id="raQueueBinding">
     <div class="row ">
-        <h3 class="page-header float-left pageHeaderSection">Ra Queue</h3>
+        <h3 class="page-header float-left pageHeaderSection">@Cares.Web.Resources.RentalAgreement.RentalAgreement.RAQueue</h3>
         <div class="header-toolsSection">
             <a href="#" class="glyphicon glyphicon-filter " data-bind="visible: !filterSectionVisilble(), click: showFilterSection" title='@Cares.Web.Resources.Shared.Common.ShowFilter' style="display: none"></a>
         </div>
@@ -12,16 +12,16 @@
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
                 <div class="col-xs-2 txtBox">
-                    <input type="text" class="form-control" placeholder='<RA #>' data-bind="value:raNumber" />
+                    <input type="text" class="form-control" placeholder='@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHRANo' data-bind="value:raNumber" />
                 </div>
                 <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
                 </div>
                 <div class="col-xs-2 txtBox">
-                    <input type="text" class="form-control" placeholder='<Sart Date>' data-bind="datepicker:startDt" />
+                    <input type="text" class="form-control" placeholder='@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHStartDate' data-bind="datepicker:startDt" />
                 </div>
                 <div class="col-xs-2 txtBox">
-                    <input type="text" class="form-control" placeholder='End Date' data-bind="datepicker:endDt" />
+                    <input type="text" class="form-control" placeholder='@Cares.Web.Resources.RentalAgreement.RentalAgreement.EndDate' data-bind="datepicker:endDt" />
                 </div>
                 <div class="col-xs-2">
                     <select class="form-control" data-bind="options: $root.raStatuses, optionsText: 'RaStatusCodeName', optionsValue: 'RaStatusId', optionsCaption: '<RA Status>', value: raStatusFilter"></select>
@@ -47,13 +47,13 @@
             <table id="raQueueTable" class="table table-condensed ">
                 <thead>
                     <tr>
-                        <th> <span id="1">RA #<span class="icon-up"></span></span></th>
-                        <th> <span id="2">Start Date<span></span></span></th>
-                        <th> <span id="3">End Date<span></span></span></th>
-                        <th> <span id="4">Open Location<span></span></span></th>
-                        <th> <span id="5">Close Location<span></span></span></th>
-                        <th> <span id="6">Operation<span></span></span></th>
-                        <th> <span id="7">Status<span></span></span></th>
+                        <th> <span id="1">@Cares.Web.Resources.RentalAgreement.RentalAgreement.RANo<span class="icon-up"></span></span></th>
+                        <th> <span id="2">@Cares.Web.Resources.RentalAgreement.RentalAgreement.StartDate<span></span></span></th>
+                        <th> <span id="3">@Cares.Web.Resources.RentalAgreement.RentalAgreement.EndDate<span></span></span></th>
+                        <th> <span id="4">@Cares.Web.Resources.RentalAgreement.RentalAgreement.OpenLocation<span></span></span></th>
+                        <th> <span id="5">@Cares.Web.Resources.RentalAgreement.RentalAgreement.CloseLocation<span></span></span></th>
+                        <th> <span id="6">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Operation<span></span></span></th>
+                        <th> <span id="7">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Status<span></span></span></th>
                     </tr>
                 </thead>
                 <tbody>

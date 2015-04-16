@@ -540,4 +540,28 @@
   <data name="Year" xml:space="preserve">
     <value>السنة:</value>
   </data>
+  <data name="Booking" xml:space="preserve">
+    <value>الحجز</value>
+  </data>
+  <data name="CloseLocation" xml:space="preserve">
+    <value>الوثيق الموقع</value>
+  </data>
+  <data name="Existing" xml:space="preserve">
+    <value>موجود</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>فرد</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="OpenLocation" xml:space="preserve">
+    <value>افتح الموقع</value>
+  </data>
+  <data name="RAQueue" xml:space="preserve">
+    <value>تأجير قائمة انتظار اتفاق</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>وضع</value>
+  </data>
 </root>

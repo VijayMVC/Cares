@@ -196,6 +196,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Booking.
+        /// </summary>
+        public static string Booking {
+            get {
+                return ResourceManager.GetString("Booking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Booking #.
         /// </summary>
         public static string BookingNo {
@@ -309,6 +318,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string CloseAgreement {
             get {
                 return ResourceManager.GetString("CloseAgreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CloseLocation.
+        /// </summary>
+        public static string CloseLocation {
+            get {
+                return ResourceManager.GetString("CloseLocation", resourceCulture);
             }
         }
         
@@ -466,6 +484,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Existing.
+        /// </summary>
+        public static string Existing {
+            get {
+                return ResourceManager.GetString("Existing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extras.
         /// </summary>
         public static string Extras {
@@ -525,6 +552,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string InDateTime {
             get {
                 return ResourceManager.GetString("InDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Individual.
+        /// </summary>
+        public static string Individual {
+            get {
+                return ResourceManager.GetString("Individual", resourceCulture);
             }
         }
         
@@ -655,6 +691,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NIC.
         /// </summary>
         public static string NIC {
@@ -750,6 +795,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string OpenAgreement {
             get {
                 return ResourceManager.GetString("OpenAgreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OpenLocation.
+        /// </summary>
+        public static string OpenLocation {
+            get {
+                return ResourceManager.GetString("OpenLocation", resourceCulture);
             }
         }
         
@@ -1105,6 +1159,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rental Agreement Queue.
+        /// </summary>
+        public static string RAQueue {
+            get {
+                return ResourceManager.GetString("RAQueue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate.
         /// </summary>
         public static string Rate {
@@ -1218,6 +1281,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string StartDateTime {
             get {
                 return ResourceManager.GetString("StartDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         

@@ -543,4 +543,28 @@
   <data name="VehicleStatus" xml:space="preserve">
     <value>Vehicle Status</value>
   </data>
+  <data name="Booking" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+  <data name="CloseLocation" xml:space="preserve">
+    <value>CloseLocation</value>
+  </data>
+  <data name="Existing" xml:space="preserve">
+    <value>Existing</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="OpenLocation" xml:space="preserve">
+    <value>OpenLocation</value>
+  </data>
+  <data name="RAQueue" xml:space="preserve">
+    <value>Rental Agreement Queue</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>
