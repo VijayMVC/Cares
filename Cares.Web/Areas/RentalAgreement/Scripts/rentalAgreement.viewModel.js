@@ -540,7 +540,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 app.run();
                             },
                             error: function (response) {
-                                toastr.error("Failed to load base data. Error: " + response);
+                                toastr.error(ist.resourceText.baseDataLoadError + response);
                             }
                         });
                     },
@@ -571,7 +571,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 chauffers.valueHasMutated();
                             },
                             error: function (response) {
-                                toastr.error("Failed to load Chauffers. Error: " + response);
+                                toastr.error(ist.resourceText.chauffersLoadError + response);
                             }
                         });
                     },
@@ -589,7 +589,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 serviceItems.valueHasMutated();
                             },
                             error: function (response) {
-                                toastr.error("Failed to load Service Items. Error: " + response);
+                                toastr.error(ist.resourceText.serviceItemsLoadError + response);
                             }
                         });
                     },
@@ -607,7 +607,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 additionalCharges.valueHasMutated();
                             },
                             error: function (response) {
-                                toastr.error("Failed to load Additional Charges. Error: " + response);
+                                toastr.error(ist.resourceText.additionalChargesLoadError + response);
                             }
                         });
                     },
@@ -625,7 +625,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 insuranceRates.valueHasMutated();
                             },
                             error: function (response) {
-                                toastr.error("Failed to load Insurances. Error: " + response);
+                                toastr.error(ist.resourceText.insurancesLoadError + response);
                             }
                         });
                     },
@@ -683,7 +683,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 vehicleAllocationStatusFiltered(allocationStatusItem.id);
                             },
                             error: function (response) {
-                                toastr.error("Failed to load vehicles. Error: " + response);
+                                toastr.error(ist.resourceText.vehiclesLoadError + response);
                             }
                         });
                     },
@@ -695,7 +695,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 rentalAgreement().billing(model.Billing.Create(data));
                             },
                             error: function (response) {
-                                toastr.error("Failed to calculate bill. Error: " + response);
+                                toastr.error(ist.resourceText.calculateBillError + response);
                             }
                         });
                     },
@@ -713,16 +713,16 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             if (!raDriver.isValid()) {
                                 raDriver.errors.showAllMessages();
 
-                                var driverText = raDriver.isChauffer() ? "Chauffer " : "Driver ";
+                                var driverText = raDriver.isChauffer() ? ist.resourceText.chauffer + " " : ist.resourceText.chauffer + " ";
 
                                 // If Invalid Period
                                 if (raDriver.isInvalidPeriod()) {
-                                    toastr.info("Selected " + driverText + "Start and End Date/Time should be between Rental Dates!");
+                                    toastr.info(ist.resourceText.selected + " " + driverText + ist.resourceText.startEndDateTimeBetweenRentalDates);
                                 }
 
                                 // If License Expired
                                 if (raDriver.isLicenseExpired()) {
-                                    toastr.info("Selected " + driverText + "License has expired!");
+                                    toastr.info(ist.resourceText.selected + " " + driverText + ist.resourceText.licenseExpiredMsg);
                                 }
                             }
                         });
@@ -743,7 +743,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
 
                                 // If Invalid Period
                                 if (raServiceItem.isInvalidPeriod()) {
-                                    toastr.info("Selected Service Item(s) Start and End Date/Time should be between Rental Dates!");
+                                    toastr.info(ist.resourceText.serviceItemStartEndDateTimeBetweenRentalDates);
                                 }
                             }
                         });
@@ -788,12 +788,12 @@ define("rentalAgreement/rentalAgreement.viewModel",
 
                                     // Validate Age
                                     if (!rentalAgreement().businessPartner().businessPartnerIndividual().isAgeValid()) {
-                                        toastr.info("Customer age must be 21 years minimum!");
+                                        toastr.info(ist.resourceText.customerMinimumAge);
                                     }
 
                                     // Validate License
                                     if (rentalAgreement().businessPartner().businessPartnerIndividual().isLicenseExpired()) {
-                                        toastr.info("Customer License has expired!");
+                                        toastr.info(ist.resourceText.customerLicenseExpired);
                                     }
                                 }
                             }
@@ -823,13 +823,13 @@ define("rentalAgreement/rentalAgreement.viewModel",
 
                         // Chauffers Overlap
                         if (validateChauffers()) {
-                            toastr.info("Selected Chauffers are overlapping, please adjust their duration!");
+                            toastr.info(ist.resourceText.selectedChauffersAreOverlapping);
                             return false;
                         }
 
                         // Validate Hire Group
                         if (rentalAgreement().rentalAgreementHireGroups().length === 0) {
-                            toastr.info("Vehicle not selected");
+                            toastr.info(ist.resourceText.vehicleNotSelected);
                             return false;
                         }
                         return true;
@@ -853,7 +853,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             return;
                         }
                         if (!rentalAgreement().isValid()) {
-                            toastr.info("Please fix errors first!");
+                            toastr.info(ist.resourceText.fixErrorsFirstMsg);
                             return;
                         }
 
@@ -871,7 +871,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     // Validate Bill
                     validateBill = function () {
                         if (rentalAgreement().billing().balance() > 0) {
-                            toastr.info("Can not close agreement because payment is pending.");
+                            toastr.info(ist.resourceText.paymentPendingMsg);
                             return false;
                         }
                         return true;
@@ -884,7 +884,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                         });
 
                         if (vehiclesNotReturned.length > 0) {
-                            toastr.info("One of the Vehicle(s) not returned");
+                            toastr.info(ist.resourceText.vehiclesNotReturned);
                             return false;
                         }
 
@@ -919,7 +919,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 selectDesiredHireGroup(getDesiredHireGroup(data));
                             },
                             error: function (response) {
-                                toastr.error("Failed to load Rental Agreement. Error: " + response);
+                                toastr.error(ist.resourceText.rentalAgreementLoadError + " " + response);
                             }
                         });
                     },
@@ -965,7 +965,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             },
                             error: function (response) {
                                 openingRaUsingBooking(false);
-                                toastr.error("Failed to load Rental Agreement. Error: " + response);
+                                toastr.error(ist.resourceText.rentalAgreementLoadError + " " + response);
                             }
                         });
                     },
@@ -985,10 +985,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 if (data && data.RaMainId > 0) {
                                     load(data.RaMainId);
                                 }
-                                toastr.success("Agreement saved successfully!");
+                                toastr.success(ist.resourceText.AgreementSuccess);
                             },
                             error: function (response) {
-                                toastr.error("Failed to process request. Error: " + response);
+                                toastr.error(ist.resourceText.RequestProcessError + " " + response);
                             }
                         });
                     },
@@ -1018,7 +1018,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                                 addVehicleCheckListsToRa(data, status);
                             },
                             error: function (response) {
-                                toastr.error("Failed to load checklists for vehicle. Error: " + response);
+                                toastr.error(ist.resourceText.checklistsLoadError + " " + response);
                             }
                         });
                     },
@@ -1053,7 +1053,7 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             rentalAgreement().businessPartner(model.BusinessPartner.Create(data, rentalAgreementModelCallbacks));
                         },
                         error: function (response) {
-                            toastr.error("Failed to load customer. Error: " + response);
+                            toastr.error(ist.resourceText.customerLoadError + " " + response);
                         }
                     },
                     // Is Existing

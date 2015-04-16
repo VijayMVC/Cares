@@ -15,7 +15,7 @@ define("raQueue/raQueue.view",
                 bindingRoot = $("#raQueueBinding")[0],
                 // Goto Rental Agreement
                 gotoRentalAgreement = function (raMainId) {
-                    openUrlInNewWindow("/RentalAgreement/Home/Index/#/byId/" + raMainId);
+                    openUrlInNewWindow(ist.siteUrl + "/RentalAgreement/Home/Index/#/byId/" + raMainId);
                 },
                 // Open url in new window
                 openUrlInNewWindow = function (url) {

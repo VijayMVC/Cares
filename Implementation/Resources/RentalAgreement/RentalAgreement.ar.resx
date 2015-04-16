@@ -147,7 +147,76 @@
   <data name="NoDomainLicenseDetailClaim" xml:space="preserve">
     <value>الترخيص التفاصيل مطالبة المستخدم المجال لم يتم العثور على</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>لا يمكنك إضافة أي اتفاق تأجير مزيد من تحت المجال الحالي !</value>
+  <data name="ExceedingDomainLimitForRAError" xml:space="preserve">
+    <value>لا يمكنك إضافة أي اتفاق تأجير مزيد من تحت المجال الحالي!</value>
+  </data>
+  <data name="BusinessPartnerAlreadyExists" xml:space="preserve">
+    <value>شريك تجاري مع هذا الاسم موجود مسبقا</value>
+  </data>
+  <data name="BookingNotFound" xml:space="preserve">
+    <value>الحجز مع رقم غير موجود.</value>
+  </data>
+  <data name="BusinessPartnerNotFound" xml:space="preserve">
+    <value>شريك تجاري مع رقم غير موجود.</value>
+  </data>
+  <data name="ChaufferRateNotDefinedForChauffer" xml:space="preserve">
+    <value>معدل لا يعرف للسائق.</value>
+  </data>
+  <data name="DriverChargeNotDefined" xml:space="preserve">
+    <value>تهمة غير محددة لسائق إضافية.</value>
+  </data>
+  <data name="InsuranceRateNotDefinedForHireGroupInsurance" xml:space="preserve">
+    <value>التأمين بنسبة لا يعرف لمجموعة مختارة من تأجير للتأمين المجموعة.</value>
+  </data>
+  <data name="PhoneNotFound" xml:space="preserve">
+    <value>الهاتف لم يتم العثور في النظام.</value>
+  </data>
+  <data name="RaHireGroupInsuranceNotFound" xml:space="preserve">
+    <value>تأجير تأجير اتفاق مجموعة التأمين التي لا توجد في النظام.</value>
+  </data>
+  <data name="RaHireGroupNotFound" xml:space="preserve">
+    <value>لم يتم العثور على عقد الإيجار تأجير المجموعة في النظام.</value>
+  </data>
+  <data name="RentalAgreementNotFound" xml:space="preserve">
+    <value>اتفاق الإيجار لم يتم العثور في النظام.</value>
+  </data>
+  <data name="RentalAgreementService_RaAdditionalChargeNotFound" xml:space="preserve">
+    <value>عقد الإيجار رسوم إضافية غير موجودة في النظام.</value>
+  </data>
+  <data name="RentalAgreementService_RaCustomerDocumentNotFound" xml:space="preserve">
+    <value>عقد الإيجار وثيقة العملاء لم يتم العثور في النظام.</value>
+  </data>
+  <data name="RentalAgreementService_RaDriverNotFound" xml:space="preserve">
+    <value>تأجير سائق اتفاق لم يتم العثور في النظام.</value>
+  </data>
+  <data name="RentalAgreementService_RaPaymentNotFound" xml:space="preserve">
+    <value>الإيجار اتفاق الدفع غير موجودة في النظام.</value>
+  </data>
+  <data name="RentalAgreementService_RaServiceItemNotFound" xml:space="preserve">
+    <value>عقد الإيجار خدمة البند لم يتم العثور في النظام.</value>
+  </data>
+  <data name="RentalAgreementService_RaStatusNotFound" xml:space="preserve">
+    <value>الإيجار وضع اتفاق غير موجودة في النظام.</value>
+  </data>
+  <data name="ServiceRateNotDefinedForServiceItem" xml:space="preserve">
+    <value>سعر خدمة غير محددة لاختيار الخدمة البند.</value>
+  </data>
+  <data name="StandardTariffRateNotDefinedForRentalCharge" xml:space="preserve">
+    <value>مستوى التعريفة الجمركية لم تحدد المجموعة تأجير المحدد.</value>
+  </data>
+  <data name="TariffTypeNotDefinedForHireGroupInsurance" xml:space="preserve">
+    <value>نوع التعرفة غير محددة لفترة زمنية محددة وعملية.</value>
+  </data>
+  <data name="TariffTypeNotDefinedForRaDriver" xml:space="preserve">
+    <value>نوع التعرفة غير محددة لفترة زمنية محددة وعملية.</value>
+  </data>
+  <data name="TariffTypeNotDefinedForRentalCharge" xml:space="preserve">
+    <value>نوع التعرفة غير محددة لفترة زمنية محددة وعملية.</value>
+  </data>
+  <data name="TariffTypeNotDefinedForServiceItem" xml:space="preserve">
+    <value>نوع التعرفة غير محددة لفترة زمنية محددة وعملية.</value>
+  </data>
+  <data name="VehicleNotFound" xml:space="preserve">
+    <value>لم يتم العثور على السيارة في النظام.</value>
   </data>
 </root>

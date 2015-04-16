@@ -543,17 +543,56 @@
   <data name="VehicleStatus" xml:space="preserve">
     <value>Vehicle Status</value>
   </data>
+  <data name="AdditionalChargesLoadError" xml:space="preserve">
+    <value>Failed to load Additional Charges. Error: </value>
+  </data>
+  <data name="AgreementSuccess" xml:space="preserve">
+    <value>Agreement saved successfully!</value>
+  </data>
+  <data name="BaseDataLoadError" xml:space="preserve">
+    <value>Failed to load base data. Error: </value>
+  </data>
   <data name="Booking" xml:space="preserve">
     <value>Booking</value>
+  </data>
+  <data name="CalculateBillError" xml:space="preserve">
+    <value>Failed to calculate bill. Error: </value>
+  </data>
+  <data name="ChauffersLoadError" xml:space="preserve">
+    <value>Failed to load Chauffers. Error: </value>
+  </data>
+  <data name="ChecklistsLoadError" xml:space="preserve">
+    <value>Failed to load checklists for vehicle. Error:</value>
   </data>
   <data name="CloseLocation" xml:space="preserve">
     <value>CloseLocation</value>
   </data>
+  <data name="CustomerLicenseExpired" xml:space="preserve">
+    <value>Customer License has expired!</value>
+  </data>
+  <data name="CustomerLoadError" xml:space="preserve">
+    <value>Failed to load customer. Error:</value>
+  </data>
+  <data name="CustomerMinimumAge" xml:space="preserve">
+    <value>Customer age must be 21 years minimum!</value>
+  </data>
+  <data name="Driver" xml:space="preserve">
+    <value>Driver</value>
+  </data>
   <data name="Existing" xml:space="preserve">
     <value>Existing</value>
   </data>
+  <data name="FixErrorsFirstMsg" xml:space="preserve">
+    <value>Please fix errors first!</value>
+  </data>
   <data name="Individual" xml:space="preserve">
     <value>Individual</value>
+  </data>
+  <data name="InsurancesLoadError" xml:space="preserve">
+    <value>Failed to load Insurances. Error: </value>
+  </data>
+  <data name="LicenseExpiredMsg" xml:space="preserve">
+    <value>License has expired!</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>New</value>
@@ -561,10 +600,43 @@
   <data name="OpenLocation" xml:space="preserve">
     <value>OpenLocation</value>
   </data>
+  <data name="PaymentPendingMsg" xml:space="preserve">
+    <value>Can not close agreement because payment is pending.</value>
+  </data>
   <data name="RAQueue" xml:space="preserve">
     <value>Rental Agreement Queue</value>
   </data>
+  <data name="RentalAgreementLoadError" xml:space="preserve">
+    <value>Failed to load Rental Agreement. Error:</value>
+  </data>
+  <data name="RequestProcessError" xml:space="preserve">
+    <value>Failed to process request. Error:</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>Selected</value>
+  </data>
+  <data name="SelectedChauffersAreOverlapping" xml:space="preserve">
+    <value>Selected Chauffers are overlapping, please adjust their duration!</value>
+  </data>
+  <data name="ServiceItemsLoadError" xml:space="preserve">
+    <value>Failed to load Service Items. Error: </value>
+  </data>
+  <data name="ServiceItemStartEndDateTimeBetweenRentalDates" xml:space="preserve">
+    <value>Selected Service Item(s) Start and End Date/Time should be between Rental Dates!</value>
+  </data>
+  <data name="StartEndDateTimeBetweenRentalDates" xml:space="preserve">
+    <value>Start and End Date/Time should be between Rental Dates!</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="VehicleNotSelected" xml:space="preserve">
+    <value>Vehicle not selected</value>
+  </data>
+  <data name="VehiclesLoadError" xml:space="preserve">
+    <value>Failed to load vehicles. Error: </value>
+  </data>
+  <data name="VehiclesNotReturned" xml:space="preserve">
+    <value>One of the Vehicle(s) not returned</value>
   </data>
 </root>

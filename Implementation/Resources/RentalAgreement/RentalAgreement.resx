@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="RentalAgreementNotFound" xml:space="preserve">
-    <value>Rental Agreement with Id {0} not found.</value>
+    <value>Rental Agreement not found in system.</value>
   </data>
   <data name="BookingNotFound" xml:space="preserve">
-    <value>Booking with Id {0} not found.</value>
+    <value>Booking with Id not found.</value>
   </data>
   <data name="BusinessPartnerNotFound" xml:space="preserve">
-    <value>Business Partner with Id {0} not found.</value>
+    <value>Business Partner with Id not found.</value>
   </data>
   <data name="ChaufferRateNotDefinedForChauffer" xml:space="preserve">
     <value>Rate not defined for Chauffer.</value>
@@ -136,31 +136,31 @@
     <value>Insurance Rate not defined for selected Hire Group Insurance.</value>
   </data>
   <data name="PhoneNotFound" xml:space="preserve">
-    <value>Phone with Id {0} not found.</value>
+    <value>Phone not found in system.</value>
   </data>
   <data name="RaHireGroupInsuranceNotFound" xml:space="preserve">
-    <value>RaHireGroup Insurance with Id {0} not found.</value>
+    <value>RaHireGroup Insurance not found in system.</value>
   </data>
   <data name="RaHireGroupNotFound" xml:space="preserve">
-    <value>RaHireGroup with Id {0} not found.</value>
+    <value>RaHireGroup not found in system.</value>
   </data>
   <data name="RentalAgreementService_RaAdditionalChargeNotFound" xml:space="preserve">
-    <value>RaAdditionalCharge with Id {0} not found.</value>
+    <value>RaAdditionalCharge not found in system.</value>
   </data>
   <data name="RentalAgreementService_RaCustomerDocumentNotFound" xml:space="preserve">
-    <value>RaCustomerDocument with Id {0} not found.</value>
+    <value>RaCustomerDocument not found in system.</value>
   </data>
   <data name="RentalAgreementService_RaDriverNotFound" xml:space="preserve">
-    <value>RaDriver with Id {0} not found.</value>
+    <value>RaDriver not found in system.</value>
   </data>
   <data name="RentalAgreementService_RaPaymentNotFound" xml:space="preserve">
-    <value>RaPayment with Id {0} not found.</value>
+    <value>RaPayment not found in system.</value>
   </data>
   <data name="RentalAgreementService_RaServiceItemNotFound" xml:space="preserve">
-    <value>RaServiceItem with Id {0} not found.</value>
+    <value>RaServiceItem not found in system.</value>
   </data>
   <data name="RentalAgreementService_RaStatusNotFound" xml:space="preserve">
-    <value>RaStatus with Key {0} not found.</value>
+    <value>RaStatus not found in system.</value>
   </data>
   <data name="ServiceRateNotDefinedForServiceItem" xml:space="preserve">
     <value>Service Rate not defined for selected Service Item.</value>
@@ -181,12 +181,15 @@
     <value>Tariff Type not defined for selected time period and operation.</value>
   </data>
   <data name="VehicleNotFound" xml:space="preserve">
-    <value>Vehicle with Id {0} not found.</value>
+    <value>Vehicle not found in system.</value>
   </data>
   <data name="ExceedingDomainLimitForRAError" xml:space="preserve">
     <value>You can not add any further Rental Agreement under current domain!</value>
   </data>
   <data name="NoDomainLicenseDetailClaim" xml:space="preserve">
     <value>Domain License Detail user claim not found</value>
+  </data>
+  <data name="BusinessPartnerAlreadyExists" xml:space="preserve">
+    <value>Business Partner with this name already exists</value>
   </data>
 </root>

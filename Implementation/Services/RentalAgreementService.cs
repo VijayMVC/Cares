@@ -420,7 +420,7 @@ namespace Cares.Implementation.Services
             }
             else
             {
-                throw new InvalidOperationException("Business Partner with this name already exists");
+                throw new InvalidOperationException(Resources.RentalAgreement.RentalAgreement.BusinessPartnerAlreadyExists);
             }
         }
 

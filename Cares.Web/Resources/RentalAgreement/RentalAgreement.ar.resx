@@ -540,17 +540,56 @@
   <data name="Year" xml:space="preserve">
     <value>السنة:</value>
   </data>
+  <data name="AdditionalChargesLoadError" xml:space="preserve">
+    <value>فشل تحميل رسوم إضافية. الخطأ: </value>
+  </data>
+  <data name="AgreementSuccess" xml:space="preserve">
+    <value>اتفاق حفظ بنجاح!</value>
+  </data>
+  <data name="BaseDataLoadError" xml:space="preserve">
+    <value>فشل تحميل بيانات القاعدة. الخطأ: </value>
+  </data>
   <data name="Booking" xml:space="preserve">
     <value>الحجز</value>
+  </data>
+  <data name="CalculateBillError" xml:space="preserve">
+    <value>فشل لحساب مشروع القانون. الخطأ: </value>
+  </data>
+  <data name="ChauffersLoadError" xml:space="preserve">
+    <value>فشل تحميل أولئك السائقين. الخطأ: </value>
+  </data>
+  <data name="ChecklistsLoadError" xml:space="preserve">
+    <value>فشل تحميل قوائم مرجعية للمركبة. الخطأ:</value>
   </data>
   <data name="CloseLocation" xml:space="preserve">
     <value>الوثيق الموقع</value>
   </data>
+  <data name="CustomerLicenseExpired" xml:space="preserve">
+    <value>انتهت صلاحية الترخيص العملاء!</value>
+  </data>
+  <data name="CustomerLoadError" xml:space="preserve">
+    <value>فشل تحميل العرف. الخطأ:</value>
+  </data>
+  <data name="CustomerMinimumAge" xml:space="preserve">
+    <value>يجب أن يكون عمر العميل 21 سنوات على الأقل!</value>
+  </data>
+  <data name="Driver" xml:space="preserve">
+    <value>سائق</value>
+  </data>
   <data name="Existing" xml:space="preserve">
     <value>موجود</value>
   </data>
+  <data name="FixErrorsFirstMsg" xml:space="preserve">
+    <value>يرجى تصحيح الأخطاء أولا!</value>
+  </data>
   <data name="Individual" xml:space="preserve">
     <value>فرد</value>
+  </data>
+  <data name="InsurancesLoadError" xml:space="preserve">
+    <value>فشل تحميل التأمينات. الخطأ: </value>
+  </data>
+  <data name="LicenseExpiredMsg" xml:space="preserve">
+    <value>انتهت صلاحية رخصة!</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>جديد</value>
@@ -558,10 +597,43 @@
   <data name="OpenLocation" xml:space="preserve">
     <value>افتح الموقع</value>
   </data>
+  <data name="PaymentPendingMsg" xml:space="preserve">
+    <value>لا يمكن إغلاق اتفاق لدفع معلقة.</value>
+  </data>
   <data name="RAQueue" xml:space="preserve">
     <value>تأجير قائمة انتظار اتفاق</value>
   </data>
+  <data name="RentalAgreementLoadError" xml:space="preserve">
+    <value>فشل تحميل اتفاق تأجير. الخطأ:</value>
+  </data>
+  <data name="RequestProcessError" xml:space="preserve">
+    <value>فشل في معالجة الطلب. الخطأ:</value>
+  </data>
+  <data name="Selected" xml:space="preserve">
+    <value>مختار</value>
+  </data>
+  <data name="SelectedChauffersAreOverlapping" xml:space="preserve">
+    <value>اختر أولئك السائقين هي متداخلة، الرجاء ضبط مدتها!</value>
+  </data>
+  <data name="ServiceItemsLoadError" xml:space="preserve">
+    <value>فشل تحميل عناصر الخدمة. الخطأ: </value>
+  </data>
+  <data name="ServiceItemStartEndDateTimeBetweenRentalDates" xml:space="preserve">
+    <value>عناصر خدمة اختيار بداية ونهاية التاريخ / الوقت يجب أن يكون بين تواريخ تأجير!</value>
+  </data>
+  <data name="StartEndDateTimeBetweenRentalDates" xml:space="preserve">
+    <value>بدء ونهاية التاريخ / الوقت يجب أن يكون بين تواريخ تأجير!</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>وضع</value>
+  </data>
+  <data name="VehicleNotSelected" xml:space="preserve">
+    <value>السيارة ليست مختارة</value>
+  </data>
+  <data name="VehiclesLoadError" xml:space="preserve">
+    <value> فشل تحميل المركبات. الخطأ: </value>
+  </data>
+  <data name="VehiclesNotReturned" xml:space="preserve">
+    <value>واحدة من السيارات التي لا عاد</value>
   </data>
 </root>

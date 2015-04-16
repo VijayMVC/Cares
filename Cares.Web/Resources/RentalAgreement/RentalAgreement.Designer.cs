@@ -124,6 +124,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load Additional Charges. Error: .
+        /// </summary>
+        public static string AdditionalChargesLoadError {
+            get {
+                return ResourceManager.GetString("AdditionalChargesLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New.
         /// </summary>
         public static string AddNew {
@@ -138,6 +147,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string AddPayment {
             get {
                 return ResourceManager.GetString("AddPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agreement saved successfully!.
+        /// </summary>
+        public static string AgreementSuccess {
+            get {
+                return ResourceManager.GetString("AgreementSuccess", resourceCulture);
             }
         }
         
@@ -187,6 +205,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load base data. Error: .
+        /// </summary>
+        public static string BaseDataLoadError {
+            get {
+                return ResourceManager.GetString("BaseDataLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Billing.
         /// </summary>
         public static string Billing {
@@ -219,6 +246,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string By {
             get {
                 return ResourceManager.GetString("By", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to calculate bill. Error: .
+        /// </summary>
+        public static string CalculateBillError {
+            get {
+                return ResourceManager.GetString("CalculateBillError", resourceCulture);
             }
         }
         
@@ -277,6 +313,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load Chauffers. Error: .
+        /// </summary>
+        public static string ChauffersLoadError {
+            get {
+                return ResourceManager.GetString("ChauffersLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CheckList In.
         /// </summary>
         public static string CheckListIn {
@@ -291,6 +336,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string CheckListOut {
             get {
                 return ResourceManager.GetString("CheckListOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load checklists for vehicle. Error:.
+        /// </summary>
+        public static string ChecklistsLoadError {
+            get {
+                return ResourceManager.GetString("ChecklistsLoadError", resourceCulture);
             }
         }
         
@@ -358,6 +412,33 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer License has expired!.
+        /// </summary>
+        public static string CustomerLicenseExpired {
+            get {
+                return ResourceManager.GetString("CustomerLicenseExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load customer. Error:.
+        /// </summary>
+        public static string CustomerLoadError {
+            get {
+                return ResourceManager.GetString("CustomerLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer age must be 21 years minimum!.
+        /// </summary>
+        public static string CustomerMinimumAge {
+            get {
+                return ResourceManager.GetString("CustomerMinimumAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer #.
         /// </summary>
         public static string CustomerNo {
@@ -417,6 +498,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string DOBSponsor {
             get {
                 return ResourceManager.GetString("DOBSponsor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver.
+        /// </summary>
+        public static string Driver {
+            get {
+                return ResourceManager.GetString("Driver", resourceCulture);
             }
         }
         
@@ -498,6 +588,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string Extras {
             get {
                 return ResourceManager.GetString("Extras", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fix errors first!.
+        /// </summary>
+        public static string FixErrorsFirstMsg {
+            get {
+                return ResourceManager.GetString("FixErrorsFirstMsg", resourceCulture);
             }
         }
         
@@ -592,6 +691,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load Insurances. Error: .
+        /// </summary>
+        public static string InsurancesLoadError {
+            get {
+                return ResourceManager.GetString("InsurancesLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Interior.
         /// </summary>
         public static string IsInterior {
@@ -606,6 +714,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string License {
             get {
                 return ResourceManager.GetString("License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License has expired!.
+        /// </summary>
+        public static string LicenseExpiredMsg {
+            get {
+                return ResourceManager.GetString("LicenseExpiredMsg", resourceCulture);
             }
         }
         
@@ -849,6 +966,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string Payment {
             get {
                 return ResourceManager.GetString("Payment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can not close agreement because payment is pending..
+        /// </summary>
+        public static string PaymentPendingMsg {
+            get {
+                return ResourceManager.GetString("PaymentPendingMsg", resourceCulture);
             }
         }
         
@@ -1177,6 +1303,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load Rental Agreement. Error:.
+        /// </summary>
+        public static string RentalAgreementLoadError {
+            get {
+                return ResourceManager.GetString("RentalAgreementLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rental Agreement.
         /// </summary>
         public static string RentalAgreementTitle {
@@ -1195,6 +1330,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to process request. Error:.
+        /// </summary>
+        public static string RequestProcessError {
+            get {
+                return ResourceManager.GetString("RequestProcessError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -1209,6 +1353,24 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string SelectChauffer {
             get {
                 return ResourceManager.GetString("SelectChauffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected.
+        /// </summary>
+        public static string Selected {
+            get {
+                return ResourceManager.GetString("Selected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Chauffers are overlapping, please adjust their duration!.
+        /// </summary>
+        public static string SelectedChauffersAreOverlapping {
+            get {
+                return ResourceManager.GetString("SelectedChauffersAreOverlapping", resourceCulture);
             }
         }
         
@@ -1258,6 +1420,24 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load Service Items. Error: .
+        /// </summary>
+        public static string ServiceItemsLoadError {
+            get {
+                return ResourceManager.GetString("ServiceItemsLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Service Item(s) Start and End Date/Time should be between Rental Dates!.
+        /// </summary>
+        public static string ServiceItemStartEndDateTimeBetweenRentalDates {
+            get {
+                return ResourceManager.GetString("ServiceItemStartEndDateTimeBetweenRentalDates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Service Type.
         /// </summary>
         public static string ServiceType {
@@ -1281,6 +1461,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         public static string StartDateTime {
             get {
                 return ResourceManager.GetString("StartDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start and End Date/Time should be between Rental Dates!.
+        /// </summary>
+        public static string StartEndDateTimeBetweenRentalDates {
+            get {
+                return ResourceManager.GetString("StartEndDateTimeBetweenRentalDates", resourceCulture);
             }
         }
         
@@ -1384,11 +1573,38 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vehicle not selected.
+        /// </summary>
+        public static string VehicleNotSelected {
+            get {
+                return ResourceManager.GetString("VehicleNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vehicles.
         /// </summary>
         public static string Vehicles {
             get {
                 return ResourceManager.GetString("Vehicles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load vehicles. Error: .
+        /// </summary>
+        public static string VehiclesLoadError {
+            get {
+                return ResourceManager.GetString("VehiclesLoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One of the Vehicle(s) not returned.
+        /// </summary>
+        public static string VehiclesNotReturned {
+            get {
+                return ResourceManager.GetString("VehiclesNotReturned", resourceCulture);
             }
         }
         
