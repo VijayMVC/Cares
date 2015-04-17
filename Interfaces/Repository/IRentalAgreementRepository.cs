@@ -36,6 +36,7 @@ namespace Cares.Interfaces.Repository
         /// Get total number of rental agreements with domain key
         /// </summary>
         int GetCountOfRAswithDomainKey();
-
+        // get for reports
+        RaMain FindRa(long rAMainId);
     }
 }

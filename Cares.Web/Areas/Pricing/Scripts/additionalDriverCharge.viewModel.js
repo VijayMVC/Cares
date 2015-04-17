@@ -272,10 +272,10 @@ define("additionalDriverCharge/additionalDriverCharge.viewModel",
                         dataservice.deleteAdditionalDriverChrg(model.AdditionalDriverChrgServerMapperForId(addDriverChrg), {
                             success: function () {
                                 addDriverChrgs.remove(addDriverChrg);
-                                toastr.success(ist.resourceText.serviceRateDeleteSuccessMsg);
+                                toastr.success(ist.resourceText.additionalDriverChargeDeleteSuccessMsg);
                             },
                             error: function () {
-                                toastr.error(ist.resourceText.serviceRateDeleteFailedMsg);
+                                toastr.error(ist.resourceText.additionalDriverChargeDeleteFailMsg);
                             }
                         });
                     },

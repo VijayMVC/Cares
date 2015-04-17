@@ -132,6 +132,12 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(company =>company.UserDomainKey==UserDomainKey &&  company.BusinessSegmentId == businessSegId) > 0;
         }
+
+        public IEnumerable<Company> FindCompaniesByUserDomainKey(long key)
+        {
+            return DbSet.Where(ra => ra.UserDomainKey == key);
+        }
+
         #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Globalization;
 using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
@@ -175,6 +176,12 @@ namespace Cares.Implementation.Services
         {
             return companyRepository.GetAll();
         }
+
+        public IEnumerable<Company> FindCompaniesByUserDomainKey(long key)
+        {
+            return companyRepository.FindCompaniesByUserDomainKey(key);
+        }
+
         #endregion
     }
 }

@@ -39,5 +39,7 @@ namespace Cares.Interfaces.Repository
         /// Company association check with business segment
         /// </summary>
         bool IsCompanyAssiciatedWithBusinessSegment(long businessSegId);
+
+        IEnumerable<Company> FindCompaniesByUserDomainKey(long key);
     }
 }

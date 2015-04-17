@@ -186,4 +186,10 @@
   <data name="TariffTypeName" xml:space="preserve">
     <value>التعريفة النوع الاسم</value>
   </data>
+  <data name="AdditionalDriverChargeDeleteFailMsg" xml:space="preserve">
+    <value>فشل لحذف رسوم إضافية للسائق.</value>
+  </data>
+  <data name="AdditionalDriverChargeDeleteSuccessMsg" xml:space="preserve">
+    <value>المسؤول سائق إضافي حذف بنجاح.</value>
+  </data>
 </root>

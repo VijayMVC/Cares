@@ -3470,6 +3470,7 @@
     <EmbeddedResource Include="Resources\Tariff\AdditionalCharge.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdditionalCharge.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Tariff\AdditionalDriverChrg.ar.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -33,9 +33,10 @@ namespace Cares.Implementation.ReportServices
         /// </summary>
         public RaMain GetRentalAgreementReportDetail(long rAMainId)
         {
-            return rentalAgreementRepository.Find(rAMainId);
+            var retVal = rentalAgreementRepository.FindRa(rAMainId);
+            return retVal;
 
-            
+
         }
         #endregion
     }

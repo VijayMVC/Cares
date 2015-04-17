@@ -39,6 +39,7 @@ namespace Cares.Implementation.Services
         private readonly IEmployeeRepository employeeRepository;
         private readonly IDefaultSettingRepository defaultSettingRepository;
         private readonly IPhoneTypeRepository phoneTypeRepository;
+        private readonly ICompanyService companyService;
 
         /// <summary>
         /// Add Vehicle Movements
@@ -392,18 +393,24 @@ namespace Cares.Implementation.Services
                 SetBusinessPartnerRequiredFields(businessPartner);
                 #endregion
 
-                //set child (business partner individual) properties
-                #region Business Partner Individual
+                //if (businessPartner.IsIndividual)
+                //{
+                    //set child (business partner individual) properties
+                    #region Business Partner Individual
 
-                AddBusinessPartnerIndividual(businessPartner);
+                    AddBusinessPartnerIndividual(businessPartner);
 
-                #endregion
+                    #endregion
+                //}
+                //else
+                //{
+                    //set child (business partner company) properties
+                    #region Business Partner Company
+                    
+                    AddBusinessPartnerCompany(businessPartner);
 
-                //set child (business partner company) properties
-                #region Business Partner Company
-                AddBusinessPartnerCompany(businessPartner);
-
-                #endregion
+                    #endregion
+                //}
 
                 //set child (business partner phones) properties
                 #region Business Partner Phones
@@ -466,11 +473,11 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void AddBusinessPartnerCompany(BusinessPartner businessPartner)
         {
-            if (businessPartner.IsIndividual)
-            {
-                businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode =
-                    businessPartner.BusinessPartnerIndividual.FirstName;
-            }
+            //if (businessPartner.IsIndividual)
+            //{
+            //    businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode =
+            //        businessPartner.BusinessPartnerIndividual.FirstName;
+            //}
 
             businessPartner.BusinessPartnerCompany.RecCreatedBy =
                 businessPartner.BusinessPartnerCompany.RecLastUpdatedBy =
@@ -513,7 +520,14 @@ namespace Cares.Implementation.Services
         private void SetBusinessPartnerRequiredFields(BusinessPartner businessPartner)
         {
             businessPartner.BusinessPartnerCode = "RA-Screen";
-            businessPartner.CompanyId = 1; // Need to Set Company Id from db
+            var companies = companyService.FindCompaniesByUserDomainKey(rentalAgreementRepository.UserDomainKey);
+            var firstCompany = companies.FirstOrDefault();
+            long companyId = 0;
+            if (firstCompany != null)
+            {
+                companyId = firstCompany.CompanyId;
+            }
+            businessPartner.CompanyId = companyId; // Need to Set Company Id from db
             businessPartner.UserDomainKey = rentalAgreementRepository.UserDomainKey;
             businessPartner.IsActive = true;
             businessPartner.RecCreatedDt = businessPartner.RecLastUpdatedDt = DateTime.Now;
@@ -1652,7 +1666,7 @@ namespace Cares.Implementation.Services
             IVehicleStatusRepository vehicleStatusRepository, IAlloactionStatusRepository alloactionStatusRepository, IRentalAgreementRepository rentalAgreementRepository,
             IBusinessPartnerRepository businessPartnerRepository, IPhoneRepository businessPartnerPhoneRepository, IAddressRepository businessPartnerAddressRepository,
             IVehicleRepository vehicleRepository, IPaymentModeRepository paymentModeRepository, IRaStatusRepository raStatusRepository, 
-            IBookingMainRepository bookingMainRepository, IEmployeeRepository employeeRepository, IDefaultSettingRepository defaultSettingRepository, IPhoneTypeRepository phoneTypeRepository)
+            IBookingMainRepository bookingMainRepository, IEmployeeRepository employeeRepository, IDefaultSettingRepository defaultSettingRepository, IPhoneTypeRepository phoneTypeRepository, ICompanyService companyService)
         {
             if (paymentTermRepository == null)
             {
@@ -1744,6 +1758,7 @@ namespace Cares.Implementation.Services
             this.employeeRepository = employeeRepository;
             this.defaultSettingRepository = defaultSettingRepository;
             this.phoneTypeRepository = phoneTypeRepository;
+            this.companyService = companyService;
         }
 
         #endregion

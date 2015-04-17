@@ -33,5 +33,10 @@ namespace Cares.Interfaces.IServices
         /// Add / Update Company
         /// </summary>
         Company AddUpdateCompany(Company companyRequest);
+        /// <summary>
+        /// Find list of Companies By Id
+        /// </summary>
+        IEnumerable<Company> FindCompaniesByUserDomainKey(long key);
+
     }
 }

@@ -133,7 +133,11 @@ namespace Cares.Repository.Repositories
         {
             return DbSet.Count(ra => ra.UserDomainKey == UserDomainKey);
         }
-        
+
+        public RaMain FindRa(long rAMainId)
+        {
+            return DbSet.Include(ra=>ra.BusinessPartner.BusinessPartnerAddressList).FirstOrDefault(ra => ra.RaMainId == rAMainId);
+        }
         #endregion
     }
 }

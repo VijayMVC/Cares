@@ -133,7 +133,7 @@
     <value>Additional Driver Charge Detail</value>
   </data>
   <data name="AdditionalDriverChargeLoadFailedMsg" xml:space="preserve">
-    <value>Failed to load AdditionalDriverCharges</value>
+    <value>Failed to load Additional Driver Charges</value>
   </data>
   <data name="AdditionalDriverCharges" xml:space="preserve">
     <value>Additional Driver Charges</value>
@@ -185,5 +185,11 @@
   </data>
   <data name="TariffTypeName" xml:space="preserve">
     <value>Tariff Type Name</value>
+  </data>
+  <data name="AdditionalDriverChargeDeleteFailMsg" xml:space="preserve">
+    <value>Failed to delete Additional Driver Charges</value>
+  </data>
+  <data name="AdditionalDriverChargeDeleteSuccessMsg" xml:space="preserve">
+    <value>Additional Driver Charge deleted successfully.</value>
   </data>
 </root>

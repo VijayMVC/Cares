@@ -223,7 +223,7 @@ namespace Cares.Web.Resources.Vehicle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disposa lDate.
+        ///   Looks up a localized string similar to Disposal Date.
         /// </summary>
         public static string DisposalDate {
             get {

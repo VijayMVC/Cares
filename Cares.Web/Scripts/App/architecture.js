@@ -124,6 +124,8 @@ require(["ko", "knockout-validation"], function (ko) {
             //initialize datepicker with some optional options
             // ReSharper disable DuplicatingLocalDeclaration
             var options = allBindingsAccessor().datepickerOptions || {};
+            options.changeMonth = true;
+            options.changeYear = true;
             // ReSharper restore DuplicatingLocalDeclaration
             $(element).datepicker(options);
             $(element).datepicker("option", "dateFormat", options.dateFormat || ist.customShortDatePattern);
@@ -165,6 +167,8 @@ require(["ko", "knockout-validation"], function (ko) {
             //initialize datepicker with some optional options
             // ReSharper disable DuplicatingLocalDeclaration
             var options = allBindingsAccessor().datepickerOptions || {};
+            options.changeMonth = true;
+            options.changeYear = true;
             // ReSharper restore DuplicatingLocalDeclaration
             $(element).datetimepicker(options);
             $(element).datetimepicker("option", "dateFormat", options.dateFormat || ist.customShortDatePattern);
