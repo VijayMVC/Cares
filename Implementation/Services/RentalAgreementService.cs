@@ -393,24 +393,24 @@ namespace Cares.Implementation.Services
                 SetBusinessPartnerRequiredFields(businessPartner);
                 #endregion
 
-                //if (businessPartner.IsIndividual)
-                //{
+                if (businessPartner.IsIndividual)
+                {
                     //set child (business partner individual) properties
                     #region Business Partner Individual
 
                     AddBusinessPartnerIndividual(businessPartner);
 
                     #endregion
-                //}
-                //else
-                //{
+                }
+                else
+                {
                     //set child (business partner company) properties
                     #region Business Partner Company
                     
                     AddBusinessPartnerCompany(businessPartner);
 
                     #endregion
-                //}
+                }
 
                 //set child (business partner phones) properties
                 #region Business Partner Phones
@@ -473,12 +473,7 @@ namespace Cares.Implementation.Services
         /// </summary>
         private void AddBusinessPartnerCompany(BusinessPartner businessPartner)
         {
-            //if (businessPartner.IsIndividual)
-            //{
-            //    businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode =
-            //        businessPartner.BusinessPartnerIndividual.FirstName;
-            //}
-
+            
             businessPartner.BusinessPartnerCompany.RecCreatedBy =
                 businessPartner.BusinessPartnerCompany.RecLastUpdatedBy =
                     businessPartnerRepository.LoggedInUserIdentity;
@@ -489,6 +484,7 @@ namespace Cares.Implementation.Services
                 businessPartner.BusinessPartnerCompany.RecCreatedBy =
                     businessPartnerRepository.LoggedInUserIdentity;
             businessPartner.BusinessPartnerCompany.UserDomainKey = businessPartnerRepository.UserDomainKey;
+            businessPartner.BusinessPartnerIndividual = null;
         }
 
         /// <summary>
@@ -512,6 +508,7 @@ namespace Cares.Implementation.Services
             businessPartner.BusinessPartnerIndividual.RecCreatedDt =
                 businessPartner.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
             businessPartner.BusinessPartnerIndividual.UserDomainKey = businessPartnerRepository.UserDomainKey;
+            businessPartner.BusinessPartnerCompany = null;
         }
 
         /// <summary>
@@ -861,35 +858,40 @@ namespace Cares.Implementation.Services
             businessPartnerDbVersion.RowVersion = businessPartnerDbVersion.RowVersion + 1;
             #endregion
 
-            //set child (buiness partner individual properties)
-            #region Business Partner Individual
-            businessPartnerDbVersion.BusinessPartnerIndividual.FirstName = businessPartner.BusinessPartnerIndividual.FirstName ?? string.Empty;
-            businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName ?? string.Empty;
-            businessPartnerDbVersion.BusinessPartnerIndividual.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
-            businessPartnerDbVersion.BusinessPartnerIndividual.NicNumber = businessPartner.BusinessPartnerIndividual.NicNumber;
-            businessPartnerDbVersion.BusinessPartnerIndividual.NicExpiryDate = businessPartner.BusinessPartnerIndividual.NicExpiryDate;
-            businessPartnerDbVersion.BusinessPartnerIndividual.PassportNumber = businessPartner.BusinessPartnerIndividual.PassportNumber;
-            businessPartnerDbVersion.BusinessPartnerIndividual.PassportExpiryDate = businessPartner.BusinessPartnerIndividual.PassportExpiryDate;
-            businessPartnerDbVersion.BusinessPartnerIndividual.PassportCountryId = businessPartner.BusinessPartnerIndividual.PassportCountryId;
-            businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseNumber = businessPartner.BusinessPartnerIndividual.LiscenseNumber;
-            businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseExpiryDate = businessPartner.BusinessPartnerIndividual.LiscenseExpiryDate;
-            businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion = businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
-            businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
-            businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
-            #endregion
+            if (businessPartnerDbVersion.IsIndividual)
+            {
+                //set child (buiness partner individual properties)
+                #region Business Partner Individual
+                businessPartnerDbVersion.BusinessPartnerIndividual.FirstName = businessPartner.BusinessPartnerIndividual.FirstName ?? string.Empty;
+                businessPartnerDbVersion.BusinessPartnerIndividual.LastName = businessPartner.BusinessPartnerIndividual.LastName ?? string.Empty;
+                businessPartnerDbVersion.BusinessPartnerIndividual.DateOfBirth = businessPartner.BusinessPartnerIndividual.DateOfBirth;
+                businessPartnerDbVersion.BusinessPartnerIndividual.NicNumber = businessPartner.BusinessPartnerIndividual.NicNumber;
+                businessPartnerDbVersion.BusinessPartnerIndividual.NicExpiryDate = businessPartner.BusinessPartnerIndividual.NicExpiryDate;
+                businessPartnerDbVersion.BusinessPartnerIndividual.PassportNumber = businessPartner.BusinessPartnerIndividual.PassportNumber;
+                businessPartnerDbVersion.BusinessPartnerIndividual.PassportExpiryDate = businessPartner.BusinessPartnerIndividual.PassportExpiryDate;
+                businessPartnerDbVersion.BusinessPartnerIndividual.PassportCountryId = businessPartner.BusinessPartnerIndividual.PassportCountryId;
+                businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseNumber = businessPartner.BusinessPartnerIndividual.LiscenseNumber;
+                businessPartnerDbVersion.BusinessPartnerIndividual.LiscenseExpiryDate = businessPartner.BusinessPartnerIndividual.LiscenseExpiryDate;
+                businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion = businessPartnerDbVersion.BusinessPartnerIndividual.RowVersion + 1;
+                businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedDt = DateTime.Now;
+                businessPartnerDbVersion.BusinessPartnerIndividual.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                #endregion
+            }
+            else
+            {
+                //set child (buiness partner company properties)
+                #region Business Partner Company
+                businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyCode =
+                    businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode ?? string.Empty;
+                businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyName =
+                    businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyName;
 
-            //set child (buiness partner company properties)
-            #region Business Partner Company
-            businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyCode =
-                businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyCode ?? string.Empty;
-            businessPartnerDbVersion.BusinessPartnerCompany.BusinessPartnerCompanyName =
-                businessPartner.BusinessPartnerCompany.BusinessPartnerCompanyName;
-
-            businessPartnerDbVersion.BusinessPartnerCompany.RowVersion =
-                businessPartnerDbVersion.BusinessPartnerCompany.RowVersion + 1;
-            businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedDt = DateTime.Now;
-            businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
-            #endregion
+                businessPartnerDbVersion.BusinessPartnerCompany.RowVersion =
+                    businessPartnerDbVersion.BusinessPartnerCompany.RowVersion + 1;
+                businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedDt = DateTime.Now;
+                businessPartnerDbVersion.BusinessPartnerCompany.RecLastUpdatedBy = businessPartnerRepository.LoggedInUserIdentity;
+                #endregion
+            }
 
             //set child (business partner phones)
             #region Business Partner Phones
