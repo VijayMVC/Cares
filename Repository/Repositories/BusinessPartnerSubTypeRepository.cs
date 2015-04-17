@@ -124,6 +124,14 @@ namespace Cares.Repository.Repositories
             return DbSet.Include(businessPartnerSubType => businessPartnerSubType.BusinessPartnerMainType)
                .FirstOrDefault(businessPartnerSubType =>businessPartnerSubType.UserDomainKey==UserDomainKey &&  businessPartnerSubType.BusinessPartnerSubTypeId == businessPartnerSubTypeId);
         }
+        /// <summary>
+        /// Returns true of Main Type contains any sub type, otherwise returns false
+        /// </summary>
+        public bool IsBpSubTypeAssociatedWithBpMainType(long bpMainTypeId)
+        {
+            return DbSet.Any(bpST => bpST.BusinessPartnerMainTypeId == bpMainTypeId);
+        }
+
         #endregion
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using Cares.ExceptionHandling;
 using Cares.Interfaces.IServices;
 using Cares.Interfaces.Repository;
 using Cares.Models.DomainModels;
@@ -19,7 +18,7 @@ namespace Cares.Implementation.Services
         /// Private members
         /// </summary>
         private readonly ICreditLimitRepository creditLimitRepository;
-        private readonly IBpSubTypeRepository subTypeRepository;
+        private readonly IBusinessPartnerSubTypeRepository subTypeRepository;
         private readonly IBpRatingTypeRepository ratingTypeRepository;
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         ///  Credit Limit Constructor
         /// </summary>
-        public CreditLimitService(ICreditLimitRepository creditLimitRepository, IBpSubTypeRepository subTypeRepository, IBpRatingTypeRepository ratingTypeRepository)
+        public CreditLimitService(ICreditLimitRepository creditLimitRepository, IBusinessPartnerSubTypeRepository subTypeRepository, IBpRatingTypeRepository ratingTypeRepository)
         {
             this.creditLimitRepository = creditLimitRepository;
             this.subTypeRepository = subTypeRepository;

@@ -15,7 +15,7 @@ namespace Cares.Implementation.Services
     {
         #region Private
         private readonly IBpMainTypeRepository bpMainTypeRepository;
-        private readonly IBpSubTypeRepository bpSubTypeRepository;
+        private readonly IBusinessPartnerSubTypeRepository bpSubTypeRepository;
        
         /// <summary>
         /// Set newly createdBusiness Partner Main Type object Properties in case of adding
@@ -59,7 +59,7 @@ namespace Cares.Implementation.Services
         /// <summary>
         /// Constructor
         /// </summary>
-        public BpMainTypeService(IBpMainTypeRepository bpMainTypeRepository, IBpSubTypeRepository bpSubTypeRepository)
+        public BpMainTypeService(IBpMainTypeRepository bpMainTypeRepository, IBusinessPartnerSubTypeRepository bpSubTypeRepository)
         {
             this.bpMainTypeRepository = bpMainTypeRepository;
             this.bpSubTypeRepository = bpSubTypeRepository;
