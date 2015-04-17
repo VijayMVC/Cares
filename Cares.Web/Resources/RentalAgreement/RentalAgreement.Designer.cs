@@ -457,7 +457,7 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End Date.
+        ///   Looks up a localized string similar to &lt;End Date&gt;.
         /// </summary>
         public static string EndDate {
             get {
