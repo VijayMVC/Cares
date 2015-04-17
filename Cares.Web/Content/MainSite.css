@@ -889,7 +889,15 @@
   background-color: #6b6f59;
 }
 #raQueueBinding .txtBox {
-  width: 142px;
+  width: 108px;
+}
+#raQueueBinding .searchControlPadding {
+  padding: 0;
+  padding-left: 0;
+  padding-right: 2px;
+}
+#raQueueBinding .searchDropdown {
+  min-width: 150px;
 }
 #vehicleDialog img {
   height: 30px;

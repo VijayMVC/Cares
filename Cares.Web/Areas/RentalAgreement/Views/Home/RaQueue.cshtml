@@ -11,29 +11,29 @@
     <div class="row searchFilterSection" data-bind="visible: filterSectionVisilble()" style="display: none">
         <div class="well">
             <form class="form-horizontal" data-bind="submit: search">
-                <div class="col-xs-2 txtBox">
+                <div class="col-xs-1 txtBox searchControlPadding">
                     <input type="text" class="form-control" placeholder='@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHRANo' data-bind="value:raNumber" />
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-1 searchControlPadding searchDropdown">
                     <select class="form-control" data-bind="options: $root.operations, optionsText: 'OperationCodeName', optionsValue: 'OperationId', optionsCaption: '<Operation>', value: operationFilter"></select>
                 </div>
-                <div class="col-xs-2 txtBox">
+                <div class="col-xs-1 txtBox searchControlPadding">
                     <input type="text" class="form-control" placeholder='@Cares.Web.Resources.RentalAgreement.RentalAgreement.PHStartDate' data-bind="datepicker:startDt" />
                 </div>
-                <div class="col-xs-2 txtBox">
+                <div class="col-xs-1 txtBox searchControlPadding">
                     <input type="text" class="form-control" placeholder='@Cares.Web.Resources.RentalAgreement.RentalAgreement.EndDate' data-bind="datepicker:endDt" />
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-1 searchControlPadding searchDropdown">
                     <select class="form-control" data-bind="options: $root.raStatuses, optionsText: 'RaStatusCodeName', optionsValue: 'RaStatusId', optionsCaption: '<RA Status>', value: raStatusFilter"></select>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-1 searchControlPadding searchDropdown">
                     <select class="form-control" data-bind="options: $root.paymentTerms, optionsText: 'PaymentTermCodeName', optionsValue: 'PaymentTermId', optionsCaption: '<Payment Term>', value: paymentTermFilter"></select>
                 </div>
 
-                <div class="col-xs-2">
+                <div class="col-xs-1 searchControlPadding searchDropdown">
                     <select class="form-control" data-bind="options: $root.operationWorkPlaces, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '<Open Location>', value: openLocFilter"></select>
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-1 searchControlPadding searchDropdown">
                     <select class="form-control" data-bind="options: $root.operationWorkPlaces, optionsText: 'OperationsWorkPlaceCodeName', optionsValue: 'OperationsWorkPlaceId', optionsCaption: '<Close Location>', value: closeLocFilter"></select>
                 </div>
                 <button type="submit" class="btn btn-success" data-bind="click: search">@Cares.Web.Resources.Shared.Common.Search</button>

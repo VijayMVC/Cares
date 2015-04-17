@@ -135,7 +135,6 @@
     <Compile Include="Repository\IBusinessPartnerMainTypeRepository.cs" />
     <Compile Include="Repository\IChaufferReservationRepository.cs" />
     <Compile Include="Repository\ICreditLimitRepository.cs" />
-    <Compile Include="Repository\IBpSubTypeRepository.cs" />
     <Compile Include="Repository\IMainteneceTypeGroupRepository.cs" />
     <Compile Include="Repository\INrtChargeRepository.cs" />
     <Compile Include="Repository\INrtDriverRepository.cs" />

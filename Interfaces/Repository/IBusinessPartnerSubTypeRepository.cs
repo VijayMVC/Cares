@@ -23,5 +23,12 @@ namespace Cares.Interfaces.Repository
         /// Load the detail object of Business Partner SubType
         /// </summary>
         BusinessPartnerSubType LoadBusinessPartnerSubTypeWithDetail(long businessPartnerSubTypeId);
+
+        /// <summary>
+        /// Checks if Business Partner Sub Type is associated with BP Main Type
+        /// </summary>
+        /// <param name="bpMainTypeId"></param>
+        /// <returns></returns>
+        bool IsBpSubTypeAssociatedWithBpMainType(long bpMainTypeId);
     }
 }
