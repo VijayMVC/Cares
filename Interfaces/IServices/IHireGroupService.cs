@@ -46,7 +46,6 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Add Hire Group
         /// </summary>
-        /// <param name="hireGroup"></param>
         HireGroup AddHireGroup(HireGroup hireGroup);
        
         /// <summary>
@@ -58,8 +57,11 @@ namespace Cares.Interfaces.IServices
         /// <summary>
         /// Get Hire Group Deatil Data By id
         /// </summary>
-        /// <param name="hireGroupId"></param>
-        /// <returns></returns>
         HireGroupDataDetailResponse FindHireGroupId(long hireGroupId);
+
+        /// <summary>
+        /// Get all parent Hiregroups in a companay
+        /// </summary>
+        IEnumerable<HireGroup> GetParentHireGroups();
     }
 }

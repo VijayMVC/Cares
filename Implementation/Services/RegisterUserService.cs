@@ -95,6 +95,8 @@ namespace Cares.Implementation.Services
                     throw new Exception("User not found!");
                 }
                 userDetailsRepository.CopyUserDefaultData(userId, user.UserDomainKey);
+                userDetailsRepository.Delete(userDetails);
+                userDetailsRepository.SaveChanges();
             }
         }
         #endregion

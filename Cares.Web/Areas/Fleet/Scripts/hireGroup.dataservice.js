@@ -50,6 +50,11 @@ define("hireGroup/hireGroup.dataservice", function () {
                         dataType: 'json',
                         type: 'DELETE'
                     });
+                    amplify.request.define('parentHireGroup', 'ajax', {
+                        url: ist.siteUrl + '/Api/ParentHireGroup',
+                        dataType: 'json',
+                        type: 'GET'
+                    });
                     isInitialized = true;
                 }
             },
@@ -112,6 +117,16 @@ define("hireGroup/hireGroup.dataservice", function () {
                 error: callbacks.error,
                 data: param
             });
+        },
+            // Delete
+        loadParentHireGroups = function (param, callbacks) {
+            initialize();
+            return amplify.request({
+                resourceId: 'parentHireGroup',
+                success: callbacks.success,
+                error: callbacks.error,
+                data: param
+            });
         };
           
         return {
@@ -120,7 +135,8 @@ define("hireGroup/hireGroup.dataservice", function () {
             createHireGroup:createHireGroup,
             updateHireGroup:updateHireGroup,
             getHireGroupDetailById: getHireGroupDetailById,
-            deleteHireGroup: deleteHireGroup
+            deleteHireGroup: deleteHireGroup,
+            loadParentHireGroups: loadParentHireGroups
            
         };
     })();

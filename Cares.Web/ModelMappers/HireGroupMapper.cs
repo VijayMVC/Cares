@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Cares.Web.Models;
+using Microsoft.Practices.EnterpriseLibrary.Common.Configuration.Design;
 using DomainModels = Cares.Models.DomainModels;
 using ResponseModel = Cares.Models.ResponseModels;
 using RequestModel = Cares.Models.RequestModels;
@@ -200,7 +201,18 @@ namespace Cares.Web.ModelMappers
                 AllowedHireGroupId = source.HireGroupId
             };
         }
-
+        /// <summary>
+        /// Create Parent HireGroup data from Hiregroup
+        /// </summary>
+        public static ParentHireGroup CreateParentFrom(this HireGroup source)
+        {
+            return new ParentHireGroup
+            {
+                CompanyId = source.CompanyId,
+                ParentHireGroupId = source.HireGroupId,
+                ParentHireGroupName = source.HireGroupCode + " - " + source.HireGroupName
+            };
+        }
         #endregion
 
     }

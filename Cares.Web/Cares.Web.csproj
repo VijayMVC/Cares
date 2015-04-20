@@ -291,6 +291,7 @@
     <Compile Include="Areas\Api\Controllers\BookingMainController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtQueueBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\NrtQueueController.cs" />
+    <Compile Include="Areas\Api\Controllers\ParentHireGroupController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueBaseController.cs" />
     <Compile Include="Areas\Api\Controllers\RaQueueController.cs" />
     <Compile Include="Areas\Api\Controllers\RentalAgreementBookingController.cs" />
@@ -516,6 +517,7 @@
     <Compile Include="Models\BookingMainBaseResponse.cs" />
     <Compile Include="Models\BookingMainSearchResponse.cs" />
     <Compile Include="Models\NrtMainForNrtQueue.cs" />
+    <Compile Include="Models\ParentHireGroupResponse.cs" />
     <Compile Include="Models\PaymentMode.cs" />
     <Compile Include="Models\NrtQueueBaseResponse.cs" />
     <Compile Include="Models\NrtQueueSearchResponse.cs" />

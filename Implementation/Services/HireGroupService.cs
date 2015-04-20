@@ -335,6 +335,14 @@ namespace Cares.Implementation.Services
                        HireGroups = hireGroups
                    };
         }
+        /// <summary>
+        /// Get Parent
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<HireGroup> GetParentHireGroups()
+        {
+            return hireGroupRepository.GetParentHireGroups();
+        }
 
         /// <summary>
         /// Hire Group Validation
