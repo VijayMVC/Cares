@@ -95,7 +95,7 @@ namespace Cares.Repository.Repositories
                                             where (vehicle.UserDomainKey == UserDomainKey)
                                             select new RptFleetHireGroupDetail
                                             {
-                                                HireGroupName = hgd.HireGroup != null ? hgd.HireGroup.HireGroupName : string.Empty,
+                                                HireGroupName = hgd.HireGroup != null ? hgd.HireGroup.HireGroupName : Resources.Vehicle.VehicleReport_NotDefined,
                                                 PlateNumber = vehicle.PlateNumber,
                                                 ParentHireGroupName =/* hgd.HireGroup.ParentHireGroup != null ?*/ "Parent Hire Group ",// : string.Empty,
                                                 VehicleMakeName = vehicle.VehicleMake.VehicleMakeName,

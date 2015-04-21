@@ -301,6 +301,11 @@
     <Compile Include="Repositories\WorkLocationRepository.cs" />
     <Compile Include="Repositories\WorkplaceRepository.cs" />
     <Compile Include="Repositories\WorkplaceTypeRepository.cs" />
+    <Compile Include="Resources\Vehicle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vehicle.resx</DependentUpon>
+    </Compile>
     <Compile Include="TypeRegistrations.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +345,13 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Vehicle.ar.resx" />
+    <EmbeddedResource Include="Resources\Vehicle.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
