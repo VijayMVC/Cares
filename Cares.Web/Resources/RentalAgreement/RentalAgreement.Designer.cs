@@ -1312,6 +1312,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rental Agreement Report.
+        /// </summary>
+        public static string RentalAgreementReport_Title {
+            get {
+                return ResourceManager.GetString("RentalAgreementReport_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rental Agreement.
         /// </summary>
         public static string RentalAgreementTitle {
