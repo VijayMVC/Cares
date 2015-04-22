@@ -134,9 +134,9 @@ namespace Cares.Repository.Repositories
             return DbSet.Count(ra => ra.UserDomainKey == UserDomainKey);
         }
 
-        public RaMain FindRa(long rAMainId)
+        public RaMain FindRentalAgreement(long rAMainId)
         {
-            return DbSet.Include(ra=>ra.BusinessPartner.BusinessPartnerAddressList).FirstOrDefault(ra => ra.RaMainId == rAMainId);
+            return DbSet.Include(ra => ra.BusinessPartner.BusinessPartnerCompany).Include(ra => ra.BusinessPartner.BusinessPartnerIndividual).FirstOrDefault(ra => ra.RaMainId == rAMainId);
         }
         #endregion
     }

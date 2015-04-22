@@ -21,6 +21,6 @@ namespace Cares.Web.Models.ReportModels
         public string DOB { get; set; }
         public string NID_DOE { get; set; }
         public DateTime? LicenceDOE { get; set; }
-        public DateTime PassportDOE { get; set; }
+        public DateTime? PassportDOE { get; set; }
     }
 }

@@ -21,12 +21,8 @@ namespace Cares.Web.Areas.Reports.Controllers
         }
 
         [SiteAuthorize(PermissionKey = "RentalAgreementReport")]
-        public ActionResult RentalAgreementReport(int? id)
+        public ActionResult RentalAgreementReport()
         {
-            if (id != null)
-            {
-                ViewBag.RentalAgreementId = id;
-            }
             return View();
         }
 

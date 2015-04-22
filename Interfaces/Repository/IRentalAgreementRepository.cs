@@ -37,6 +37,6 @@ namespace Cares.Interfaces.Repository
         /// </summary>
         int GetCountOfRAswithDomainKey();
         // get for reports
-        RaMain FindRa(long rAMainId);
+        RaMain FindRentalAgreement(long rAMainId);
     }
 }

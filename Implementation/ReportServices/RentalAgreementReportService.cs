@@ -33,7 +33,7 @@ namespace Cares.Implementation.ReportServices
         /// </summary>
         public RaMain GetRentalAgreementReportDetail(long rAMainId)
         {
-            var retVal = rentalAgreementRepository.FindRa(rAMainId);
+            var retVal = rentalAgreementRepository.FindRentalAgreement(rAMainId);
             return retVal;
 
 

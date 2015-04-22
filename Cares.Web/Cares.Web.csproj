@@ -1725,6 +1725,7 @@
     <Content Include="Areas\RentalAgreement\Scripts\raQueue.view.js" />
     <Content Include="Areas\RentalAgreement\Scripts\raQueue.viewModel.js" />
     <Content Include="Areas\RentalAgreement\Scripts\Mocks\rentalAgreement.dataservice.js" />
+    <Content Include="Areas\Common\Scripts\raReport.view.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.dataservice.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.model.js" />
     <Content Include="Areas\RentalAgreement\Scripts\rentalAgreement.view.js" />
@@ -2742,6 +2743,7 @@
     <Content Include="Areas\Reports\Views\Report\InsuranceRateReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\GrossSalesReport.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\Booking.cshtml" />
+    <Content Include="Areas\Common\Scripts\raReport.viewModel.js" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />
     <Content Include="Areas\Reports\Views\Report\RentalAgreementReport.cshtml" />
