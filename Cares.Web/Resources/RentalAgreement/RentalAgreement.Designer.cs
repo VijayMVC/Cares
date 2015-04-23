@@ -1339,6 +1339,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report.
+        /// </summary>
+        public static string Report {
+            get {
+                return ResourceManager.GetString("Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to process request. Error:.
         /// </summary>
         public static string RequestProcessError {

@@ -19,6 +19,7 @@
             <button type="button" class="btn btn-danger float-left margin-button" id="damagePopoverButton" data-bind="bootstrapPopover:{elementNode: 'damagePopover', html: true, popoverId: 'damagePopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Damages <span class="badge" data-bind="visible: $root.rentalAgreement().rentalAgreementAdditionalCharges().length > 0, text: $root.rentalAgreement().rentalAgreementAdditionalCharges().length"></span></button>
             <button type="button" class="btn btn-custom float-left margin-button" id="paymentPopoverButton" data-bind="bootstrapPopover:{elementNode: 'paymentPopover', html: true, popoverId: 'paymentPopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Payments <span class="badge" data-bind="visible: $root.rentalAgreement().raPayments().length > 0, text: $root.rentalAgreement().raPayments().length"></span></button>
             <button type="button" class="btn btn-billing float-left margin-button" id="billingPopoverButton" data-bind="bootstrapPopover:{elementNode: 'billingPopover', html: true, popoverId: 'billingPopoverContents'} ">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Billing <span class="badge" data-bind="visible: $root.rentalAgreement().billing().balance > 0 ,text: $root.rentalAgreement().billing().balance"></span></button>
+            <button type="button" class="btn btn-billing float-left margin-button" id="raReport" data-bind="click: showRentalAgreementReport">@Cares.Web.Resources.RentalAgreement.RentalAgreement.Report</button>
 
         </div>
 
@@ -705,11 +706,12 @@
     @Html.Partial("_DiscountsDialog")
 
 </div>
+    @Html.Partial("~/Areas/Common/Views/Shared/_RentalAgreementReportDialog.cshtml")
 
 @section inlinescripts
 {
     <script type="text/javascript">
-        require(["rentalAgreement/rentalAgreement.view"]);
+        require(["rentalAgreement/rentalAgreement.view", "common/raReport.view"]);
 
         var ist = window.ist;
         @{
@@ -742,6 +744,10 @@
             </text>
         }
 
+        $(document).ready(function () {
+            $("#myReport").css('width', '100%');
+            $("#myReport").css('height', '100%');
+        });
         //$(document).ready(function () {
         //    $('.popover').click(function () {
         //        return false; // Do nothing

@@ -10,9 +10,11 @@ define("common/raReport.viewModel",
                 var // the view 
                     view,
                     //Ra Report Id Filter
-                    raRentalAgreementId = ko.observable(),
+                    raRentalAgreementId = ko.observable().extend({ required: true }),
                     //report source
                     reportSrc = ko.observable(),
+                    //Show in dialog
+                    showInDialog = ko.observable(true),
                     // Initialize the view model
                     initialize = function(specifiedView) {
                         view = specifiedView;
@@ -35,7 +37,8 @@ define("common/raReport.viewModel",
                     initialize: initialize,
                     search: search,
                     reportSrc: reportSrc,
-                    showRentalAgreement: showRentalAgreement
+                    showRentalAgreement: showRentalAgreement,
+                    showInDialog: showInDialog
                 };
             })()
         };

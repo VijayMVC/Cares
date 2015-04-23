@@ -2,8 +2,8 @@
     Module with the view model for the rentalAgreement
 */
 define("rentalAgreement/rentalAgreement.viewModel",
-    ["jquery", "amplify", "ko", "rentalAgreement/rentalAgreement.dataservice", "rentalAgreement/rentalAgreement.model", "common/pagination", "sammy"],
-    function ($, amplify, ko, dataservice, model, pagination, sammy) {
+    ["jquery", "amplify", "ko", "rentalAgreement/rentalAgreement.dataservice", "rentalAgreement/rentalAgreement.model", "common/pagination", "common/raReport.viewModel", "sammy"],
+    function ($, amplify, ko, dataservice, model, pagination, raReportViewModel, sammy) {
 
         var ist = window.ist || {};
         ist.rentalAgreement = {
@@ -1116,6 +1116,10 @@ define("rentalAgreement/rentalAgreement.viewModel",
                             PhoneNo: phoneNo,
                             PhoneType: type
                         }, getCustomerCallbackHandler);
+                    },
+                    showRentalAgreementReportDialog = function() {
+                        raReportViewModel.showInDialog(true);
+                        view.showRentalAgreementReport();
                     };
                 // #endregion Service Calls
 
@@ -1203,7 +1207,8 @@ define("rentalAgreement/rentalAgreement.viewModel",
                     showChaufferFilterSection: showChaufferFilterSection,
                     collapseChaufferFilterSection: collapseChaufferFilterSection,
                     chaufferFilterSectionVisilble: chaufferFilterSectionVisilble,
-                    isLoaded: isLoaded
+                    isLoaded: isLoaded,
+                    showRentalAgreementReport: showRentalAgreementReportDialog
                     // Utility Methods
                 };
             })()

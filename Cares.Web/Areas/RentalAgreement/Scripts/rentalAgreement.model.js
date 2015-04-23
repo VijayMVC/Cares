@@ -15,7 +15,7 @@
             vehicleMakeName = specifiedVehicleMakeCodeName ? specifiedVehicleMakeCodeName.split('-')[1] : "",
             vehicleModelName = specifiedVehicleModelCodeName ? specifiedVehicleModelCodeName.split('-')[1] : "";
         // Tank Size
-            var tankSize = ko.observable(specifiedTankSize);
+        var tankSize = ko.observable(specifiedTankSize);
 
         return {
             id: specifiedId,
@@ -373,7 +373,7 @@
 
             // Renters License Expiry
             rentersLicenseExpiry = ko.computed({
-                
+
                 read: function () {
                     return internalRentersLicenseExpiry();
                 },
@@ -462,7 +462,7 @@
                     }).length === 0;
             }),
             // Is Header Valid - For Agreement Part
-            isHeaderValid = ko.computed(function() {
+            isHeaderValid = ko.computed(function () {
                 return errors().length === 0;
             }),
             // Convert To Server Data
@@ -495,7 +495,7 @@
                     SpecialDiscountPerc: billing().specialDiscountPerc(),
                     StandardDiscount: billing().standardDiscount(),
                     RentersName: rentersName(),
-                    RentersLicenseNo: rentersLicenseNo(),
+                    RentersLicenseNumber: rentersLicenseNo(),
                     RentersLicenseExpDt: rentersLicenseExpiry() ? moment(rentersLicenseExpiry()).format(ist.utcFormat) + 'Z' : undefined,
                     RaStatusId: raStatusId(),
                     RaBookingId: raBookingId(),
@@ -856,10 +856,10 @@
             // Passport Expiry
             internalPassportExpiry = ko.observable(specifiedPassportExpiry ? moment(specifiedPassportExpiry).toDate() : undefined),
             passportExpiry = ko.computed({
-                read: function() {
+                read: function () {
                     return internalPassportExpiry();
                 },
-                write: function(value) {
+                write: function (value) {
                     if (!value || internalPassportExpiry() === value) {
                         return;
                     }
@@ -1050,7 +1050,7 @@
             isIndividual = ko.observable(specifiedIsIndividual || true),
             // Email
             email = ko.observable(specifiedEmail || undefined).extend({
-                required: true
+                email : true
             }),
             // Payment Term
             paymentTermId = ko.observable(specifiedPaymentTerm ? specifiedPaymentTerm.PaymentTermId : undefined).extend({ required: true }),
@@ -1986,7 +1986,7 @@
         source.VehicleCategory ? source.VehicleCategory.VehicleCategoryCodeName : undefined, source.VehicleMakeId,
         source.VehicleMake ? source.VehicleMake.VehicleMakeCodeName : undefined, source.VehicleModelId,
         source.VehicleModel ? source.VehicleModel.VehicleModelCodeName : undefined, source.VehicleStatusId, source.VehicleStatusCodeName, source.ModelYear,
-        source.ImageSource, source.FuelLevel, source.TankSize, source.TransmissionType ? source.TransmissionType.TransmissionTypeName : null, source.FuelType? source.FuelType.FuelTypeName: null);
+        source.ImageSource, source.FuelLevel, source.TankSize, source.TransmissionType ? source.TransmissionType.TransmissionTypeName : null, source.FuelType ? source.FuelType.FuelTypeName : null);
     };
 
     // Payment Term Factory
@@ -2059,20 +2059,27 @@
 
         // Update Phone Numbers
         _.each(source.BusinessPartnerPhoneNumbers, function (phone) {
-            var phoneItem = businessPartner.phones.find(function (bpPhone) {
-                return bpPhone.type().key === phone.PhoneTypeKey;
-            });
-            if (phoneItem) {
-                phoneItem.businessPartnerId(phone.BusinessPartnerId);
-                phoneItem.id(phone.PhoneId);
-                phoneItem.isDefault(phone.IsDefault);
-                if (phone.PhoneTypeKey === phoneTypes.HomePhone) {
-                    businessPartner.internalHomePhone(phone.PhoneNumber);
-                }
-                else {
-                    businessPartner.internalMobile(phone.PhoneNumber);
-                }
+            //var phoneItem = businessPartner.phones.find(function (bpPhone) {
+            //    return bpPhone.type().key === phone.PhoneTypeKey;
+            //});
+            //if (phoneItem) {
+            //    phoneItem.businessPartnerId(phone.BusinessPartnerId);
+            //    phoneItem.id(phone.PhoneId);
+            //    phoneItem.isDefault(phone.IsDefault);
+            //    if (phone.PhoneTypeKey === phoneTypes.HomePhone) {
+            //        businessPartner.internalHomePhone(phone.PhoneNumber);
+            //    }
+            //    else {
+            //        businessPartner.internalMobile(phone.PhoneNumber);
+            //    }
+            //}
+            if (phone.PhoneTypeName === "2 - Mobile") {
+                businessPartner.internalHomePhone(phone.PhoneNumber);
             }
+            else {
+                businessPartner.internalMobile(phone.PhoneNumber);
+            }
+
         });
 
         return businessPartner;

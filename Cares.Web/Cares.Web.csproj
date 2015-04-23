@@ -2744,6 +2744,7 @@
     <Content Include="Areas\Reports\Views\Report\GrossSalesReport.cshtml" />
     <Content Include="Areas\RentalAgreement\Views\Home\Booking.cshtml" />
     <Content Include="Areas\Common\Scripts\raReport.viewModel.js" />
+    <Content Include="Areas\Common\Views\Shared\_RentalAgreementReport.cshtml" />
     <Content Include="Areas\Common\Views\Shared\_RentalAgreementReportDialog.cshtml" />
     <None Include="Properties\PublishProfiles\cares.pubxml" />
     <Content Include="Areas\Reports\Views\Report\DailyActionReport.cshtml" />

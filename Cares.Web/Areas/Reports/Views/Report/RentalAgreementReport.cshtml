@@ -2,11 +2,16 @@
     ViewBag.Title = Cares.Web.Resources.RentalAgreement.RentalAgreement.RentalAgreementReport_Title;
 }
 
-    @Html.Partial("~/Areas/Common/Views/Shared/_RentalAgreementReportDialog.cshtml")
+@Html.Partial("~/Areas/Common/Views/Shared/_RentalAgreementReport.cshtml")
+
 
 @section inlinescripts
 {
     <script type="text/javascript">
-        require(["common/raReport.view"])
+        require(["common/raReport.view"]);
+        $(document).ready(function () {
+            $("#myReport").css('width', '1240px');
+            $("#myReport").css('height', '960px');
+        });
     </script>
 }
