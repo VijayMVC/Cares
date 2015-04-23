@@ -2056,32 +2056,15 @@
     BusinessPartner.Create = function (source, callbacks) {
         var businessPartner = new BusinessPartner(source.BusinessPartnerId, source.IsIndividual, source.PaymentTerm,
             source.BusinessPartnerIndividual, source.BusinessPartnerCompany, source.BusinessPartnerEmailAddress, callbacks);
-
         // Update Phone Numbers
         _.each(source.BusinessPartnerPhoneNumbers, function (phone) {
-            //var phoneItem = businessPartner.phones.find(function (bpPhone) {
-            //    return bpPhone.type().key === phone.PhoneTypeKey;
-            //});
-            //if (phoneItem) {
-            //    phoneItem.businessPartnerId(phone.BusinessPartnerId);
-            //    phoneItem.id(phone.PhoneId);
-            //    phoneItem.isDefault(phone.IsDefault);
-            //    if (phone.PhoneTypeKey === phoneTypes.HomePhone) {
-            //        businessPartner.internalHomePhone(phone.PhoneNumber);
-            //    }
-            //    else {
-            //        businessPartner.internalMobile(phone.PhoneNumber);
-            //    }
-            //}
             if (phone.PhoneTypeName === "2 - Mobile") {
                 businessPartner.internalHomePhone(phone.PhoneNumber);
             }
             else {
                 businessPartner.internalMobile(phone.PhoneNumber);
             }
-
         });
-
         return businessPartner;
     };
 
@@ -2091,13 +2074,11 @@
             source.EndDtTime ? moment(source.EndDtTime).toDate() : undefined, source.PaymentTermId, source.OperationId, source.OpenLocation, source.CloseLocation,
             source.BusinessPartner || {}, source.RentersName, source.RentersLicenseNumber, source.RentersLicenseExpDt ? moment(source.RentersLicenseExpDt).toDate() : undefined,
             source.RecCreatedDt ? moment(source.RecCreatedDt).toDate() : undefined, source.RaStatusId, source.RaBookingId, callbacks);
-
         // Add Ra Hire Groups if Any
         if (source.RaHireGroups) {
             var raHireGroups = _.map(source.RaHireGroups, function (raHireGroup) {
                 return RentalAgreementHireGroup.Create(raHireGroup, isExisting, rentalAgreement);
             });
-
             ko.utils.arrayPushAll(rentalAgreement.rentalAgreementHireGroups(), raHireGroups);
             rentalAgreement.rentalAgreementHireGroups.valueHasMutated();
         }
