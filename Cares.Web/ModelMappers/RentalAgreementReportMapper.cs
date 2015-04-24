@@ -1,4 +1,6 @@
-﻿using Cares.Models.DomainModels;
+﻿using System;
+using System.Globalization;
+using Cares.Models.DomainModels;
 using Cares.Web.Models.ReportModels;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,30 +13,37 @@ namespace Cares.Web.ModelMappers
         private static RentalAgreementDetail CreateRentalAgreementDetail(this RaMain rentalAgreement)
         {
 
-            return new RentalAgreementDetail
+            RentalAgreementDetail retVal = new RentalAgreementDetail();
+            if (rentalAgreement.BusinessPartner.IsIndividual)
             {
-                RenterName = rentalAgreement.RentersName,
-                RentalAgreementId = rentalAgreement.RaMainId,
-                Status = rentalAgreement.RaStatus.RaStatusCode,
-                RaOpenLocatoin = rentalAgreement.OpenLocation,
-                StartDateTime = rentalAgreement.StartDtTime.ToString("dd-MMM-yy HH:mm"),
-                ReturnDateTime = rentalAgreement.EndDtTime.ToString("dd-MMM-yy HH:mm"),
-                RaCloseLocation = rentalAgreement.CloseLocation,
-                TotalVehicleCharge = rentalAgreement.TotalVehicleCharge,
-                StandardDiscount = rentalAgreement.StandardDiscount,
-                SessionalDiscount = rentalAgreement.SeasonalDiscount,
-                VoucherDiscount = rentalAgreement.VoucherDiscount,
-                SpecialDiscount = rentalAgreement.SpecialDiscount,
-                NetBillAfterDiscount = rentalAgreement.NetBillAfterDiscount,
-                TotalExcessNileageCharges = rentalAgreement.TotalExcessMileageCharge,
-                TotalServiceCharges = rentalAgreement.TotalServiceCharge,
-                TotalInsurenceCharges = rentalAgreement.TotalInsuranceCharge,
-                TotalDriverChufferCharges = rentalAgreement.TotalDriverCharge,
-                TotalAdditionalCharges = rentalAgreement.TotalAdditionalCharge,
-                TotalOtherCharges = rentalAgreement.TotalOtherCharge,
-                AmountPaid = rentalAgreement.AmountPaid,
-                Balance = rentalAgreement.Balance,
-            };
+                BusinessPartnerIndividual bP = rentalAgreement.BusinessPartner.BusinessPartnerIndividual;
+                retVal.RenterName = bP != null ? bP.FirstName + " " + bP.LastName : string.Empty;
+            }
+            else
+            {
+                retVal.RenterName = rentalAgreement.RentersName;
+            }
+            retVal.RentalAgreementId = rentalAgreement.RaMainId;
+            retVal.Status = rentalAgreement.RaStatus.RaStatusCode;
+            retVal.RaOpenLocatoin = rentalAgreement.OperationsWorkPlaceOpen.LocationCode;
+            retVal.StartDateTime = rentalAgreement.StartDtTime.ToString("dd-MMM-yy HH:mm");
+            retVal.ReturnDateTime = rentalAgreement.EndDtTime.ToString("dd-MMM-yy HH:mm");
+            retVal.RaCloseLocation = rentalAgreement.OperationsWorkPlaceClose.LocationCode;
+            retVal.TotalVehicleCharge = rentalAgreement.TotalVehicleCharge;
+            retVal.StandardDiscount = rentalAgreement.StandardDiscount;
+            retVal.SessionalDiscount = rentalAgreement.SeasonalDiscount;
+            retVal.VoucherDiscount = rentalAgreement.VoucherDiscount;
+            retVal.SpecialDiscount = rentalAgreement.SpecialDiscount;
+            retVal.NetBillAfterDiscount = rentalAgreement.NetBillAfterDiscount;
+            retVal.TotalExcessNileageCharges = rentalAgreement.TotalExcessMileageCharge;
+            retVal.TotalServiceCharges = rentalAgreement.TotalServiceCharge;
+            retVal.TotalInsurenceCharges = rentalAgreement.TotalInsuranceCharge;
+            retVal.TotalDriverChufferCharges = rentalAgreement.TotalDriverCharge;
+            retVal.TotalAdditionalCharges = rentalAgreement.TotalAdditionalCharge;
+            retVal.TotalOtherCharges = rentalAgreement.TotalOtherCharge;
+            retVal.AmountPaid = rentalAgreement.AmountPaid;
+            retVal.Balance = rentalAgreement.Balance;
+            return retVal;
         }
 
         /// <summary>
@@ -42,19 +51,48 @@ namespace Cares.Web.ModelMappers
         /// </summary>
         private static RaCustomerInfo CreateCustomerInfo(this RaMain rentalAgreement)
         {
-             Address address = rentalAgreement.BusinessPartner.BusinessPartnerAddressList.FirstOrDefault();
-            return new RaCustomerInfo
+            RaCustomerInfo retVal = new RaCustomerInfo();
+            if (rentalAgreement.BusinessPartner.IsIndividual)
             {
-                RenterName = rentalAgreement.BusinessPartner.BusinessPartnerName,
-                LicenceNumber = rentalAgreement.RentersLicenseNumber,
-                LicenceDOE = rentalAgreement.RentersLicenseExpDt,
-                ContactPerson = rentalAgreement.BusinessPartner != null ? address.ContactPerson : string.Empty,
-                City = rentalAgreement.BusinessPartner != null ? address.City.CityName : string.Empty,
-                Country = rentalAgreement.BusinessPartner != null ? address.Country.CountryName : string.Empty,
-                Region = rentalAgreement.BusinessPartner != null ? address.Region.RegionName : string.Empty,
-                StreetAddress = rentalAgreement.BusinessPartner != null ? address.StreetAddress : string.Empty,
-            };
-
+                BusinessPartnerIndividual customerInfo = rentalAgreement.BusinessPartner.BusinessPartnerIndividual;
+                retVal.RenterName = customerInfo.FirstName + " " + customerInfo.LastName;
+                retVal.LicenceNumber = customerInfo.LiscenseNumber;
+                retVal.LicenceDOE = customerInfo.LiscenseExpiryDate;
+                retVal.Identification = customerInfo.NicNumber;
+                retVal.NID_DOE = Convert.ToDateTime(customerInfo.NicExpiryDate).ToString("dd/MM/yyyy", new CultureInfo("en"));
+                retVal.PassportNumber = customerInfo.PassportNumber;
+                retVal.PassportDOE = customerInfo.PassportExpiryDate;
+                retVal.DOB = Convert.ToDateTime(customerInfo.DateOfBirth).ToString("dd/MM/yyyy", new CultureInfo("en"));
+                retVal.Country = customerInfo.PassportCountry != null ? customerInfo.PassportCountry.CountryName : string.Empty;
+                var phones = rentalAgreement.BusinessPartner.BusinessPartnerPhoneNumbers;
+                if (phones.Any())
+                {
+                    foreach (var phone in phones)
+                    {
+                        retVal.Telephone += phone.PhoneNumber + "\n";
+                    }
+                }
+                return retVal;
+            }
+            Address address = rentalAgreement.BusinessPartner.BusinessPartnerAddressList.FirstOrDefault();
+            RaCustomerInfo retVall = new RaCustomerInfo();
+            retVall.RenterName = rentalAgreement.BusinessPartner.BusinessPartnerName;
+            retVall.LicenceNumber = rentalAgreement.RentersLicenseNumber;
+            retVall.LicenceDOE = rentalAgreement.RentersLicenseExpDt;
+            retVall.ContactPerson = address != null ? address.ContactPerson : string.Empty;
+            retVall.City = address != null ? address.City.CityName : string.Empty;
+            retVall.Country = address != null ? address.Country.CountryName : string.Empty;
+            retVall.Region = address != null ? address.Region.RegionName : string.Empty;
+            retVall.StreetAddress = address != null ? address.StreetAddress : string.Empty;
+            var phoness = rentalAgreement.BusinessPartner.BusinessPartnerPhoneNumbers;
+            if (phoness.Any())
+            {
+                foreach (var phone in phoness)
+                {
+                    retVall.Telephone += phone.PhoneNumber + "\n";
+                }
+            }
+            return retVall;
         }
         
         /// <summary>
@@ -135,7 +173,14 @@ namespace Cares.Web.ModelMappers
             {
                 rentalAgreement.CreateRentalAgreementDetail()
             };
-            retVal.RaCustomerInfo = rentalAgreement.BusinessPartner.BusinessPartnerAddressList.Any() ? new List<RaCustomerInfo> {rentalAgreement.CreateCustomerInfo()} : new List<RaCustomerInfo>{ new RaCustomerInfo()};
+            if (rentalAgreement.BusinessPartner.IsIndividual)
+            {
+                retVal.RaCustomerInfo = rentalAgreement.BusinessPartner.BusinessPartnerIndividual != null ? new List<RaCustomerInfo> { rentalAgreement.CreateCustomerInfo() } : new List<RaCustomerInfo> { new RaCustomerInfo() };
+            }
+            else
+            {
+                retVal.RaCustomerInfo = new List<RaCustomerInfo> { rentalAgreement.CreateCustomerInfo() } ;
+            }
             retVal.RaVehicleInfos = rentalAgreement.RaHireGroups.Select(hireGroup => hireGroup.CreateVehicelDetail());
             retVal.RaAdditionaItemInfos =
                 rentalAgreement.RaServiceItems.Select(serviceItem => serviceItem.CreateServiceItemDetail());
@@ -161,6 +206,9 @@ namespace Cares.Web.ModelMappers
             }
                 return sumOfValues;
         }
-
+        //private static RaCustomerInfo CreateCustomerInfo(renta businessPartner)
+        //{
+        //    return new RaCustomerInfo();
+        //}
     }
 }

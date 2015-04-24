@@ -101,6 +101,14 @@ define("rentalAgreement/rentalAgreement.view",
                 hideDiscountsDialog = function () {
                     $("#discountsDialog").modal("hide");
                 },
+                // Show Discounts the dialog
+                showRentalAgreementReport = function () {
+                    $("#rentalAgreementSearchBinding").modal("show");
+                },
+                // Hide Discounts the dialog
+                hideRentalAgreementReport = function () {
+                    $("#rentalAgreementSearchBinding").modal("hide");
+                },
                 // On Nic Expiry Changed
                 onNicExpiryChanged = function(value) {
                     if (!value) {
@@ -250,7 +258,9 @@ define("rentalAgreement/rentalAgreement.view",
                 onPassportExpiryChanged: onPassportExpiryChanged,
                 onPassportExpiryHijriChanged: onPassportExpiryHijriChanged,
                 onRentersLicenseExpiryChanged: onRentersLicenseExpiryChanged,
-                onRentersLicensetExpiryHijriChanged: onRentersLicensetExpiryHijriChanged
+                onRentersLicensetExpiryHijriChanged: onRentersLicensetExpiryHijriChanged,
+                showRentalAgreementReport: showRentalAgreementReport,
+                hideRentalAgreementReport: hideRentalAgreementReport
             };
         })(rentalAgreementViewModel);
 

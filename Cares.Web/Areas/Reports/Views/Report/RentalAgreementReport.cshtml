@@ -1,36 +1,17 @@
 ﻿@{
-    ViewBag.Title = "Rental Agreement Report";
-    int id = 0;
-    if (ViewBag.RentalAgreementId != null)
-    {
-        id = ViewBag.RentalAgreementId;   
-    }
+    ViewBag.Title = Cares.Web.Resources.RentalAgreement.RentalAgreement.RentalAgreementReport_Title;
 }
-<div class="row" id="AreaBinding">
-    <div class="row ">
-        <h3 class="page-header float-left pageHeaderSection">Rental Agreement Report</h3>
-    </div>
-    <div class="row searchFilterResultSection">
-        <div class="well" style="background-color: white ; padding-top: 0px">
-            <table id="AreaTable" class="table table-condensed">
-                <thead>
-                    <tr><td><iframe id="myReport" width="1240px" height="950px" src="~/Reports/RentalAgreementReport.aspx?id=3"></iframe></td></tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<script>
-    $(document).ready(function () {
-        var raId = parseInt('@id');
-        var url;
-        if (raId == 0) {
-            url = "/Cares.Web/Reports/RentalAgreementReport.aspx?id=0";
-            $('#myReport').attr("src", url);
-        } else {
-            url = "/Cares.Web/Reports/RentalAgreementReport.aspx?id=" + raId;
-            $('#myReport').attr("src", url);
-        }
-    })
-</script>
+
+@Html.Partial("~/Areas/Common/Views/Shared/_RentalAgreementReport.cshtml")
+
+
+@section inlinescripts
+{
+    <script type="text/javascript">
+        require(["common/raReport.view"]);
+        $(document).ready(function () {
+            $("#myReport").css('width', '1240px');
+            $("#myReport").css('height', '960px');
+        });
+    </script>
+}
