@@ -642,4 +642,10 @@
   <data name="Report" xml:space="preserve">
     <value>تقرير</value>
   </data>
+  <data name="PHLastName" xml:space="preserve">
+    <value>اسم العائلة</value>
+  </data>
+  <data name="AllocationStatus" xml:space="preserve">
+    <value>حالة تخصيص</value>
+  </data>
 </root>

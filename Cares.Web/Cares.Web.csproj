@@ -3406,7 +3406,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>WorkplaceType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.ar.resx" />
+    <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.ar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\RentalAgreement\RentalAgreement.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>RentalAgreement.Designer.cs</LastGenOutput>

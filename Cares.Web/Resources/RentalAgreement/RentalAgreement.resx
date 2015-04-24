@@ -645,4 +645,7 @@
   <data name="Report" xml:space="preserve">
     <value>Report</value>
   </data>
+  <data name="Allocation Status" xml:space="preserve">
+    <value>حالة تخصيص</value>
+  </data>
 </root>

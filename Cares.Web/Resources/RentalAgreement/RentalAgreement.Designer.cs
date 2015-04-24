@@ -160,6 +160,15 @@ namespace Cares.Web.Resources.RentalAgreement {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to حالة تخصيص.
+        /// </summary>
+        public static string Allocation_Status {
+            get {
+                return ResourceManager.GetString("Allocation Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allocation Status.
         /// </summary>
         public static string AllocationStatus {
