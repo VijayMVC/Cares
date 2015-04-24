@@ -295,7 +295,7 @@
     <value>Close</value>
   </data>
   <data name="EndDate" xml:space="preserve">
-    <value>&lt;End Date&gt;</value>
+    <value>End Date</value>
   </data>
   <data name="Fuel" xml:space="preserve">
     <value>Fuel:</value>
